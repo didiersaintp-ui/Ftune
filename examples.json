@@ -1,0 +1,402 @@
+{
+  "examples": [
+    {
+      "name": "Abonnement mensuel simple",
+      "description": "Je veux un abonnement mensuel pour le métro",
+      "json": {
+        "product_name": "Abonnement mensuel Métro",
+        "characteristics": [
+          {
+            "number": 7,
+            "parameters": {
+              "7_01": 2,
+              "7_02": "M",
+              "7_03": 1,
+              "7_04": true,
+              "7_05": true
+            }
+          },
+          {
+            "number": 14,
+            "parameters": {
+              "14_01": ["Métro"],
+              "14_02": "Autorisée"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Carnet 10 tickets multi-modal",
+      "description": "Carnet de 10 tickets valable 1 semaine sur bus et tramway",
+      "json": {
+        "product_name": "Carnet 10 voyages hebdomadaire Bus-Tramway",
+        "characteristics": [
+          {
+            "number": 7,
+            "parameters": {
+              "7_01": 2,
+              "7_02": "W",
+              "7_03": 1,
+              "7_04": false,
+              "7_05": false
+            }
+          },
+          {
+            "number": 22,
+            "parameters": {
+              "22_01": 10,
+              "22_02": 10,
+              "22_03": false
+            }
+          },
+          {
+            "number": 14,
+            "parameters": {
+              "14_01": ["Bus urbain", "Tramway"],
+              "14_02": "Autorisée"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Pass 24h groupe",
+      "description": "Pass 24h pour 5 personnes, tous modes de transport",
+      "json": {
+        "product_name": "Pass 24h Groupe 5 personnes",
+        "characteristics": [
+          {
+            "number": 7,
+            "parameters": {
+              "7_01": 4,
+              "7_02": "H",
+              "7_03": 24,
+              "7_04": false,
+              "7_05": false
+            }
+          },
+          {
+            "number": 2,
+            "parameters": {
+              "2_01": 5
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Abonnement heures creuses",
+      "description": "Forfait hebdomadaire valable en semaine de 9h à 17h sur le métro",
+      "json": {
+        "product_name": "Forfait hebdomadaire heures creuses Métro",
+        "characteristics": [
+          {
+            "number": 7,
+            "parameters": {
+              "7_01": 2,
+              "7_02": "W",
+              "7_03": 1,
+              "7_04": true,
+              "7_05": true
+            }
+          },
+          {
+            "number": 9,
+            "parameters": {
+              "9_01": [
+                {
+                  "days": "Lundi-Vendredi",
+                  "start": "09:00",
+                  "end": "17:00"
+                }
+              ]
+            }
+          },
+          {
+            "number": 14,
+            "parameters": {
+              "14_01": ["Métro"],
+              "14_02": "Autorisée"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Abonnement annuel lignes spécifiques",
+      "description": "Abonnement annuel pour les lignes 1, 2 et 3, avec tacite reconduction",
+      "json": {
+        "product_name": "Abonnement annuel Lignes 1-2-3",
+        "characteristics": [
+          {
+            "number": 7,
+            "parameters": {
+              "7_01": 2,
+              "7_02": "M",
+              "7_03": 12,
+              "7_04": true,
+              "7_05": true
+            }
+          },
+          {
+            "number": 3,
+            "parameters": {
+              "3_01": ["Ligne 1", "Ligne 2", "Ligne 3"],
+              "3_02": "Autorisée"
+            }
+          },
+          {
+            "number": 102,
+            "parameters": {
+              "102_01": "Aucun",
+              "102_04": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Produit complexe multi-critères",
+      "description": "Abonnement mensuel pour 2 personnes, valable du lundi au vendredi de 6h à 20h, sur bus et métro, lignes 5 et 12, rechargeable",
+      "json": {
+        "product_name": "Abonnement mensuel Duo Lignes 5-12",
+        "characteristics": [
+          {
+            "number": 7,
+            "parameters": {
+              "7_01": 2,
+              "7_02": "M",
+              "7_03": 1,
+              "7_04": true,
+              "7_05": true
+            }
+          },
+          {
+            "number": 2,
+            "parameters": {
+              "2_01": 2
+            }
+          },
+          {
+            "number": 9,
+            "parameters": {
+              "9_01": [
+                {
+                  "days": "Lundi-Vendredi",
+                  "start": "06:00",
+                  "end": "20:00"
+                }
+              ]
+            }
+          },
+          {
+            "number": 14,
+            "parameters": {
+              "14_01": ["Bus urbain", "Métro"],
+              "14_02": "Autorisée"
+            }
+          },
+          {
+            "number": 3,
+            "parameters": {
+              "3_01": ["Ligne 5", "Ligne 12"],
+              "3_02": "Autorisée"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Billet unitaire simple",
+      "description": "Ticket simple trajet métro",
+      "json": {
+        "product_name": "Ticket unitaire Métro",
+        "characteristics": [
+          {
+            "number": 7,
+            "parameters": {
+              "7_01": 4,
+              "7_02": "H",
+              "7_03": 2,
+              "7_04": false,
+              "7_05": false
+            }
+          },
+          {
+            "number": 22,
+            "parameters": {
+              "22_01": 1,
+              "22_02": 1,
+              "22_03": false
+            }
+          },
+          {
+            "number": 14,
+            "parameters": {
+              "14_01": ["Métro"],
+              "14_02": "Autorisée"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Pass étudiant",
+      "description": "Abonnement annuel étudiant tous modes sauf train, avec 2 déplacements max par jour",
+      "json": {
+        "product_name": "Pass étudiant annuel",
+        "characteristics": [
+          {
+            "number": 7,
+            "parameters": {
+              "7_01": 2,
+              "7_02": "M",
+              "7_03": 12,
+              "7_04": true,
+              "7_05": true
+            }
+          },
+          {
+            "number": 14,
+            "parameters": {
+              "14_01": ["Train"],
+              "14_02": "Interdite"
+            }
+          },
+          {
+            "number": 10,
+            "parameters": {
+              "10_01": [
+                {
+                  "unit": "Jour",
+                  "count": 1,
+                  "max_trips": 2
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Pass week-end",
+      "description": "Pass weekend illimité bus métro tramway, valable samedi et dimanche",
+      "json": {
+        "product_name": "Pass Week-end Illimité",
+        "characteristics": [
+          {
+            "number": 7,
+            "parameters": {
+              "7_01": 4,
+              "7_02": "D",
+              "7_03": 2,
+              "7_04": false,
+              "7_05": false
+            }
+          },
+          {
+            "number": 9,
+            "parameters": {
+              "9_01": [
+                {
+                  "days": "Samedi-Dimanche",
+                  "start": "00:00",
+                  "end": "23:59"
+                }
+              ]
+            }
+          },
+          {
+            "number": 14,
+            "parameters": {
+              "14_01": ["Bus urbain", "Métro", "Tramway"],
+              "14_02": "Autorisée"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Forfait entreprise",
+      "description": "Abonnement mensuel groupe 10 personnes, tous modes, rechargeable automatiquement",
+      "json": {
+        "product_name": "Forfait Entreprise 10 personnes",
+        "characteristics": [
+          {
+            "number": 7,
+            "parameters": {
+              "7_01": 2,
+              "7_02": "M",
+              "7_03": 1,
+              "7_04": true,
+              "7_05": true
+            }
+          },
+          {
+            "number": 2,
+            "parameters": {
+              "2_01": 10
+            }
+          },
+          {
+            "number": 102,
+            "parameters": {
+              "102_01": "Aucun",
+              "102_04": false
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "notes": {
+    "characteristic_numbers": {
+      "2": "Groupe avec nombre de passagers par produit",
+      "3": "Lignes autorisées ou interdites par produit",
+      "4": "Zones de tarification autorisées/interdites",
+      "6": "Nombre de validations par déplacement",
+      "7": "DDV et DEV contrat (période de validité)",
+      "8": "Calendrier d'autorisation ou de refus en validation",
+      "9": "Autorisation de déplacement par type de jour et tranche horaire",
+      "10": "Limitation des déplacements par sous-période",
+      "11": "Interdiction de retour sur une même ligne",
+      "14": "Modes de transport autorisés ou interdits",
+      "21": "Multi-déplacement, Multi-usager",
+      "22": "Multi-déplacements Mono-usager",
+      "23": "Points de fidélité à la validation",
+      "38": "Groupe avec nombre de passagers saisi à la vente",
+      "48": "Produit à post-paiement",
+      "58": "Classe autorisée par produit",
+      "73": "Encodage du pointeur sur profil",
+      "74": "Mode de transport autorisé par produit",
+      "86": "OD sélectionnée à la vente",
+      "87": "Lignes déterminées à la vente et codées sur le support",
+      "90": "Champ de zones",
+      "91": "Encodage de prestations",
+      "97": "Gestion du remboursement",
+      "98": "Mécanisme d'inhibition du blocage de contrat",
+      "102": "Abonnement à tacite reconduction avec prélèvements automatiques",
+      "103": "Titre unitaire sans compteur",
+      "105": "Multi-validation",
+      "107": "X mois gratuits pour Y mois payés",
+      "121": "Zones autorisées sur un des réseaux locaux déterminées à la vente"
+    },
+    "validity_units": {
+      "D": "Jour",
+      "W": "Semaine",
+      "M": "Mois",
+      "H": "Heure"
+    },
+    "validity_natures": {
+      "0": "DDV et DEV à dates fixes",
+      "2": "DDV et DEV glissantes au chargement",
+      "4": "DEV glissante à la validation",
+      "6": "DDV et DEV déterminées au chargement et modifiables à la vente",
+      "8": "DEV glissante avec DDV saisie à la vente",
+      "14": "DDV saisie à la vente et DEV limitée par profil ou support",
+      "20": "DDV début mois suivant, DEV limitée par profil ou support",
+      "21": "DDV et DEV calendaires avec date pivot"
+    }
+  }
+}

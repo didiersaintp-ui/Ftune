@@ -1,0 +1,168 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Transport Product Schema",
+  "description": "Schéma de validation pour les produits de transport",
+  "type": "object",
+  "required": ["product_name", "characteristics"],
+  "properties": {
+    "product_name": {
+      "type": "string",
+      "description": "Nom du produit de transport",
+      "minLength": 1
+    },
+    "characteristics": {
+      "type": "array",
+      "description": "Liste des caractéristiques du produit",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["number", "parameters"],
+        "properties": {
+          "number": {
+            "type": "integer",
+            "description": "Numéro de la caractéristique",
+            "enum": [2, 3, 4, 6, 7, 8, 9, 10, 11, 14, 21, 22, 23, 38, 48, 58, 73, 74, 86, 87, 90, 91, 97, 98, 102, 103, 105, 107, 121]
+          },
+          "parameters": {
+            "type": "object",
+            "description": "Paramètres de la caractéristique"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "characteristic_7": {
+      "description": "DDV et DEV contrat - Période de validité",
+      "properties": {
+        "7_01": {
+          "description": "Nature de validité du produit",
+          "type": "integer",
+          "enum": [0, 2, 4, 6, 8, 14, 20, 21]
+        },
+        "7_02": {
+          "description": "Unité de la durée de validité",
+          "type": "string",
+          "enum": ["D", "W", "M", "H"]
+        },
+        "7_03": {
+          "description": "Durée de validité",
+          "type": "integer",
+          "minimum": 1
+        },
+        "7_04": {
+          "description": "Rechargement par prorogation",
+          "type": "boolean"
+        },
+        "7_05": {
+          "description": "Autorisation de rechargement",
+          "type": "boolean"
+        },
+        "7_06": {
+          "description": "Valeur pivot de la période de validité",
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": ["7_01", "7_02", "7_03"]
+    },
+    "characteristic_22": {
+      "description": "Multi-déplacements Mono-usager",
+      "properties": {
+        "22_01": {
+          "description": "Nombre de déplacements du produit",
+          "type": "integer",
+          "minimum": 1
+        },
+        "22_02": {
+          "description": "Nombre maximum de déplacements du contrat",
+          "type": "integer",
+          "minimum": 1
+        },
+        "22_03": {
+          "description": "Rechargement par surcharge",
+          "type": "boolean"
+        }
+      },
+      "required": ["22_01", "22_02"]
+    },
+    "characteristic_14": {
+      "description": "Modes de transport autorisés ou interdits",
+      "properties": {
+        "14_01": {
+          "description": "Liste des modes de transport",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["Bus urbain", "Bus interurbain", "Métro", "Tramway", "Train", "Parking", "Vélo"]
+          }
+        },
+        "14_02": {
+          "description": "Type d'utilisation",
+          "type": "string",
+          "enum": ["Autorisée", "Interdite"]
+        }
+      },
+      "required": ["14_01", "14_02"]
+    },
+    "characteristic_2": {
+      "description": "Groupe avec nombre de passagers par produit",
+      "properties": {
+        "2_01": {
+          "description": "Nombre maximum de passagers autorisés",
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": ["2_01"]
+    },
+    "characteristic_9": {
+      "description": "Autorisation de déplacement par type de jour et tranche horaire",
+      "properties": {
+        "9_01": {
+          "description": "Table de validité par tranche horaire",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "days": {
+                "type": "string",
+                "description": "Type de jour (Lundi, Mardi, etc.)"
+              },
+              "start": {
+                "type": "string",
+                "pattern": "^([0-1][0-9]|2[0-3]):[0-5][0-9]$",
+                "description": "Heure de début (HH:MM)"
+              },
+              "end": {
+                "type": "string",
+                "pattern": "^([0-1][0-9]|2[0-3]):[0-5][0-9]$",
+                "description": "Heure de fin (HH:MM)"
+              }
+            },
+            "required": ["days", "start", "end"]
+          }
+        }
+      },
+      "required": ["9_01"]
+    },
+    "characteristic_3": {
+      "description": "Lignes autorisées ou interdites par produit",
+      "properties": {
+        "3_01": {
+          "description": "Liste des lignes",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "3_02": {
+          "description": "Type d'utilisation",
+          "type": "string",
+          "enum": ["Autorisée", "Interdite"]
+        }
+      },
+      "required": ["3_01", "3_02"]
+    }
+  }
+}

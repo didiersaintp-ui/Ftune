@@ -1,0 +1,15 @@
+# Requirements for local inference (CPU)
+# For training, use the Google Colab notebook which handles all dependencies
+
+# Core dependencies
+llama-cpp-python>=0.2.0
+jsonschema>=4.0.0
+
+# Optional: for better performance
+# numpy>=1.24.0
+# sentencepiece>=0.1.99
+
+# Installation notes:
+# - llama-cpp-python may require compilation
+# - For Mac M1/M2: pip install llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/metal
+# - For CUDA support: CMAKE_ARGS="-DLLAMA_CUBLAS=on" pip install llama-cpp-python
