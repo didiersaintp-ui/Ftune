@@ -41,7 +41,7 @@
     "metadata": {
       "type": "error_detection",
       "topic": "incompatibilite",
-      "incompatibility": ["CAR_14", "CAR_74"],
+      "incompatibility": [14, 74],
       "expected_action": "ask_choice",
       "turns": 1
     }
