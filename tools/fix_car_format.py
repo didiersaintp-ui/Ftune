@@ -44,31 +44,35 @@ def fix_jsonl_file(input_path, output_path):
     fixed_count = 0
     total_count = 0
 
+    # Lire toutes les lignes d'abord
+    lines = []
     with open(input_path, 'r', encoding='utf-8') as fin:
-        with open(output_path, 'w', encoding='utf-8') as fout:
-            for line in fin:
-                if not line.strip():
-                    continue
+        for line in fin:
+            if line.strip():
+                lines.append(line)
 
-                total_count += 1
-                try:
-                    data = json.loads(line)
+    # Écrire les lignes corrigées
+    with open(output_path, 'w', encoding='utf-8') as fout:
+        for line in lines:
+            total_count += 1
+            try:
+                data = json.loads(line)
 
-                    # Fixer metadata si présent
-                    if "metadata" in data:
-                        original_metadata = json.dumps(data["metadata"], sort_keys=True)
-                        data["metadata"] = fix_metadata(data["metadata"])
-                        new_metadata = json.dumps(data["metadata"], sort_keys=True)
+                # Fixer metadata si présent
+                if "metadata" in data:
+                    original_metadata = json.dumps(data["metadata"], sort_keys=True)
+                    data["metadata"] = fix_metadata(data["metadata"])
+                    new_metadata = json.dumps(data["metadata"], sort_keys=True)
 
-                        if original_metadata != new_metadata:
-                            fixed_count += 1
+                    if original_metadata != new_metadata:
+                        fixed_count += 1
 
-                    # Écrire la ligne corrigée
-                    fout.write(json.dumps(data, ensure_ascii=False) + '\n')
+                # Écrire la ligne corrigée
+                fout.write(json.dumps(data, ensure_ascii=False) + '\n')
 
-                except json.JSONDecodeError as e:
-                    print(f"⚠️  Ligne {total_count} invalide: {e}", file=sys.stderr)
-                    fout.write(line)  # Garder la ligne originale si erreur
+            except json.JSONDecodeError as e:
+                print(f"⚠️  Ligne {total_count} invalide: {e}", file=sys.stderr)
+                fout.write(line)  # Garder la ligne originale si erreur
 
     return fixed_count, total_count
 
