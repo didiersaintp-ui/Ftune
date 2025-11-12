@@ -8,10 +8,7 @@
       "famille": "abonnement",
       "expected_action": "create_product",
       "turns": 1,
-      "cars": [
-        7,
-        14
-      ]
+      "cars": [7, 14]
     }
   },
   {
@@ -23,11 +20,7 @@
       "famille": "carnet",
       "expected_action": "create_product",
       "turns": 1,
-      "cars": [
-        7,
-        22,
-        14
-      ]
+      "cars": [7, 22, 14]
     }
   },
   {
@@ -39,10 +32,7 @@
       "famille": "forfait_groupe",
       "expected_action": "create_product",
       "turns": 1,
-      "cars": [
-        7,
-        2
-      ]
+      "cars": [7, 2]
     }
   },
   {
@@ -51,10 +41,7 @@
     "metadata": {
       "type": "error_detection",
       "topic": "incompatibilite",
-      "incompatibility": [
-        14,
-        74
-      ],
+      "incompatibility": [14, 74],
       "expected_action": "ask_choice",
       "turns": 1
     }
@@ -90,10 +77,7 @@
       "topic": "comparaison_produits",
       "expected_action": "display_analysis",
       "turns": 1,
-      "cars": [
-        7,
-        9
-      ]
+      "cars": [7, 9]
     }
   },
   {
@@ -105,9 +89,7 @@
       "complexity": "medium",
       "expected_action": "create_product",
       "turns": 1,
-      "cars": [
-        7
-      ],
+      "cars": [7],
       "includes_justification": true
     }
   }

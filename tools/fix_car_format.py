@@ -7,6 +7,7 @@ Corrige : "cars": ["CAR_7", "CAR_14"] → "cars": [7, 14]
 import json
 import sys
 import re
+import os
 from pathlib import Path
 
 def convert_car_to_int(value):
@@ -19,15 +20,19 @@ def convert_car_to_int(value):
     return value
 
 def fix_metadata(metadata):
-    """Fixe tous les champs cars/incompatibility dans metadata"""
+    """Fixe tous les champs cars/car/incompatibility dans metadata"""
     if not isinstance(metadata, dict):
         return metadata
 
     fixed = metadata.copy()
 
-    # Fixer 'cars'
+    # Fixer 'cars' (pluriel, liste)
     if "cars" in fixed and isinstance(fixed["cars"], list):
         fixed["cars"] = [convert_car_to_int(car) for car in fixed["cars"]]
+
+    # Fixer 'car' (singulier, string)
+    if "car" in fixed:
+        fixed["car"] = convert_car_to_int(fixed["car"])
 
     # Fixer 'incompatibility'
     if "incompatibility" in fixed and isinstance(fixed["incompatibility"], list):
@@ -36,6 +41,10 @@ def fix_metadata(metadata):
     # Fixer 'caracteristique_id' (si string)
     if "caracteristique_id" in fixed:
         fixed["caracteristique_id"] = convert_car_to_int(fixed["caracteristique_id"])
+
+    # Fixer 'caracteristiques' (si liste de strings)
+    if "caracteristiques" in fixed and isinstance(fixed["caracteristiques"], list):
+        fixed["caracteristiques"] = [convert_car_to_int(car) for car in fixed["caracteristiques"]]
 
     return fixed
 
@@ -102,13 +111,18 @@ def fix_json_file(input_path, output_path):
 def main():
     dataset_dir = Path("/home/user/Ftune/dataset")
 
-    files_to_fix = [
-        "dataset_auto_1000.jsonl",
-        "dataset_manuel_1000.jsonl",
-        "dataset_manuel_2000.jsonl"
-    ]
+    # Trouver tous les fichiers JSON/JSONL
+    import glob
+    os.chdir(dataset_dir)
+    files_to_fix = sorted(glob.glob("*.jsonl")) + sorted(glob.glob("*.json"))
 
-    print("🔧 CORRECTION DES FORMATS CAR_X → X")
+    # Exclure les backups et README
+    files_to_fix = [f for f in files_to_fix if "backup" not in f.lower() and "readme" not in f.lower()]
+
+    print("🔧 CORRECTION DES FORMATS CAR_X → X (TOUS CHAMPS)")
+    print("="*60)
+    print(f"Fichiers à traiter: {len(files_to_fix)}")
+    print("Champs corrigés: cars, car, incompatibility, caracteristique_id, caracteristiques")
     print("="*60)
 
     total_fixed = 0
@@ -133,7 +147,11 @@ def main():
         else:
             fixed, total = fix_json_file(input_path, input_path)
 
-        print(f"   ✅ {fixed}/{total} lignes corrigées")
+        if fixed > 0:
+            print(f"   ✅ {fixed}/{total} lignes corrigées")
+        else:
+            print(f"   ⏭️  {total} lignes (déjà correctes)")
+
         total_fixed += fixed
         total_processed += total
 
