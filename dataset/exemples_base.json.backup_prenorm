@@ -56,8 +56,7 @@
         74
       ],
       "expected_action": "ask_choice",
-      "turns": 1,
-      "cars": []
+      "turns": 1
     }
   },
   {
@@ -66,11 +65,9 @@
     "metadata": {
       "type": "explication",
       "topic": "caracteristique",
+      "caracteristique_id": 7,
       "expected_action": "none",
-      "turns": 1,
-      "cars": [
-        7
-      ]
+      "turns": 1
     }
   },
   {
@@ -82,8 +79,7 @@
       "parameter": "duree",
       "value_received": 0,
       "expected_action": "ask_correction",
-      "turns": 1,
-      "cars": []
+      "turns": 1
     }
   },
   {
