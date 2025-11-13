@@ -1,0 +1,96 @@
+[
+  {
+    "instruction": "Je veux un abonnement mensuel pour le métro à 50€.",
+    "response": "🧠 Raisonnement : Abonnement mensuel simple avec restriction mode métro.\n\n➡️ Plan de création :\n```json\n{\n  \"nom\": \"Abonnement Mensuel Métro\",\n  \"famille\": \"Abonnement\",\n  \"support\": [\"CSC\"],\n  \"tarif_cents\": 5000,\n  \"caracteristiques\": [\n    {\n      \"id\": \"CAR_7\",\n      \"nom\": \"DDV et DEV contrat\",\n      \"parametres\": {\n        \"nature_validite\": \"dates_fixes\",\n        \"unite_duree\": \"mois\",\n        \"duree\": 1,\n        \"rechargement_prorogation\": true\n      }\n    },\n    {\n      \"id\": \"CAR_14\",\n      \"nom\": \"Modes de transport autorisés\",\n      \"parametres\": {\n        \"modes\": [\"métro\"],\n        \"utilisation\": \"autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ Confirmez-vous cette création ?",
+    "metadata": {
+      "type": "creation",
+      "topic": "produit_transport",
+      "famille": "abonnement",
+      "expected_action": "create_product",
+      "turns": 1,
+      "cars": [7, 14]
+    }
+  },
+  {
+    "instruction": "Carnet de 10 tickets bus et tramway valable 1 mois.",
+    "response": "🧠 Raisonnement : Carnet multi-déplacements mono-usager avec restriction modes.\n\n➡️ Plan de création :\n```json\n{\n  \"nom\": \"Carnet 10 Tickets Bus+Tramway\",\n  \"famille\": \"Carnet de déplacement\",\n  \"support\": [\"CSC\", \"BSC\"],\n  \"tarif_cents\": 1500,\n  \"caracteristiques\": [\n    {\n      \"id\": \"CAR_7\",\n      \"nom\": \"DDV et DEV contrat\",\n      \"parametres\": {\n        \"nature_validite\": \"glissante_chargement\",\n        \"unite_duree\": \"mois\",\n        \"duree\": 1\n      }\n    },\n    {\n      \"id\": \"CAR_22\",\n      \"nom\": \"Multi-déplacements Mono-usager\",\n      \"parametres\": {\n        \"nombre_deplacements\": 10,\n        \"rechargement_surcharge\": true\n      }\n    },\n    {\n      \"id\": \"CAR_14\",\n      \"nom\": \"Modes de transport autorisés\",\n      \"parametres\": {\n        \"modes\": [\"bus\", \"tramway\"],\n        \"utilisation\": \"autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ Confirmez-vous cette création ?",
+    "metadata": {
+      "type": "creation",
+      "topic": "produit_transport",
+      "famille": "carnet",
+      "expected_action": "create_product",
+      "turns": 1,
+      "cars": [7, 22, 14]
+    }
+  },
+  {
+    "instruction": "Pass 24h pour 5 personnes tous modes.",
+    "response": "🧠 Raisonnement : Pass courte durée multi-usagers sans restriction de mode.\n\n➡️ Plan de création :\n```json\n{\n  \"nom\": \"Pass Groupe 24h\",\n  \"famille\": \"Forfait\",\n  \"support\": [\"Application\"],\n  \"tarif_cents\": 2500,\n  \"caracteristiques\": [\n    {\n      \"id\": \"CAR_7\",\n      \"nom\": \"DDV et DEV contrat\",\n      \"parametres\": {\n        \"nature_validite\": \"glissante_validation\",\n        \"unite_duree\": \"heures\",\n        \"duree\": 24\n      }\n    },\n    {\n      \"id\": \"CAR_2\",\n      \"nom\": \"Nombre de passagers\",\n      \"parametres\": {\n        \"nombre_passagers\": 5\n      }\n    }\n  ]\n}\n```\n\n💡 Pas de CAR_14 = tous modes autorisés par défaut.\n\n✅ Confirmez-vous ?",
+    "metadata": {
+      "type": "creation",
+      "topic": "produit_transport",
+      "famille": "forfait_groupe",
+      "expected_action": "create_product",
+      "turns": 1,
+      "cars": [7, 2]
+    }
+  },
+  {
+    "instruction": "Produit CAR_14 (modes liste) ET CAR_74 (mode codé) bus.",
+    "response": "🧠 Raisonnement : Incompatibilité classique détectée.\n\n⚠️ **ERREUR : INCOMPATIBILITÉ CAR_14 ⊗ CAR_74**\n\n```json\n{\n  \"caracteristiques_demandees\": [14, 74],\n  \"incompatibilite\": true,\n  \"raison\": \"Approches redondantes et mutuellement exclusives\"\n}\n```\n\n📋 Explication :\n- CAR_14 : modes en liste moderne [\"bus\",\"métro\"]\n- CAR_74 : mode unique codé (1=bus, 2=métro...)\n- Impossible de combiner les deux systèmes\n\n💡 **Solution** : Choisir UNE approche :\n\n**Option A** : CAR_14 uniquement (recommandé)\n```json\n{\"caracteristiques\":[14],\"parametres\":{\"CAR_14\":{\"modes\":[\"bus\"]}}}\n```\n\n**Option B** : CAR_74 uniquement\n```json\n{\"caracteristiques\":[74],\"parametres\":{\"CAR_74\":{\"mode_num\":1}}}\n```\n\nQuelle option choisissez-vous?",
+    "metadata": {
+      "type": "error_detection",
+      "topic": "incompatibilite",
+      "incompatibility": [14, 74],
+      "expected_action": "ask_choice",
+      "turns": 1
+    }
+  },
+  {
+    "instruction": "Qu'est-ce que CAR_7?",
+    "response": "🧠 Raisonnement : CAR_7 est la caractéristique fondamentale de période de validité.\n\n➡️ Réponse : CAR_7 - **DDV et DEV contrat** - définit la période de validité du produit.\n\n📋 Paramètres :\n- **nature_validite** : Type de validité (dates fixes, glissante validation, glissante chargement...)\n- **unite_duree** : Unité de temps (heures, jours, mois, années)\n- **duree** : Nombre d'unités\n- **rechargement_prorogation** : Rechargeable ou non\n\n💡 Exemples :\n- Abonnement mensuel : dates_fixes, mois, 1, rechargeable\n- Pass 24h : glissante_validation, heures, 24, non rechargeable\n- Ticket 1h : glissante_validation, heures, 1, non rechargeable\n\n⚠️ **OBLIGATOIRE** : Tous les produits temporels doivent avoir CAR_7.",
+    "metadata": {
+      "type": "explication",
+      "topic": "caracteristique",
+      "caracteristique_id": 7,
+      "expected_action": "none",
+      "turns": 1
+    }
+  },
+  {
+    "instruction": "Abonnement mensuel avec durée 0 mois.",
+    "response": "🧠 Raisonnement : Validation paramètre durée - zéro impossible.\n\n⚠️ **ERREUR : DURÉE INVALIDE**\n\n❌ Durée reçue : 0 mois\n✅ Durée valide : entier ≥ 1\n\nUn abonnement/forfait sans durée n'a pas de sens.\n\n💡 **Corrections possibles** :\n\n**1 mois** : Forfait mensuel standard\n\n**1 jour** : Changer unite_duree = \"jours\", duree = 1\n\n**1 heure** : Ticket court (unite_duree = \"heures\", duree = 1)\n\n🔧 Précisez la durée souhaitée (≥ 1).",
+    "metadata": {
+      "type": "error_detection",
+      "topic": "valeur_invalide",
+      "parameter": "duree",
+      "value_received": 0,
+      "expected_action": "ask_correction",
+      "turns": 1
+    }
+  },
+  {
+    "instruction": "Compare Forfait Mensuel Standard vs Étudiant.",
+    "response": "🧠 Raisonnement : Comparaison de 2 produits similaires avec profils différents.\n\n➡️ Analyse comparative :\n```json\n{\n  \"produit_1\": {\n    \"nom\": \"Forfait Mensuel Standard\",\n    \"prix\": 5000,\n    \"caracteristiques\": [7],\n    \"profil\": \"tout public\",\n    \"restrictions\": \"aucune\"\n  },\n  \"produit_2\": {\n    \"nom\": \"Forfait Mensuel Étudiant\",\n    \"prix\": 2500,\n    \"caracteristiques\": [7, 9],\n    \"profil\": \"étudiant\",\n    \"restrictions\": \"lun-ven 8h-18h\"\n  },\n  \"differences\": {\n    \"prix\": \"-50% (économie 25€)\",\n    \"horaires\": \"Étudiant limité heures cours\",\n    \"profil\": \"Étudiant = justificatif requis\"\n  },\n  \"recommandation\": \"Étudiant si horaires compatibles (économie 300€/an)\"\n}\n```\n\n✅ Standard : flexibilité totale. Étudiant : -50% mais limité lun-ven 8h-18h.",
+    "metadata": {
+      "type": "comparison",
+      "topic": "comparaison_produits",
+      "expected_action": "display_analysis",
+      "turns": 1,
+      "cars": [7, 9]
+    }
+  },
+  {
+    "instruction": "Recommande un produit pour un touriste visitant la ville 2 jours.",
+    "response": "🧠 Raisonnement : Analyse du profil touriste - séjour court, usage intensif, besoin de simplicité.\n\n🎯 **Analyse du besoin** :\n- Durée séjour : 2 jours (48h)\n- Usage : intensif (monuments, déplacements multiples)\n- Priorité : simplicité + coût fixe\n- Pas de compte préexistant\n\n💡 **Recommandation** : Pass Découverte 48h\n\n➡️ Plan :\n```json\n{\n  \"nom\": \"Pass Découverte 48h\",\n  \"famille\": \"Forfait\",\n  \"support\": \"Application\",\n  \"tarif_cents\": 1500,\n  \"caracteristiques\": [\n    {\n      \"id\": \"CAR_7\",\n      \"parametres\": {\n        \"nature_validite\": \"glissante_validation\",\n        \"unite_duree\": \"heures\",\n        \"duree\": 48\n      }\n    }\n  ]\n}\n```\n\n📊 **Justification** :\n- ✅ Activation immédiate via app (pas de carte physique)\n- ✅ Vraiment 48h (pas limité à 2 jours calendaires)\n- ✅ Tous modes inclus\n- ✅ 15€ vs ~30€ en tickets unitaires (économie 50%)\n\nConfirmez-vous cette recommandation ?",
+    "metadata": {
+      "type": "advanced_reasoning",
+      "topic": "recommandation_produit",
+      "complexity": "medium",
+      "expected_action": "create_product",
+      "turns": 1,
+      "cars": [7],
+      "includes_justification": true
+    }
+  }
+]

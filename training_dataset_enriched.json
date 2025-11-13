@@ -1,0 +1,2190 @@
+[
+  {
+    "input": "Abonnement annuel rechargeable pour tous modes",
+    "output": {
+      "product_name": "Abonnement annuel Multi-modal",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 12,
+            "7_04": true,
+            "7_05": true
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Abonnement annuel première classe avec surclassement autorisé",
+    "output": {
+      "product_name": "Abonnement annuel Première Classe",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 12,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 58,
+          "parameters": {
+            "58_01": 1,
+            "58_02": true
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Abonnement hebdomadaire avec maximum 2 déplacements par jour",
+    "output": {
+      "product_name": "Abonnement hebdomadaire 2 voyages/jour",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "W",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 10,
+          "parameters": {
+            "10_01": [
+              {
+                "unit": "Jour",
+                "count": 1,
+                "max_trips": 2
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Abonnement mensuel pour 2 personnes, valable du lundi au vendredi de 6h à 20h, sur bus et métro, lignes 5 et 12, rechargeable",
+    "output": {
+      "product_name": "Abonnement mensuel Duo Lignes 5-12",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 2,
+          "parameters": {
+            "2_01": 2
+          }
+        },
+        {
+          "number": 9,
+          "parameters": {
+            "9_01": [
+              {
+                "days": "Lundi-Vendredi",
+                "start": "06:00",
+                "end": "20:00"
+              }
+            ]
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Bus urbain",
+              "Métro"
+            ],
+            "14_02": "Autorisée"
+          }
+        },
+        {
+          "number": 3,
+          "parameters": {
+            "3_01": [
+              "Ligne 5",
+              "Ligne 12"
+            ],
+            "3_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Titre permettant de valider pour 3 personnes simultanément",
+    "output": {
+      "product_name": "Titre multi-validation 3 personnes",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 4,
+            "7_02": "H",
+            "7_03": 24,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 105,
+          "parameters": {
+            "105_01": 3
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Carnet de 20 voyages rechargeable tous modes",
+    "output": {
+      "product_name": "Carnet 20 voyages rechargeable",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 22,
+          "parameters": {
+            "22_01": 20,
+            "22_02": 20,
+            "22_03": true
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Pass 48h groupe 3 personnes avec 20 voyages maximum sur bus et tramway",
+    "output": {
+      "product_name": "Pass 48h Groupe 3p 20 voyages Bus-Tramway",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 4,
+            "7_02": "H",
+            "7_03": 48,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 2,
+          "parameters": {
+            "2_01": 3
+          }
+        },
+        {
+          "number": 22,
+          "parameters": {
+            "22_01": 20,
+            "22_02": 20,
+            "22_03": false
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Bus urbain",
+              "Tramway"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Ticket simple trajet métro",
+    "output": {
+      "product_name": "Ticket unitaire Métro",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 4,
+            "7_02": "H",
+            "7_03": 2,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 22,
+          "parameters": {
+            "22_01": 1,
+            "22_02": 1,
+            "22_03": false
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Métro"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Pass mensuel valable sur toutes les lignes sauf la ligne 5",
+    "output": {
+      "product_name": "Pass mensuel (hors Ligne 5)",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 3,
+          "parameters": {
+            "3_01": [
+              "Ligne 5"
+            ],
+            "3_02": "Interdite"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Pass mensuel limité à 10 voyages par semaine en métro",
+    "output": {
+      "product_name": "Pass mensuel 10 voyages/semaine Métro",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 10,
+          "parameters": {
+            "10_01": [
+              {
+                "unit": "Semaine",
+                "count": 1,
+                "max_trips": 10
+              }
+            ]
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Métro"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Billet Paris-Lyon aller-retour",
+    "output": {
+      "product_name": "Billet Paris-Lyon A/R",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 0,
+            "7_02": "D",
+            "7_03": 1,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 86,
+          "parameters": {
+            "86_01": "PARIS",
+            "86_02": "LYON",
+            "86_03": true
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Carnet de 10 tickets valable 1 semaine sur bus et tramway",
+    "output": {
+      "product_name": "Carnet 10 voyages hebdomadaire Bus-Tramway",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "W",
+            "7_03": 1,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 22,
+          "parameters": {
+            "22_01": 10,
+            "22_02": 10,
+            "22_03": false
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Bus urbain",
+              "Tramway"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Forfait hebdomadaire bus et tramway",
+    "output": {
+      "product_name": "Forfait hebdomadaire Bus-Tramway",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "W",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Bus urbain",
+              "Tramway"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Abonnement annuel avec tacite reconduction automatique",
+    "output": {
+      "product_name": "Abonnement annuel avec reconduction",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 12,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 102,
+          "parameters": {
+            "102_01": "Aucun",
+            "102_04": true
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite un abonnement mensuel pour le métro",
+    "output": {
+      "product_name": "Abonnement mensuel Métro",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Métro"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Abonnement mensuel tarif étudiant pour le métro",
+    "output": {
+      "product_name": "Abonnement mensuel Étudiant Métro",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 73,
+          "parameters": {
+            "73_01": "ETU",
+            "73_02": "Étudiant"
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Métro"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Forfait groupe de 5 à 20 personnes à définir à l'achat",
+    "output": {
+      "product_name": "Forfait Groupe Variable (5-20p)",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 38,
+          "parameters": {
+            "38_01": 5,
+            "38_02": 20
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Carnet de 10 tickets valable 1 semaine sur bus et tramway",
+    "output": {
+      "product_name": "Carnet 10 voyages hebdomadaire Bus-Tramway",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "W",
+            "7_03": 1,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 22,
+          "parameters": {
+            "22_01": 10,
+            "22_02": 10,
+            "22_03": false
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Bus urbain",
+              "Tramway"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Ticket simple trajet métro",
+    "output": {
+      "product_name": "Ticket unitaire Métro",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 4,
+            "7_02": "H",
+            "7_03": 2,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 22,
+          "parameters": {
+            "22_01": 1,
+            "22_02": 1,
+            "22_03": false
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Métro"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Pass mensuel limité à 10 voyages par semaine en métro",
+    "output": {
+      "product_name": "Pass mensuel 10 voyages/semaine Métro",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 10,
+          "parameters": {
+            "10_01": [
+              {
+                "unit": "Semaine",
+                "count": 1,
+                "max_trips": 10
+              }
+            ]
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Métro"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Abonnement mensuel pour 2 personnes, valable du lundi au vendredi de 6h à 20h, sur bus et métro, lignes 5 et 12, rechargeable",
+    "output": {
+      "product_name": "Abonnement mensuel Duo Lignes 5-12",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 2,
+          "parameters": {
+            "2_01": 2
+          }
+        },
+        {
+          "number": 9,
+          "parameters": {
+            "9_01": [
+              {
+                "days": "Lundi-Vendredi",
+                "start": "06:00",
+                "end": "20:00"
+              }
+            ]
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Bus urbain",
+              "Métro"
+            ],
+            "14_02": "Autorisée"
+          }
+        },
+        {
+          "number": 3,
+          "parameters": {
+            "3_01": [
+              "Ligne 5",
+              "Ligne 12"
+            ],
+            "3_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Forfait mensuel pour 10 personnes tous modes",
+    "output": {
+      "product_name": "Forfait mensuel Groupe 10 personnes",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 2,
+          "parameters": {
+            "2_01": 10
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Pass 24 heures tous modes de transport",
+    "output": {
+      "product_name": "Pass 24h Multi-modal",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 4,
+            "7_02": "H",
+            "7_03": 24,
+            "7_04": false,
+            "7_05": false
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Abonnement annuel pour les lignes 1, 2 et 3",
+    "output": {
+      "product_name": "Abonnement annuel Lignes 1-2-3",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 12,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 3,
+          "parameters": {
+            "3_01": [
+              "Ligne 1",
+              "Ligne 2",
+              "Ligne 3"
+            ],
+            "3_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer un abonnement mensuel pour le métro",
+    "output": {
+      "product_name": "Abonnement mensuel Métro",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Métro"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Forfait mensuel avec prélèvement automatique",
+    "output": {
+      "product_name": "Forfait mensuel prélèvement auto",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 102,
+          "parameters": {
+            "102_01": "Mensuel",
+            "102_04": true
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Pass mensuel limité à 10 voyages par semaine en métro",
+    "output": {
+      "product_name": "Pass mensuel 10 voyages/semaine Métro",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 10,
+          "parameters": {
+            "10_01": [
+              {
+                "unit": "Semaine",
+                "count": 1,
+                "max_trips": 10
+              }
+            ]
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Métro"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Pass week-end illimité bus métro tramway",
+    "output": {
+      "product_name": "Pass Week-end Illimité",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 4,
+            "7_02": "D",
+            "7_03": 2,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 9,
+          "parameters": {
+            "9_01": [
+              {
+                "days": "Samedi-Dimanche",
+                "start": "00:00",
+                "end": "23:59"
+              }
+            ]
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Bus urbain",
+              "Métro",
+              "Tramway"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Abonnement annuel avec tacite reconduction automatique",
+    "output": {
+      "product_name": "Abonnement annuel avec reconduction",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 12,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 102,
+          "parameters": {
+            "102_01": "Aucun",
+            "102_04": true
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Abonnement annuel rechargeable pour tous modes",
+    "output": {
+      "product_name": "Abonnement annuel Multi-modal",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 12,
+            "7_04": true,
+            "7_05": true
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Pass annuel tarif senior tous modes",
+    "output": {
+      "product_name": "Pass annuel Senior",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 12,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 73,
+          "parameters": {
+            "73_01": "SEN",
+            "73_02": "Senior"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Abonnement annuel tous modes sauf train",
+    "output": {
+      "product_name": "Abonnement annuel (hors Train)",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 12,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Train"
+            ],
+            "14_02": "Interdite"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Forfait hebdomadaire valable en semaine de 9h à 17h sur le métro",
+    "output": {
+      "product_name": "Forfait hebdomadaire heures creuses Métro",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "W",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 9,
+          "parameters": {
+            "9_01": [
+              {
+                "days": "Lundi-Vendredi",
+                "start": "09:00",
+                "end": "17:00"
+              }
+            ]
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Métro"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Forfait mensuel pour 10 personnes tous modes",
+    "output": {
+      "product_name": "Forfait mensuel Groupe 10 personnes",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 2,
+          "parameters": {
+            "2_01": 10
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Pass week-end illimité bus métro tramway",
+    "output": {
+      "product_name": "Pass Week-end Illimité",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 4,
+            "7_02": "D",
+            "7_03": 2,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 9,
+          "parameters": {
+            "9_01": [
+              {
+                "days": "Samedi-Dimanche",
+                "start": "00:00",
+                "end": "23:59"
+              }
+            ]
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Bus urbain",
+              "Métro",
+              "Tramway"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Abonnement mensuel valable après 19h tous les jours",
+    "output": {
+      "product_name": "Abonnement mensuel Soirée",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 9,
+          "parameters": {
+            "9_01": [
+              {
+                "days": "Lundi-Dimanche",
+                "start": "19:00",
+                "end": "23:59"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Abonnement hebdomadaire avec maximum 2 déplacements par jour",
+    "output": {
+      "product_name": "Abonnement hebdomadaire 2 voyages/jour",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "W",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 10,
+          "parameters": {
+            "10_01": [
+              {
+                "unit": "Jour",
+                "count": 1,
+                "max_trips": 2
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Forfait hebdomadaire bus et tramway",
+    "output": {
+      "product_name": "Forfait hebdomadaire Bus-Tramway",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "W",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Bus urbain",
+              "Tramway"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Forfait hebdomadaire valable en semaine de 9h à 17h sur le métro",
+    "output": {
+      "product_name": "Forfait hebdomadaire heures creuses Métro",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "W",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 9,
+          "parameters": {
+            "9_01": [
+              {
+                "days": "Lundi-Vendredi",
+                "start": "09:00",
+                "end": "17:00"
+              }
+            ]
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Métro"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Abonnement hebdomadaire avec maximum 2 déplacements par jour",
+    "output": {
+      "product_name": "Abonnement hebdomadaire 2 voyages/jour",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "W",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 10,
+          "parameters": {
+            "10_01": [
+              {
+                "unit": "Jour",
+                "count": 1,
+                "max_trips": 2
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Ticket valable 90 minutes après validation",
+    "output": {
+      "product_name": "Ticket 90 minutes",
+      "characteristics": [
+        {
+          "number": 103,
+          "parameters": {
+            "103_01": 90
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Pass 24 heures tous modes de transport",
+    "output": {
+      "product_name": "Pass 24h Multi-modal",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 4,
+            "7_02": "H",
+            "7_03": 24,
+            "7_04": false,
+            "7_05": false
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Pass week-end illimité bus métro tramway",
+    "output": {
+      "product_name": "Pass Week-end Illimité",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 4,
+            "7_02": "D",
+            "7_03": 2,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 9,
+          "parameters": {
+            "9_01": [
+              {
+                "days": "Samedi-Dimanche",
+                "start": "00:00",
+                "end": "23:59"
+              }
+            ]
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Bus urbain",
+              "Métro",
+              "Tramway"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Pass 24h pour 5 personnes",
+    "output": {
+      "product_name": "Pass 24h Groupe 5 personnes",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 4,
+            "7_02": "H",
+            "7_03": 24,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 2,
+          "parameters": {
+            "2_01": 5
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Carnet de 10 tickets valable 1 semaine sur bus et tramway",
+    "output": {
+      "product_name": "Carnet 10 voyages hebdomadaire Bus-Tramway",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "W",
+            "7_03": 1,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 22,
+          "parameters": {
+            "22_01": 10,
+            "22_02": 10,
+            "22_03": false
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Bus urbain",
+              "Tramway"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Abonnement annuel avec tacite reconduction automatique",
+    "output": {
+      "product_name": "Abonnement annuel avec reconduction",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 12,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 102,
+          "parameters": {
+            "102_01": "Aucun",
+            "102_04": true
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Abonnement annuel rechargeable pour tous modes",
+    "output": {
+      "product_name": "Abonnement annuel Multi-modal",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 12,
+            "7_04": true,
+            "7_05": true
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Pass 24h pour 5 personnes",
+    "output": {
+      "product_name": "Pass 24h Groupe 5 personnes",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 4,
+            "7_02": "H",
+            "7_03": 24,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 2,
+          "parameters": {
+            "2_01": 5
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Abonnement mensuel valable après 19h tous les jours",
+    "output": {
+      "product_name": "Abonnement mensuel Soirée",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 9,
+          "parameters": {
+            "9_01": [
+              {
+                "days": "Lundi-Dimanche",
+                "start": "19:00",
+                "end": "23:59"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Abonnement annuel tous modes sauf train",
+    "output": {
+      "product_name": "Abonnement annuel (hors Train)",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 12,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Train"
+            ],
+            "14_02": "Interdite"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Abonnement annuel pour les lignes 1, 2 et 3",
+    "output": {
+      "product_name": "Abonnement annuel Lignes 1-2-3",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 12,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 3,
+          "parameters": {
+            "3_01": [
+              "Ligne 1",
+              "Ligne 2",
+              "Ligne 3"
+            ],
+            "3_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Abonnement annuel tous modes sauf train",
+    "output": {
+      "product_name": "Abonnement annuel (hors Train)",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 12,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Train"
+            ],
+            "14_02": "Interdite"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Pass hebdomadaire hors zone 5",
+    "output": {
+      "product_name": "Pass hebdomadaire (hors Zone 5)",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "W",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 4,
+          "parameters": {
+            "4_01": [
+              "Zone 5"
+            ],
+            "4_02": "Interdite"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je veux un abonnement mensuel pour le métro",
+    "output": {
+      "product_name": "Abonnement mensuel Métro",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Métro"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Abonnement mensuel pour 2 personnes, valable du lundi au vendredi de 6h à 20h, sur bus et métro, lignes 5 et 12, rechargeable",
+    "output": {
+      "product_name": "Abonnement mensuel Duo Lignes 5-12",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 2,
+          "parameters": {
+            "2_01": 2
+          }
+        },
+        {
+          "number": 9,
+          "parameters": {
+            "9_01": [
+              {
+                "days": "Lundi-Vendredi",
+                "start": "06:00",
+                "end": "20:00"
+              }
+            ]
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Bus urbain",
+              "Métro"
+            ],
+            "14_02": "Autorisée"
+          }
+        },
+        {
+          "number": 3,
+          "parameters": {
+            "3_01": [
+              "Ligne 5",
+              "Ligne 12"
+            ],
+            "3_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Abonnement annuel : payez 10 mois, voyagez 12 mois",
+    "output": {
+      "product_name": "Abonnement annuel Promo 10+2",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 12,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 107,
+          "parameters": {
+            "107_01": 10,
+            "107_02": 2,
+            "107_03": 12
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Abonnement mensuel remboursable sous 7 jours à 80%",
+    "output": {
+      "product_name": "Abonnement mensuel Remboursable",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 97,
+          "parameters": {
+            "97_01": true,
+            "97_02": 7,
+            "97_03": 80,
+            "97_04": 5.0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Pass 24h pour 5 personnes",
+    "output": {
+      "product_name": "Pass 24h Groupe 5 personnes",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 4,
+            "7_02": "H",
+            "7_03": 24,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 2,
+          "parameters": {
+            "2_01": 5
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Abonnement mensuel valable après 19h tous les jours",
+    "output": {
+      "product_name": "Abonnement mensuel Soirée",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 9,
+          "parameters": {
+            "9_01": [
+              {
+                "days": "Lundi-Dimanche",
+                "start": "19:00",
+                "end": "23:59"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Pass mensuel seconde classe uniquement",
+    "output": {
+      "product_name": "Pass mensuel Seconde Classe",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 58,
+          "parameters": {
+            "58_01": 2,
+            "58_02": false
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Abonnement annuel pour les lignes 1, 2 et 3",
+    "output": {
+      "product_name": "Abonnement annuel Lignes 1-2-3",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 12,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 3,
+          "parameters": {
+            "3_01": [
+              "Ligne 1",
+              "Ligne 2",
+              "Ligne 3"
+            ],
+            "3_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Carnet de 10 tickets partageable entre 3 personnes",
+    "output": {
+      "product_name": "Carnet 10 tickets familial",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 21,
+          "parameters": {
+            "21_01": 10,
+            "21_02": 10,
+            "21_03": 3,
+            "21_04": false
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Forfait hebdomadaire bus et tramway",
+    "output": {
+      "product_name": "Forfait hebdomadaire Bus-Tramway",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "W",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Bus urbain",
+              "Tramway"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Pass mensuel valable sur toutes les lignes sauf la ligne 5",
+    "output": {
+      "product_name": "Pass mensuel (hors Ligne 5)",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 3,
+          "parameters": {
+            "3_01": [
+              "Ligne 5"
+            ],
+            "3_02": "Interdite"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Ticket simple trajet métro",
+    "output": {
+      "product_name": "Ticket unitaire Métro",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 4,
+            "7_02": "H",
+            "7_03": 2,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 22,
+          "parameters": {
+            "22_01": 1,
+            "22_02": 1,
+            "22_03": false
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Métro"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Carnet de 20 voyages rechargeable tous modes",
+    "output": {
+      "product_name": "Carnet 20 voyages rechargeable",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 22,
+          "parameters": {
+            "22_01": 20,
+            "22_02": 20,
+            "22_03": true
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Forfait mensuel avec prélèvement automatique",
+    "output": {
+      "product_name": "Forfait mensuel prélèvement auto",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 102,
+          "parameters": {
+            "102_01": "Mensuel",
+            "102_04": true
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Forfait mensuel avec prélèvement automatique",
+    "output": {
+      "product_name": "Forfait mensuel prélèvement auto",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 102,
+          "parameters": {
+            "102_01": "Mensuel",
+            "102_04": true
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Pass mensuel valable sur toutes les lignes sauf la ligne 5",
+    "output": {
+      "product_name": "Pass mensuel (hors Ligne 5)",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 3,
+          "parameters": {
+            "3_01": [
+              "Ligne 5"
+            ],
+            "3_02": "Interdite"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Forfait hebdomadaire valable en semaine de 9h à 17h sur le métro",
+    "output": {
+      "product_name": "Forfait hebdomadaire heures creuses Métro",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "W",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 9,
+          "parameters": {
+            "9_01": [
+              {
+                "days": "Lundi-Vendredi",
+                "start": "09:00",
+                "end": "17:00"
+              }
+            ]
+          }
+        },
+        {
+          "number": 14,
+          "parameters": {
+            "14_01": [
+              "Métro"
+            ],
+            "14_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Abonnement mensuel zones 1, 2 et 3",
+    "output": {
+      "product_name": "Abonnement mensuel Zones 1-2-3",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 4,
+          "parameters": {
+            "4_01": [
+              "Zone 1",
+              "Zone 2",
+              "Zone 3"
+            ],
+            "4_02": "Autorisée"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Pass 24 heures tous modes de transport",
+    "output": {
+      "product_name": "Pass 24h Multi-modal",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 4,
+            "7_02": "H",
+            "7_03": 24,
+            "7_04": false,
+            "7_05": false
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Je souhaite Forfait mensuel pour 10 personnes tous modes",
+    "output": {
+      "product_name": "Forfait mensuel Groupe 10 personnes",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": true,
+            "7_05": true
+          }
+        },
+        {
+          "number": 2,
+          "parameters": {
+            "2_01": 10
+          }
+        }
+      ]
+    }
+  },
+  {
+    "input": "Créer Carnet de 20 voyages rechargeable tous modes",
+    "output": {
+      "product_name": "Carnet 20 voyages rechargeable",
+      "characteristics": [
+        {
+          "number": 7,
+          "parameters": {
+            "7_01": 2,
+            "7_02": "M",
+            "7_03": 1,
+            "7_04": false,
+            "7_05": false
+          }
+        },
+        {
+          "number": 22,
+          "parameters": {
+            "22_01": 20,
+            "22_02": 20,
+            "22_03": true
+          }
+        }
+      ]
+    }
+  }
+]

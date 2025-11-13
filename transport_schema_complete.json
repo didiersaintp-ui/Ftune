@@ -1,0 +1,614 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Transport Product Schema - Complete",
+  "description": "Schéma complet de validation pour les produits de transport avec TOUTES les 29 caractéristiques",
+  "type": "object",
+  "required": ["product_name", "characteristics"],
+  "properties": {
+    "product_name": {
+      "type": "string",
+      "description": "Nom du produit de transport",
+      "minLength": 1
+    },
+    "characteristics": {
+      "type": "array",
+      "description": "Liste des caractéristiques du produit",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["number", "parameters"],
+        "properties": {
+          "number": {
+            "type": "integer",
+            "description": "Numéro de la caractéristique",
+            "enum": [2, 3, 4, 6, 7, 8, 9, 10, 11, 14, 21, 22, 23, 38, 48, 58, 73, 74, 86, 87, 90, 91, 97, 98, 102, 103, 105, 107, 121]
+          },
+          "parameters": {
+            "type": "object",
+            "description": "Paramètres de la caractéristique"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "characteristic_2": {
+      "description": "Groupe avec nombre de passagers par produit (fixe)",
+      "type": "object",
+      "required": ["2_01"],
+      "properties": {
+        "2_01": {
+          "description": "Nombre maximum de passagers autorisés",
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "characteristic_3": {
+      "description": "Lignes autorisées ou interdites par produit",
+      "type": "object",
+      "required": ["3_01", "3_02"],
+      "properties": {
+        "3_01": {
+          "description": "Liste des lignes",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "3_02": {
+          "description": "Type d'utilisation",
+          "type": "string",
+          "enum": ["Autorisée", "Interdite"]
+        }
+      }
+    },
+    "characteristic_4": {
+      "description": "Zones de tarification autorisées/interdites",
+      "type": "object",
+      "required": ["4_01", "4_02"],
+      "properties": {
+        "4_01": {
+          "description": "Liste des zones",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {"type": "string"},
+              {"type": "integer"}
+            ]
+          },
+          "minItems": 1
+        },
+        "4_02": {
+          "description": "Type d'utilisation",
+          "type": "string",
+          "enum": ["Autorisée", "Interdite"]
+        }
+      }
+    },
+    "characteristic_6": {
+      "description": "Nombre de validations par déplacement",
+      "type": "object",
+      "required": ["6_01"],
+      "properties": {
+        "6_01": {
+          "description": "Nombre de validations requises",
+          "type": "integer",
+          "minimum": 1
+        },
+        "6_02": {
+          "description": "Type de validation",
+          "type": "string",
+          "enum": ["Entrée", "Sortie", "Entrée-Sortie"]
+        }
+      }
+    },
+    "characteristic_7": {
+      "description": "DDV et DEV contrat - Période de validité (OBLIGATOIRE)",
+      "type": "object",
+      "required": ["7_01", "7_02", "7_03"],
+      "properties": {
+        "7_01": {
+          "description": "Nature de validité du produit",
+          "type": "integer",
+          "enum": [0, 2, 4, 6, 8, 14, 20, 21]
+        },
+        "7_02": {
+          "description": "Unité de la durée de validité (D=Jour, W=Semaine, M=Mois, H=Heure)",
+          "type": "string",
+          "enum": ["D", "W", "M", "H"]
+        },
+        "7_03": {
+          "description": "Durée de validité",
+          "type": "integer",
+          "minimum": 1
+        },
+        "7_04": {
+          "description": "Rechargement par prorogation",
+          "type": "boolean"
+        },
+        "7_05": {
+          "description": "Autorisation de rechargement",
+          "type": "boolean"
+        },
+        "7_06": {
+          "description": "Valeur pivot de la période de validité",
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "characteristic_8": {
+      "description": "Calendrier d'autorisation ou de refus en validation",
+      "type": "object",
+      "required": ["8_01", "8_02"],
+      "properties": {
+        "8_01": {
+          "description": "Liste de dates ou périodes",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {"type": "string", "format": "date"},
+              {
+                "type": "object",
+                "properties": {
+                  "start": {"type": "string", "format": "date"},
+                  "end": {"type": "string", "format": "date"}
+                },
+                "required": ["start", "end"]
+              }
+            ]
+          }
+        },
+        "8_02": {
+          "description": "Type",
+          "type": "string",
+          "enum": ["Autorisé", "Interdit"]
+        }
+      }
+    },
+    "characteristic_9": {
+      "description": "Autorisation de déplacement par type de jour et tranche horaire",
+      "type": "object",
+      "required": ["9_01"],
+      "properties": {
+        "9_01": {
+          "description": "Table de validité par tranche horaire",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["days", "start", "end"],
+            "properties": {
+              "days": {
+                "type": "string",
+                "description": "Type de jour (ex: Lundi-Vendredi, Samedi-Dimanche, Lundi-Dimanche)"
+              },
+              "start": {
+                "type": "string",
+                "pattern": "^([0-1][0-9]|2[0-3]):[0-5][0-9]$",
+                "description": "Heure de début (HH:MM)"
+              },
+              "end": {
+                "type": "string",
+                "pattern": "^([0-1][0-9]|2[0-3]):[0-5][0-9]$",
+                "description": "Heure de fin (HH:MM)"
+              }
+            }
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "characteristic_10": {
+      "description": "Limitation des déplacements par sous-période",
+      "type": "object",
+      "required": ["10_01"],
+      "properties": {
+        "10_01": {
+          "description": "Liste de limitations",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["unit", "count", "max_trips"],
+            "properties": {
+              "unit": {
+                "type": "string",
+                "enum": ["Jour", "Semaine", "Mois", "Heure"],
+                "description": "Unité de temps"
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Nombre d'unités"
+              },
+              "max_trips": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Nombre maximum de déplacements"
+              }
+            }
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "characteristic_11": {
+      "description": "Interdiction de retour sur une même ligne",
+      "type": "object",
+      "required": ["11_01"],
+      "properties": {
+        "11_01": {
+          "description": "Durée d'interdiction en minutes",
+          "type": "integer",
+          "minimum": 1
+        },
+        "11_02": {
+          "description": "Applicable à toutes les lignes",
+          "type": "boolean"
+        }
+      }
+    },
+    "characteristic_14": {
+      "description": "Modes de transport autorisés ou interdits",
+      "type": "object",
+      "required": ["14_01", "14_02"],
+      "properties": {
+        "14_01": {
+          "description": "Liste des modes de transport",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["Bus urbain", "Bus interurbain", "Métro", "Tramway", "Train", "Parking", "Vélo"]
+          },
+          "minItems": 1
+        },
+        "14_02": {
+          "description": "Type d'utilisation",
+          "type": "string",
+          "enum": ["Autorisée", "Interdite"]
+        }
+      }
+    },
+    "characteristic_21": {
+      "description": "Multi-déplacement, Multi-usager (carnet partageable)",
+      "type": "object",
+      "required": ["21_01", "21_02"],
+      "properties": {
+        "21_01": {
+          "description": "Nombre de déplacements du produit",
+          "type": "integer",
+          "minimum": 1
+        },
+        "21_02": {
+          "description": "Nombre maximum de déplacements",
+          "type": "integer",
+          "minimum": 1
+        },
+        "21_03": {
+          "description": "Nombre d'usagers simultanés maximum",
+          "type": "integer",
+          "minimum": 1
+        },
+        "21_04": {
+          "description": "Rechargement par surcharge",
+          "type": "boolean"
+        }
+      }
+    },
+    "characteristic_22": {
+      "description": "Multi-déplacements Mono-usager (carnet individuel)",
+      "type": "object",
+      "required": ["22_01", "22_02"],
+      "properties": {
+        "22_01": {
+          "description": "Nombre de déplacements du produit",
+          "type": "integer",
+          "minimum": 1
+        },
+        "22_02": {
+          "description": "Nombre maximum de déplacements du contrat",
+          "type": "integer",
+          "minimum": 1
+        },
+        "22_03": {
+          "description": "Rechargement par surcharge",
+          "type": "boolean"
+        }
+      }
+    },
+    "characteristic_23": {
+      "description": "Points de fidélité à la validation",
+      "type": "object",
+      "required": ["23_01"],
+      "properties": {
+        "23_01": {
+          "description": "Nombre de points par validation",
+          "type": "integer",
+          "minimum": 0
+        },
+        "23_02": {
+          "description": "Programme de fidélité",
+          "type": "string"
+        }
+      }
+    },
+    "characteristic_38": {
+      "description": "Groupe avec nombre de passagers saisi à la vente (variable)",
+      "type": "object",
+      "required": ["38_01", "38_02"],
+      "properties": {
+        "38_01": {
+          "description": "Nombre minimum de passagers",
+          "type": "integer",
+          "minimum": 1
+        },
+        "38_02": {
+          "description": "Nombre maximum de passagers",
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "characteristic_48": {
+      "description": "Produit à post-paiement (facturation après utilisation)",
+      "type": "object",
+      "required": ["48_01"],
+      "properties": {
+        "48_01": {
+          "description": "Mode de facturation",
+          "type": "string",
+          "enum": ["Mensuel", "Trimestriel", "Annuel"]
+        },
+        "48_02": {
+          "description": "Délai de paiement en jours",
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "characteristic_58": {
+      "description": "Classe autorisée par produit",
+      "type": "object",
+      "required": ["58_01"],
+      "properties": {
+        "58_01": {
+          "description": "Numéro de classe (1=Première, 2=Seconde)",
+          "type": "integer",
+          "enum": [1, 2]
+        },
+        "58_02": {
+          "description": "Surclassement autorisé",
+          "type": "boolean"
+        }
+      }
+    },
+    "characteristic_73": {
+      "description": "Encodage du pointeur sur profil (étudiant, senior, etc.)",
+      "type": "object",
+      "required": ["73_01"],
+      "properties": {
+        "73_01": {
+          "description": "Code profil",
+          "oneOf": [
+            {"type": "string"},
+            {"type": "integer"}
+          ]
+        },
+        "73_02": {
+          "description": "Description du profil",
+          "type": "string"
+        }
+      }
+    },
+    "characteristic_74": {
+      "description": "Mode de transport autorisé par produit (DEPRECATED - utiliser carac. 14)",
+      "type": "object",
+      "properties": {
+        "74_01": {
+          "description": "Liste des modes (DEPRECATED)",
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "characteristic_86": {
+      "description": "OD (Origine-Destination) sélectionnée à la vente",
+      "type": "object",
+      "required": ["86_01", "86_02"],
+      "properties": {
+        "86_01": {
+          "description": "Code origine",
+          "type": "string"
+        },
+        "86_02": {
+          "description": "Code destination",
+          "type": "string"
+        },
+        "86_03": {
+          "description": "Trajet aller-retour",
+          "type": "boolean"
+        }
+      }
+    },
+    "characteristic_87": {
+      "description": "Lignes déterminées à la vente et codées sur le support",
+      "type": "object",
+      "required": ["87_01"],
+      "properties": {
+        "87_01": {
+          "description": "Liste des lignes sélectionnées à l'achat",
+          "type": "array",
+          "items": {"type": "string"},
+          "minItems": 1
+        },
+        "87_02": {
+          "description": "Modifiable après achat",
+          "type": "boolean"
+        }
+      }
+    },
+    "characteristic_90": {
+      "description": "Champ de zones (ensemble de zones tarifaires)",
+      "type": "object",
+      "required": ["90_01"],
+      "properties": {
+        "90_01": {
+          "description": "Zones incluses",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {"type": "string"},
+              {"type": "integer"}
+            ]
+          }
+        },
+        "90_02": {
+          "description": "Type de champ",
+          "type": "string",
+          "enum": ["Circulaire", "Rectangulaire", "Libre"]
+        }
+      }
+    },
+    "characteristic_91": {
+      "description": "Encodage de prestations (services additionnels)",
+      "type": "object",
+      "required": ["91_01"],
+      "properties": {
+        "91_01": {
+          "description": "Liste des prestations",
+          "type": "array",
+          "items": {"type": "string"},
+          "minItems": 1
+        }
+      }
+    },
+    "characteristic_97": {
+      "description": "Gestion du remboursement",
+      "type": "object",
+      "required": ["97_01"],
+      "properties": {
+        "97_01": {
+          "description": "Remboursable",
+          "type": "boolean"
+        },
+        "97_02": {
+          "description": "Délai de remboursement en jours",
+          "type": "integer",
+          "minimum": 0
+        },
+        "97_03": {
+          "description": "Pourcentage de remboursement (0-100)",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "97_04": {
+          "description": "Frais de remboursement",
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "characteristic_98": {
+      "description": "Mécanisme d'inhibition du blocage de contrat",
+      "type": "object",
+      "required": ["98_01"],
+      "properties": {
+        "98_01": {
+          "description": "Déblocage automatique",
+          "type": "boolean"
+        },
+        "98_02": {
+          "description": "Délai avant déblocage en heures",
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "characteristic_102": {
+      "description": "Abonnement à tacite reconduction avec prélèvements automatiques",
+      "type": "object",
+      "required": ["102_01"],
+      "properties": {
+        "102_01": {
+          "description": "Type de prélèvement",
+          "type": "string",
+          "enum": ["Aucun", "Mensuel", "Trimestriel", "Annuel"]
+        },
+        "102_04": {
+          "description": "Tacite reconduction activée",
+          "type": "boolean"
+        }
+      }
+    },
+    "characteristic_103": {
+      "description": "Titre unitaire sans compteur",
+      "type": "object",
+      "required": ["103_01"],
+      "properties": {
+        "103_01": {
+          "description": "Durée de validité après validation (en minutes)",
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "characteristic_105": {
+      "description": "Multi-validation (validation pour plusieurs personnes simultanément)",
+      "type": "object",
+      "required": ["105_01"],
+      "properties": {
+        "105_01": {
+          "description": "Nombre maximum de validations simultanées",
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "characteristic_107": {
+      "description": "X mois gratuits pour Y mois payés (promotion)",
+      "type": "object",
+      "required": ["107_01", "107_02", "107_03"],
+      "properties": {
+        "107_01": {
+          "description": "Nombre de mois payés",
+          "type": "integer",
+          "minimum": 1
+        },
+        "107_02": {
+          "description": "Nombre de mois gratuits",
+          "type": "integer",
+          "minimum": 0
+        },
+        "107_03": {
+          "description": "Nombre de mois total",
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "characteristic_121": {
+      "description": "Zones autorisées sur un des réseaux locaux déterminées à la vente",
+      "type": "object",
+      "required": ["121_01", "121_02"],
+      "properties": {
+        "121_01": {
+          "description": "Code réseau",
+          "type": "string"
+        },
+        "121_02": {
+          "description": "Zones sélectionnées",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {"type": "string"},
+              {"type": "integer"}
+            ]
+          },
+          "minItems": 1
+        }
+      }
+    }
+  }
+}
