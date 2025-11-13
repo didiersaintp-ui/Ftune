@@ -210,6 +210,16 @@ LORA_ALPHA = 16
 ### Mode ligne de commande
 
 ```bash
+python inference_cpu.py "Je veux un abonnement mensuel pour le métro et le bus"
+```
+
+**Options:**
+```bash
+python inference_cpu.py \
+  --model qwen3b_transport_gguf/unsloth.Q4_K_M.gguf \
+  --temperature 0.1 \
+  --verbose \
+  "Carnet de 10 tickets valable 1 semaine sur tous les modes"
 # Utilisation simple
 python inference_cpu.py "Je veux un abonnement mensuel pour le métro"
 
@@ -310,6 +320,18 @@ print(output['choices'][0]['text'])
 
 ```
 Ftune/
+├── transport_product_finetuning.ipynb  # Notebook Colab d'entraînement
+├── generate_training_dataset.py        # Générateur de dataset
+├── inference_cpu.py                    # Script d'inférence CPU
+├── training_dataset.json               # Dataset généré (200 exemples)
+├── requirements.txt                    # Dépendances Python
+├── README.md                           # Cette documentation
+│
+├── qwen3b_transport_lora/             # Adaptateurs LoRA (après entraînement)
+├── qwen3b_transport_merged/           # Modèle fusionné 16-bit
+└── qwen3b_transport_gguf/             # Modèles GGUF pour CPU
+    ├── unsloth.Q4_K_M.gguf           # Quantification 4-bit (rapide)
+    └── unsloth.Q8_0.gguf             # Quantification 8-bit (précis)
 ├── 📓 Notebooks
 │   ├── transport_finetuning_OPTIMIZED.ipynb    # 🌟 Notebook prêt à l'emploi (UTILISEZ CELUI-CI)
 │   └── transport_product_finetuning.ipynb      # Version originale (legacy)
@@ -348,6 +370,9 @@ Ftune/
 
 ## 📝 Exemples
 
+### Exemple 1: Abonnement simple
+
+**Input:**
 ### Exemple 1 : Abonnement simple
 
 **Input :**
@@ -355,6 +380,7 @@ Ftune/
 Je veux un abonnement mensuel pour le métro
 ```
 
+**Output:**
 **Output :**
 ```json
 {
@@ -381,6 +407,9 @@ Je veux un abonnement mensuel pour le métro
 }
 ```
 
+### Exemple 2: Carnet multi-déplacements
+
+**Input:**
 **Explication :**
 - Caractéristique **7** : Validité 1 mois, rechargeable (abonnement)
 - Caractéristique **14** : Mode Métro autorisé
@@ -529,10 +558,8 @@ python test_model_gguf.py --model qwen3b_transport_gguf/unsloth.Q8_0.gguf
 **Sortie exemple :**
 ```
 🧪 TEST AUTOMATIQUE DU MODÈLE GGUF
-======================================================================
 Modèle: qwen3b_transport_gguf/unsloth.Q4_K_M.gguf
 Tests: 6 cas
-======================================================================
 
 Test 1/6: Abonnement mensuel simple
    ...
@@ -540,9 +567,7 @@ Test 1/6: Abonnement mensuel simple
 
 ...
 
-======================================================================
 📊 RÉSUMÉ DES TESTS
-======================================================================
 
 Tests réussis: 5/6 (83.3%)
 
@@ -554,7 +579,6 @@ Tests réussis: 5/6 (83.3%)
   ✅ Produit complexe (score: 0.85)
 
 ✅ BON ! Le modèle fonctionne bien.
-======================================================================
 ```
 
 ### Tests pendant l'entraînement
