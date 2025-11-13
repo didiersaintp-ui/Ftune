@@ -411,7 +411,7 @@ Caractéristiques identifiées :
         elif "étudiant" in context.lower() and "Jeune" in product['nom']:
             is_relevant = True
             reason = "Tarif étudiant avantageux"
-        elif "senior" in context.lower() or "retraité" in context.lower() and "Senior" in product['nom']:
+        elif ("senior" in context.lower() or "retraité" in context.lower()) and "Senior" in product['nom']:
             is_relevant = True
             reason = "Tarif senior"
         elif "entreprise" in context.lower() and "Entreprise" in product['nom']:
