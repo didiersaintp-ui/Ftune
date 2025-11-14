@@ -1,0 +1,15 @@
+# Ignorer les binaires compilés (trop volumineux pour Git)
+bin/
+*.so
+*.dylib
+*.dll
+*.exe
+
+# Ignorer les fichiers temporaires de compilation
+*.o
+*.obj
+*.a
+*.lib
+
+# Ne pas ignorer le README
+!README.md
