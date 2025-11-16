@@ -1,0 +1,173 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TCL Transport Product Dataset Schema",
+  "description": "Schema de validation pour les exemples de dataset de billettique TCL",
+  "definitions": {
+    "sft_example": {
+      "type": "object",
+      "required": ["instruction", "response", "metadata"],
+      "properties": {
+        "instruction": {
+          "type": "string",
+          "minLength": 5,
+          "description": "Question ou demande de l'utilisateur"
+        },
+        "response": {
+          "type": "string",
+          "minLength": 50,
+          "pattern": "^🧠 \\*\\*Raisonnement\\*\\*",
+          "description": "Réponse complète avec raisonnement, JSON, et confirmation"
+        },
+        "metadata": {
+          "type": "object",
+          "required": ["type", "category"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["product_generation", "explanation", "comparison", "recommendation", "multi_turn"],
+              "description": "Type d'exemple"
+            },
+            "category": {
+              "type": "string",
+              "description": "Catégorie spécifique (ex: user_question_variation_1)"
+            },
+            "product": {
+              "type": "string",
+              "description": "Nom du produit généré (optionnel)"
+            },
+            "cars": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 2,
+                "maximum": 121
+              },
+              "description": "Liste des caractéristiques utilisées"
+            },
+            "complexity": {
+              "type": "string",
+              "enum": ["low", "medium", "high", "very_high"],
+              "description": "Niveau de complexité"
+            },
+            "variation_type": {
+              "type": "string",
+              "enum": ["complete_request", "partial_request", "price_inquiry", "mode_inquiry"],
+              "description": "Type de variation de la demande"
+            }
+          }
+        }
+      }
+    },
+    "dpo_example": {
+      "type": "object",
+      "required": ["instruction", "chosen", "rejected", "metadata"],
+      "properties": {
+        "instruction": {
+          "type": "string",
+          "minLength": 5,
+          "description": "Question ou demande"
+        },
+        "chosen": {
+          "type": "string",
+          "minLength": 20,
+          "description": "Réponse préférée (bonne pratique)"
+        },
+        "rejected": {
+          "type": "string",
+          "minLength": 5,
+          "description": "Réponse rejetée (mauvaise pratique)"
+        },
+        "metadata": {
+          "type": "object",
+          "required": ["type", "category"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "dpo",
+              "description": "Type DPO"
+            },
+            "category": {
+              "type": "string",
+              "enum": ["incompatibility_detection", "conversational_quality", "json_structure", "business_rules"],
+              "description": "Catégorie DPO"
+            },
+            "dpo_type": {
+              "type": "string",
+              "description": "Sous-type spécifique"
+            },
+            "incompatibility": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^CAR_[0-9]+$"
+              },
+              "description": "Caractéristiques incompatibles (si applicable)"
+            }
+          }
+        }
+      }
+    },
+    "transport_product": {
+      "type": "object",
+      "required": ["product_name", "price_cents", "support", "characteristics"],
+      "properties": {
+        "product_name": {
+          "type": "string",
+          "minLength": 3,
+          "description": "Nom du produit de transport"
+        },
+        "price_cents": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Prix en centimes d'euros"
+        },
+        "support": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["BSC", "CSC", "AB"]
+          },
+          "minItems": 1,
+          "description": "Supports compatibles"
+        },
+        "characteristics": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/characteristic"
+          },
+          "description": "Liste des caractéristiques"
+        },
+        "profile": {
+          "type": "string",
+          "enum": ["Plein tarif", "Jeune", "Senior", "Étudiant", "Solidaire"],
+          "description": "Profil tarifaire (optionnel)"
+        }
+      }
+    },
+    "characteristic": {
+      "type": "object",
+      "required": ["number", "parameters"],
+      "properties": {
+        "number": {
+          "type": "integer",
+          "enum": [2, 3, 4, 6, 7, 8, 9, 10, 11, 14, 21, 22, 23, 38, 48, 58, 73, 74, 86, 87, 90, 91, 97, 98, 102, 103, 105, 107, 121],
+          "description": "Numéro de la caractéristique"
+        },
+        "parameters": {
+          "type": "object",
+          "description": "Paramètres spécifiques à la caractéristique"
+        }
+      }
+    }
+  },
+  "type": "array",
+  "items": {
+    "oneOf": [
+      {"$ref": "#/definitions/sft_example"},
+      {"$ref": "#/definitions/dpo_example"}
+    ]
+  },
+  "minItems": 1,
+  "description": "Liste d'exemples SFT ou DPO"
+}

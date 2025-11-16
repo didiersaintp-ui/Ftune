@@ -1,0 +1,122 @@
+[
+  {
+    "instruction": "Créer un ticket unité pour le métro à Lyon",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Ticket Unité\" pour le métro TCL Lyon.\n\n**Analyse** :\n- Type : Ticket unitaire (1 voyage)\n- Durée : 1 heure (standard TCL)\n- Mode : Métro uniquement\n- Prix : 2.00€ (tarif TCL standard)\n- Support : BSC ou AB (billet ou application)\n- Non rechargeable (ticket unique)\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 heure, nature 4 (glissant à validation)\n- CAR_14 : Mode Métro autorisé\n- CAR_22 : 1 voyage mono-usager\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Ticket Unité Métro\",\n  \"price_cents\": 200,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 1,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Métro\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 1,\n        \"22_02\": 1,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nVotre ticket unité métro est prêt. Validez-vous ce produit ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "core_simple_ticket",
+      "product": "Ticket Unité Métro",
+      "cars": [7, 14, 22],
+      "complexity": "low",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Je veux un abonnement mensuel pour tous les transports TCL",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement Mensuel Tous Modes\" pour TCL Lyon.\n\n**Analyse** :\n- Type : Abonnement (voyages illimités)\n- Durée : 1 mois rechargeable\n- Modes : Tous modes TCL (Bus, Métro, Tramway, Funiculaire)\n- Prix : 67.00€ (tarif plein TCL)\n- Support : CSC ou AB (carte ou app, pas BSC car rechargeable)\n- Rechargeable par prorogation\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois, nature 2 (glissant au chargement), rechargeable\n- CAR_14 : Tous modes TCL autorisés\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Mensuel Tous Modes\",\n  \"price_cents\": 6700,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nVotre abonnement mensuel tous modes est configuré. Souhaitez-vous valider ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "core_subscription_monthly",
+      "product": "Abonnement Mensuel Tous Modes",
+      "cars": [7, 14],
+      "complexity": "low",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Carnet de 10 tickets bus et tramway",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Carnet 10 Voyages Bus-Tramway\" pour TCL Lyon.\n\n**Analyse** :\n- Type : Carnet de tickets (nombre limité de voyages)\n- Nombre : 10 voyages\n- Durée : 1 mois de validité pour le carnet\n- Modes : Bus urbain et Tramway\n- Prix : 16.00€ (environ 1.60€/voyage)\n- Support : BSC ou CSC ou AB\n- Mono-usager (une personne)\n- Non rechargeable (usage unique du carnet)\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois pour le carnet, non rechargeable\n- CAR_14 : Bus urbain et Tramway autorisés\n- CAR_22 : 10 voyages mono-usager\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet 10 Voyages Bus-Tramway\",\n  \"price_cents\": 1600,\n  \"support\": [\n    \"BSC\",\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Tramway\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 10,\n        \"22_02\": 10,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nVotre carnet de 10 voyages Bus-Tramway est prêt. Confirmez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "core_carnet_multi",
+      "product": "Carnet 10 Voyages Bus-Tramway",
+      "cars": [7, 14, 22],
+      "complexity": "low",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Pass 24 heures tous modes pour touriste",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass 24h Touriste\" pour TCL Lyon.\n\n**Analyse** :\n- Type : Pass temporel (voyages illimités pendant durée)\n- Durée : 24 heures à partir de la première validation\n- Modes : Tous modes TCL\n- Prix : 6.50€ (tarif pass journée TCL)\n- Support : BSC ou AB\n- Non rechargeable (usage unique)\n- Nature 4 : Validité glissante à partir de la validation\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 24h glissantes, nature 4\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass 24h Tous Modes\",\n  \"price_cents\": 650,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 24,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nVotre pass 24h est configuré. Il sera valable 24h dès la première validation. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "core_pass_temporal",
+      "product": "Pass 24h Tous Modes",
+      "cars": [7, 14],
+      "complexity": "low",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Abonnement jeune moins de 26 ans pour un mois",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement Jeune (-26 ans)\" pour TCL Lyon.\n\n**Analyse** :\n- Type : Abonnement tarifaire réduit\n- Profil : Jeune (moins de 26 ans)\n- Durée : 1 mois rechargeable\n- Modes : Tous modes TCL\n- Prix : 34.00€ (tarif jeune TCL, -50% vs plein tarif)\n- Support : CSC ou AB (rechargeable)\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois, rechargeable\n- CAR_14 : Tous modes TCL\n- Profil : Jeune\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Jeune (-26 ans)\",\n  \"price_cents\": 3400,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Jeune\"\n}\n```\n\n✅ **Confirmation** :\nVotre abonnement Jeune est prêt. Le tarif réduit de 34€/mois s'applique pour les moins de 26 ans. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "core_subscription_youth",
+      "product": "Abonnement Jeune (-26 ans)",
+      "cars": [7, 14],
+      "complexity": "low",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Ticket soirée valable après 19h",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Ticket Soirée\" pour TCL Lyon.\n\n**Analyse** :\n- Type : Ticket avec restriction horaire\n- Horaire : Valable après 19h00 jusqu'à fin de service\n- Durée : 5 heures de validité\n- Modes : Bus urbain, Métro, Tramway\n- Prix : 3.20€ (tarif réduit soirée)\n- Support : BSC ou AB\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 5 heures\n- CAR_9 : Restriction horaire (19h-minuit, tous les jours)\n- CAR_14 : Bus, Métro, Tramway\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Ticket Soirée\",\n  \"price_cents\": 320,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 5,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 9,\n      \"parameters\": {\n        \"9_01\": [\n          {\n            \"days\": \"Lundi-Dimanche\",\n            \"start\": \"19:00\",\n            \"end\": \"23:59\"\n          }\n        ]\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nVotre ticket soirée est configuré. Utilisable uniquement après 19h00, valable 5 heures. Confirmez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "core_ticket_time_restricted",
+      "product": "Ticket Soirée",
+      "cars": [7, 9, 14],
+      "complexity": "medium",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Abonnement annuel zones 1 et 2",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement Annuel Zones 1-2\" pour TCL Lyon.\n\n**Analyse** :\n- Type : Abonnement longue durée\n- Durée : 12 mois (1 an)\n- Zones : Zone 1 et Zone 2\n- Modes : Tous modes TCL\n- Prix : 720.00€ (environ 60€/mois, économie vs 12×67€)\n- Support : CSC ou AB (rechargeable)\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 12 mois, rechargeable\n- CAR_4 : Zones 1 et 2 autorisées\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Annuel Zones 1-2\",\n  \"price_cents\": 72000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 12,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 1\",\n          \"Zone 2\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nVotre abonnement annuel zones 1-2 est configuré. Validité 12 mois avec économie vs mensuel. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "core_subscription_annual_zoned",
+      "product": "Abonnement Annuel Zones 1-2",
+      "cars": [7, 4, 14],
+      "complexity": "medium",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Pass week-end 2 jours",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass Week-end\" pour TCL Lyon.\n\n**Analyse** :\n- Type : Pass temporel avec restriction calendaire\n- Durée : 48 heures (2 jours)\n- Jours : Samedi et Dimanche uniquement\n- Modes : Tous modes TCL\n- Prix : 8.00€\n- Support : BSC ou AB\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 48 heures\n- CAR_9 : Restriction aux samedis-dimanches\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Week-end\",\n  \"price_cents\": 800,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 48,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 9,\n      \"parameters\": {\n        \"9_01\": [\n          {\n            \"days\": \"Samedi-Dimanche\",\n            \"start\": \"00:00\",\n            \"end\": \"23:59\"\n          }\n        ]\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nVotre pass week-end est prêt. Valable 48h samedi-dimanche uniquement. Confirmez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "core_pass_weekend",
+      "product": "Pass Week-end",
+      "cars": [7, 9, 14],
+      "complexity": "medium",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Carnet de 20 tickets métro uniquement",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Carnet 20 Voyages Métro\" pour TCL Lyon.\n\n**Analyse** :\n- Type : Carnet de tickets mode unique\n- Nombre : 20 voyages\n- Durée : 3 mois de validité pour le carnet\n- Mode : Métro uniquement\n- Prix : 30.00€ (environ 1.50€/voyage)\n- Support : BSC, CSC ou AB\n- Mono-usager\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 3 mois pour le carnet\n- CAR_14 : Métro uniquement\n- CAR_22 : 20 voyages mono-usager\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet 20 Voyages Métro\",\n  \"price_cents\": 3000,\n  \"support\": [\n    \"BSC\",\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 3,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Métro\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 20,\n        \"22_02\": 20,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nVotre carnet de 20 voyages métro est configuré. Valable 3 mois. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "core_carnet_single_mode",
+      "product": "Carnet 20 Voyages Métro",
+      "cars": [7, 14, 22],
+      "complexity": "low",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Abonnement senior plus de 65 ans",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement Senior (+65 ans)\" pour TCL Lyon.\n\n**Analyse** :\n- Type : Abonnement tarifaire réduit\n- Profil : Senior (plus de 65 ans)\n- Durée : 1 mois rechargeable\n- Modes : Tous modes TCL\n- Prix : 34.00€ (tarif senior TCL, même que jeune)\n- Support : CSC ou AB\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois, rechargeable\n- CAR_14 : Tous modes TCL\n- Profil : Senior\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Senior (+65 ans)\",\n  \"price_cents\": 3400,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Senior\"\n}\n```\n\n✅ **Confirmation** :\nVotre abonnement Senior est prêt. Tarif réduit de 34€/mois pour les +65 ans. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "core_subscription_senior",
+      "product": "Abonnement Senior (+65 ans)",
+      "cars": [7, 14],
+      "complexity": "low",
+      "variation_type": "complete_request"
+    }
+  }
+]
