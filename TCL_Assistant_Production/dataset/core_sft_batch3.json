@@ -1,0 +1,18 @@
+[
+  {
+    "instruction": "Créer un carnet 20 voyages avec validation par déplacement",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Carnet 20 Déplacements\" avec validation par déplacement (CAR_6).\n\n**Analyse** :\n- Type : Carnet à validation par déplacement\n- Nombre de déplacements : 20\n- CAR_6 : Chaque validation compte comme 1 déplacement (pas 1 validation simple)\n- Durée : 6 mois de validité\n- Mono-usager : CAR_22 (obligatoire avec CAR_6 pour traçabilité)\n- Prix : 24.00€ (1.20€/déplacement)\n- Support : CSC ou AB (⚠️ PAS BSC car nécessite compteur dynamique)\n\n**⚠️ CAR_6 - Validation par déplacement** :\n- 6_01 : \"Trajet\" (unité de décompte)\n- Nécessite traçabilité stricte → Incompatible avec multi-usager (CAR_21)\n- Support réinscriptible obligatoire\n\n**Caractéristiques utilisées** :\n- CAR_22 : Mono-usager, 20 déplacements\n- CAR_6 : Validation = 1 trajet\n- CAR_7 : Validité 6 mois\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet 20 Déplacements\",\n  \"price_cents\": 2400,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 22,\n      \"parameters\": {\"22_01\": 20}\n    },\n    {\n      \"number\": 6,\n      \"parameters\": {\"6_01\": \"Trajet\"}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 6, \"7_02\": \"M\", \"7_03\": 1, \"7_04\": false, \"7_05\": false}\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Carnet mono-usager 20 déplacements avec traçabilité par déplacement, valable 6 mois sur CSC/AB.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "car6_validation_deplacement",
+      "product": "Carnet 20 Déplacements",
+      "cars": [
+        22,
+        6,
+        7,
+        14
+      ],
+      "complexity": "medium"
+    }
+  }
+]

@@ -32,7 +32,7 @@ Créer un assistant billettique TCL **100% fiable**, avec une compréhension par
 |-----------|----------|----------|---|--------|
 | Batch 1 - Core Simple | 20 | 20 | 100% | ✅ |
 | Batch 2 - Core Medium | 30 | 30 | 100% | ✅ |
-| Batch 3 - CAR Coverage | 0 | 50 | 0% | ⏳ |
+| Batch 3 - CAR Coverage | 1 | 50 | 2% | 🔄 |
 | DPO Incompatibilities | 50 | 50 | 100% | ✅ |
 | DPO Conversational | 0 | 30 | 0% | ⏳ |
 | Advanced SFT | 0 | 100 | 0% | ⏳ |
@@ -101,7 +101,7 @@ Créer un assistant billettique TCL **100% fiable**, avec une compréhension par
 
 | Métrique | Objectif | Actuel |
 |----------|----------|--------|
-| Exemples manuels | 490 | 100 (20.4%) |
+| Exemples manuels | 490 | 101 (20.6%) |
 | CAR couvertes | 29/29 | 6/29 (20.7%) |
 | Incompatibilités | Toutes | Documentées |
 | Précision JSON | >98% | À mesurer |

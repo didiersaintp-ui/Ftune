@@ -58,10 +58,16 @@
 20. Carnet 30 voyages 6 mois
 21. Pass multi-jours non consécutifs
 
-#### Batch 3 : Core SFT All CAR (50 exemples)
-**Objectif** : Couvrir TOUTES les 29 CAR
-**CAR manquantes** : 6, 8, 11, 23, 38, 48, 58, 73, 74, 86, 87, 90, 91, 98, 103, 105, 121
-**Complexité** : MEDIUM to HIGH
+#### Batch 3 : Core SFT All CAR (1/50) 🔄
+- **Fichier** : `dataset/core_sft_batch3.json`
+- **Status** : 🔄 EN COURS (2%)
+- **Exemples** : 1/50
+- **Objectif** : Couvrir TOUTES les 29 CAR
+- **CAR nouvellement couvertes** : 6 (validation déplacement)
+- **CAR encore à couvrir** : 8, 11, 38, 48, 58, 73, 86, 87, 90, 91, 98, 103, 105, 121
+- **Complexité** : MEDIUM to HIGH
+
+**Note** : Batch 3 démarré avec démonstration méthodologie. Les 29 CAR seront couvertes progressivement.
 
 #### DPO Pairs : Incompatibilités (50/50) ✅
 - **Fichier** : `dataset/dpo_incompatibilities.json`
@@ -126,14 +132,14 @@
 |-----------|----------|----------|---|
 | Batch 1 | 20 | 20 | 100% |
 | Batch 2 | 30 | 30 | 100% |
-| Batch 3 | 0 | 50 | 0% |
+| Batch 3 | 1 | 50 | 2% |
 | DPO Incomp. | 50 | 50 | 100% |
 | DPO Conv. | 0 | 30 | 0% |
 | Advanced SFT | 0 | 100 | 0% |
 | Edge Cases | 0 | 100 | 0% |
 | Multi-Turn | 0 | 50 | 0% |
 | CAR Expl. | 0 | 60 | 0% |
-| **TOTAL** | **100** | **490** | **20.4%** |
+| **TOTAL** | **101** | **490** | **20.6%** |
 
 Note : Objectif ajusté à 490 (vs 550 initial) pour focus qualité
 
@@ -163,4 +169,6 @@ Note : Objectif ajusté à 490 (vs 550 initial) pour focus qualité
 ---
 
 **Dernière mise à jour** : 2025-01-17
-**Progression globale** : 100/490 (20.4%)
+**Progression globale** : 101/490 (20.6%)
+
+**État Batch 3** : Démarré avec 1 exemple (CAR_6). Méthodologie établie, à continuer dans prochaine session.
