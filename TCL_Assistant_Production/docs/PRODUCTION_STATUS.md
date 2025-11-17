@@ -24,16 +24,16 @@ Créer un assistant billettique TCL **100% fiable**, avec une compréhension par
 | dataset/schema.json | ✅ | Schéma de validation JSON |
 | DATASET_PROGRESS.md | ✅ | Suivi détaillé de création dataset |
 
-### 📊 Datasets : **5.9% COMPLET** 🔄
+### 📊 Datasets : **20.4% COMPLET** 🔄
 
-**Progression** : 29/490 exemples
+**Progression** : 100/490 exemples
 
 | Catégorie | Complété | Objectif | % | Status |
 |-----------|----------|----------|---|--------|
 | Batch 1 - Core Simple | 20 | 20 | 100% | ✅ |
-| Batch 2 - Core Medium | 9 | 30 | 30% | 🔄 |
+| Batch 2 - Core Medium | 30 | 30 | 100% | ✅ |
 | Batch 3 - CAR Coverage | 0 | 50 | 0% | ⏳ |
-| DPO Incompatibilities | 0 | 50 | 0% | ⏳ |
+| DPO Incompatibilities | 50 | 50 | 100% | ✅ |
 | DPO Conversational | 0 | 30 | 0% | ⏳ |
 | Advanced SFT | 0 | 100 | 0% | ⏳ |
 | Edge Cases | 0 | 100 | 0% | ⏳ |
@@ -67,15 +67,15 @@ Créer un assistant billettique TCL **100% fiable**, avec une compréhension par
 - [x] Schéma validation
 - [x] Batch 1 (20 exemples simples)
 
-### Phase 2 : Core Dataset 🔄 EN COURS (18%)
+### Phase 2 : Core Dataset 🔄 EN COURS (56%)
 - [x] Batch 1 (20 exemples) ✅
-- [ ] Batch 2 (30 exemples) 🔄 30%
-- [ ] Batch 3 (50 exemples) ⏳
-- [ ] DPO Incomp (50 paires) ⏳
+- [x] Batch 2 (30 exemples) ✅
+- [ ] Batch 3 (50 exemples) 🔄
+- [x] DPO Incomp (50 paires) ✅
 - [ ] DPO Conv (30 paires) ⏳
 
 **Total Core** : 180 exemples
-**Complété** : 29 (16%)
+**Complété** : 100 (56%)
 
 ### Phase 3 : Advanced Dataset ⏳ À VENIR
 - [ ] Advanced SFT (100 exemples)
@@ -101,7 +101,7 @@ Créer un assistant billettique TCL **100% fiable**, avec une compréhension par
 
 | Métrique | Objectif | Actuel |
 |----------|----------|--------|
-| Exemples manuels | 490 | 29 (5.9%) |
+| Exemples manuels | 490 | 100 (20.4%) |
 | CAR couvertes | 29/29 | 6/29 (20.7%) |
 | Incompatibilités | Toutes | Documentées |
 | Précision JSON | >98% | À mesurer |
@@ -111,9 +111,9 @@ Créer un assistant billettique TCL **100% fiable**, avec une compréhension par
 
 ### Immédiat (Aujourd'hui)
 1. ✅ Documenter incompatibilités
-2. 🔄 Compléter Batch 2 → 30 exemples
-3. Créer DPO incompatibilités → 50 paires
-4. Créer Batch 3 → 50 exemples
+2. ✅ Compléter Batch 2 → 30 exemples
+3. ✅ Créer DPO incompatibilités → 50 paires
+4. 🔄 Créer Batch 3 → 50 exemples
 
 ### Cette Semaine
 1. Compléter Core Dataset (180 exemples)
@@ -171,6 +171,6 @@ Créer un assistant billettique TCL **100% fiable**, avec une compréhension par
 
 ---
 
-**Dernière mise à jour** : 2025-01-16
-**Status global** : 🟡 Phase 2 en cours (18%)
-**Prochaine milestone** : Compléter Core Dataset (180 exemples)
+**Dernière mise à jour** : 2025-01-17
+**Status global** : 🟡 Phase 2 en cours (56%)
+**Prochaine milestone** : Batch 3 (50 exemples) pour compléter Core Dataset

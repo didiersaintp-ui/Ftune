@@ -1,0 +1,712 @@
+[
+  {
+    "instruction": "Créer un produit avec CAR_14 et CAR_74",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nCAR_14 (Modes de transport liste) et CAR_74 (Mode codé sur support) ne peuvent pas coexister.\n\n**Raison** : Ces deux caractéristiques servent le même objectif (définir les modes autorisés) mais de manière incompatible :\n- CAR_14 : Liste paramétrable de modes (standard actuel)\n- CAR_74 : Mode unique codé sur support (OBSOLÈTE)\n\n✅ **Solution** : Utiliser UNIQUEMENT CAR_14.\n\n❓ **Question** : Quels modes souhaitez-vous autoriser ?",
+    "rejected": "Pas de problème, voici le JSON avec CAR_14 et CAR_74 :\n```json\n{\n  \"characteristics\": [\n    {\"number\": 14, \"parameters\": {\"14_01\": [\"Bus\"], \"14_02\": \"Autorisée\"}},\n    {\"number\": 74, \"parameters\": {\"74_01\": \"Bus\"}}\n  ]\n}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car14_car74_basic",
+      "incompatibility": [
+        "CAR_14",
+        "CAR_74"
+      ]
+    }
+  },
+  {
+    "instruction": "Abonnement avec modes liste et mode codé",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nVous tentez d'utiliser à la fois :\n- Un système de liste de modes (CAR_14)\n- Un mode codé unique (CAR_74)\n\nCes deux approches sont mutuellement exclusives.\n\n✅ **Solution** : Pour un abonnement, utilisez CAR_14 avec la liste complète des modes autorisés.\n\n**Exemple** :\n```json\n{\"number\": 14, \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\"], \"14_02\": \"Autorisée\"}}\n```",
+    "rejected": "Voici votre abonnement :\n```json\n{\"characteristics\": [{\"number\": 14}, {\"number\": 74}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car14_car74_subscription",
+      "incompatibility": [
+        "CAR_14",
+        "CAR_74"
+      ]
+    }
+  },
+  {
+    "instruction": "Produit avec CAR_22 et CAR_21",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nCAR_22 (Mono-usager) et CAR_21 (Multi-usager) ne peuvent pas coexister.\n\n**Raison** : Un carnet ne peut pas être à la fois :\n- CAR_22 : Pour UNE seule personne\n- CAR_21 : Partageable entre PLUSIEURS personnes\n\n❓ **Question** : Le carnet est-il :\n1. **Mono-usager** → Utilisez CAR_22\n2. **Multi-usager/Famille** → Utilisez CAR_21",
+    "rejected": "Voici le carnet mono et multi-usager :\n```json\n{\"characteristics\": [{\"number\": 22}, {\"number\": 21}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car22_car21_basic",
+      "incompatibility": [
+        "CAR_22",
+        "CAR_21"
+      ]
+    }
+  },
+  {
+    "instruction": "Carnet pour une personne partageable en famille",
+    "chosen": "⚠️ **CONTRADICTION DÉTECTÉE**\n\nVotre demande contient une contradiction :\n- \"pour une personne\" → CAR_22 (mono-usager)\n- \"partageable en famille\" → CAR_21 (multi-usager)\n\n**Ces deux caractéristiques sont incompatibles.**\n\n❓ **Clarification nécessaire** :\n1. **Carnet personnel** (une seule personne) → CAR_22\n2. **Carnet famille** (partage possib le) → CAR_21\n\nQuel type souhaitez-vous ?",
+    "rejected": "Voici votre carnet personnel partageable :\n```json\n{\"characteristics\": [{\"number\": 22, \"parameters\": {\"22_01\": 10}}, {\"number\": 21, \"parameters\": {\"21_03\": 4}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car22_car21_contradiction",
+      "incompatibility": [
+        "CAR_22",
+        "CAR_21"
+      ]
+    }
+  },
+  {
+    "instruction": "Pass tous modes avec CAR_14 et CAR_74 pour métro",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nVous ne pouvez pas combiner CAR_14 et CAR_74 dans le même produit.\n\n**CAR_74 est OBSOLÈTE** et ne doit plus être utilisée. La norme actuelle est CAR_14.\n\n✅ **Correction** :\n```json\n{\"number\": 14, \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\"], \"14_02\": \"Autorisée\"}}\n```",
+    "rejected": "{\"characteristics\": [{\"number\": 14, \"parameters\": {\"14_01\": [\"Bus urbain\", \"Tramway\"]}}, {\"number\": 74, \"parameters\": {\"74_01\": \"Métro\"}}]}",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car14_car74_pass",
+      "incompatibility": [
+        "CAR_14",
+        "CAR_74"
+      ]
+    }
+  },
+  {
+    "instruction": "Ticket avec modes autorisés définis deux fois",
+    "chosen": "⚠️ **DOUBLE DÉFINITION DÉTECTÉE**\n\nVous définissez les modes autorisés deux fois avec CAR_14 et CAR_74.\n\n**Problème** : Redondance et incompatibilité technique.\n\n✅ **Solution** : Une seule définition avec CAR_14 suffit.",
+    "rejected": "{\"product_name\": \"Ticket\", \"characteristics\": [{\"number\": 14}, {\"number\": 74}]}",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car14_car74_double",
+      "incompatibility": [
+        "CAR_14",
+        "CAR_74"
+      ]
+    }
+  },
+  {
+    "instruction": "Carnet 10 tickets mono et multi-usager",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nUn carnet ne peut pas être simultanément mono-usager (CAR_22) et multi-usager (CAR_21).\n\n❓ **Question** : Souhaitez-vous :\n1. **Carnet personnel** (1 personne) → CAR_22\n2. **Carnet famille** (plusieurs personnes) → CAR_21",
+    "rejected": "Voici votre carnet :\n```json\n{\"characteristics\": [{\"number\": 22, \"parameters\": {\"22_01\": 10}}, {\"number\": 21, \"parameters\": {\"21_01\": 10, \"21_03\": 3}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car22_car21_carnet10",
+      "incompatibility": [
+        "CAR_22",
+        "CAR_21"
+      ]
+    }
+  },
+  {
+    "instruction": "Créer produit multi-déplacements pour une et plusieurs personnes",
+    "chosen": "⚠️ **INCOMPATIBILITÉ LOGIQUE**\n\nVous demandez un produit à la fois :\n- \"pour une personne\" (mono-usager)\n- \"pour plusieurs personnes\" (multi-usager)\n\n**Ces concepts sont mutuellement exclusifs.**\n\n✅ **Choisissez** :\n- Si usage personnel strict → CAR_22\n- Si partage en famille → CAR_21",
+    "rejected": "Produit créé avec les deux modes :\n```json\n{\"characteristics\": [{\"number\": 22}, {\"number\": 21}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car22_car21_logic",
+      "incompatibility": [
+        "CAR_22",
+        "CAR_21"
+      ]
+    }
+  },
+  {
+    "instruction": "Pass groupe 5 personnes avec nombre variable",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nCAR_2 (groupe FIXE) et CAR_38 (groupe VARIABLE) sont incompatibles.\n\n**Votre demande** :\n- \"5 personnes\" → nombre fixe → CAR_2\n- \"nombre variable\" → CAR_38\n\n❓ **Clarification** : Le nombre de passagers est-il :\n1. **Toujours 5** → CAR_2 avec `2_01: 5`\n2. **Entre X et Y** → CAR_38 avec min/max",
+    "rejected": "Voici votre pass groupe :\n```json\n{\"characteristics\": [{\"number\": 2, \"parameters\": {\"2_01\": 5}}, {\"number\": 38, \"parameters\": {\"38_01\": 3, \"38_02\": 10}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car2_car38_basic",
+      "incompatibility": [
+        "CAR_2",
+        "CAR_38"
+      ]
+    }
+  },
+  {
+    "instruction": "Produit pour groupe fixe et variable",
+    "chosen": "⚠️ **CONTRADICTION DÉTECTÉE**\n\nUn groupe ne peut pas être à la fois :\n- **Fixe** (nombre déterminé au paramétrage) → CAR_2\n- **Variable** (nombre saisi à la vente) → CAR_38\n\n✅ **Solution** : Choisissez une seule approche selon votre besoin.",
+    "rejected": "{\"characteristics\": [{\"number\": 2}, {\"number\": 38}]}",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car2_car38_contradiction",
+      "incompatibility": [
+        "CAR_2",
+        "CAR_38"
+      ]
+    }
+  },
+  {
+    "instruction": "Abonnement lignes paramétrées et saisies à la vente",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nCAR_3 (lignes paramétrées) et CAR_87 (lignes à la vente) ne peuvent coexister.\n\n**Raison** : Les lignes ne peuvent être à la fois :\n- Définies dans le paramétrage du produit (CAR_3)\n- Choisies lors de l'achat (CAR_87)\n\n❓ **Question** : Les lignes sont-elles :\n1. **Connues à l'avance** → CAR_3\n2. **Choisies à l'achat** → CAR_87",
+    "rejected": "Voici le produit :\n```json\n{\"characteristics\": [{\"number\": 3, \"parameters\": {\"3_01\": [\"Ligne 1\"]}}, {\"number\": 87, \"parameters\": {\"87_01\": [\"Ligne 2\"]}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car3_car87_basic",
+      "incompatibility": [
+        "CAR_3",
+        "CAR_87"
+      ]
+    }
+  },
+  {
+    "instruction": "Produit avec CAR_3 et CAR_87",
+    "chosen": "⚠️ **DOUBLE DÉFINITION DES LIGNES**\n\nVous tentez de définir les lignes autorisées deux fois :\n- CAR_3 : Lignes paramétrées\n- CAR_87 : Lignes codées à la vente\n\n**Ces deux approches sont mutuellement exclusives.**\n\n✅ **Choisissez** une seule méthode.",
+    "rejected": "{\"characteristics\": [{\"number\": 3}, {\"number\": 87}]}",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car3_car87_double",
+      "incompatibility": [
+        "CAR_3",
+        "CAR_87"
+      ]
+    }
+  },
+  {
+    "instruction": "Abonnement zones 1-2 paramétrées avec saisie à la vente",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nCAR_4 (zones paramétrées) et CAR_121 (zones saisies à la vente) ne peuvent pas coexister.\n\n**Raison** : Les zones tarifaires ne peuvent être à la fois :\n- Définies dans le paramétrage (CAR_4)\n- Choisies lors de l'achat (CAR_121)\n\n❓ **Question** : Les zones sont-elles :\n1. **Connues à l'avance** (ex: toujours zones 1-2) → CAR_4\n2. **Choisies à l'achat** (l'usager choisit) → CAR_121",
+    "rejected": "Voici l'abonnement :\n```json\n{\"characteristics\": [{\"number\": 4, \"parameters\": {\"4_01\": [\"Zone 1\", \"Zone 2\"]}}, {\"number\": 121, \"parameters\": {\"121_01\": [\"Zone 3\"]}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car4_car121_basic",
+      "incompatibility": [
+        "CAR_4",
+        "CAR_121"
+      ]
+    }
+  },
+  {
+    "instruction": "Pass avec zones fixes et variables",
+    "chosen": "⚠️ **DOUBLE DÉFINITION DES ZONES**\n\nVous tentez de définir les zones tarifaires deux fois :\n- CAR_4 : Zones fixes paramétrées\n- CAR_121 : Zones variables à la vente\n\n**Ces deux approches sont mutuellement exclusives.**\n\n✅ **Choisissez** :\n- Produit avec zones prédéfinies → CAR_4 uniquement\n- Produit où l'usager choisit ses zones → CAR_121 uniquement",
+    "rejected": "{\"product_name\": \"Pass Multi-Zones\", \"characteristics\": [{\"number\": 4}, {\"number\": 121}]}",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car4_car121_double",
+      "incompatibility": [
+        "CAR_4",
+        "CAR_121"
+      ]
+    }
+  },
+  {
+    "instruction": "Ticket zones 1-2-3 avec zone saisie au distributeur",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nVous ne pouvez pas combiner CAR_4 et CAR_121.\n\n**Votre demande** :\n- \"zones 1-2-3\" → zones fixes → CAR_4\n- \"saisie au distributeur\" → zone à la vente → CAR_121\n\n✅ **Correction** : Pour des zones fixes 1-2-3, utilisez uniquement CAR_4 :\n```json\n{\"number\": 4, \"parameters\": {\"4_01\": [\"Zone 1\", \"Zone 2\", \"Zone 3\"]}}\n```",
+    "rejected": "Voici le ticket :\n```json\n{\"characteristics\": [{\"number\": 4, \"parameters\": {\"4_01\": [\"Zone 1\", \"Zone 2\", \"Zone 3\"]}}, {\"number\": 121}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car4_car121_ticket",
+      "incompatibility": [
+        "CAR_4",
+        "CAR_121"
+      ]
+    }
+  },
+  {
+    "instruction": "Produit multi-zones avec CAR_4 et CAR_121",
+    "chosen": "⚠️ **CONTRADICTION DÉTECTÉE**\n\nUn produit multi-zones ne peut pas utiliser simultanément :\n- CAR_4 (zones paramétrées à l'avance)\n- CAR_121 (zones choisies lors de la vente)\n\n**Règle métier** : Le choix des zones doit avoir UNE seule source.\n\n❓ **Clarification** : Qui détermine les zones ?\n1. Le paramétrage produit → CAR_4\n2. L'usager à l'achat → CAR_121",
+    "rejected": "Produit créé :\n```json\n{\"characteristics\": [{\"number\": 4, \"parameters\": {\"4_01\": [\"Zone 1\"]}}, {\"number\": 121, \"parameters\": {\"121_01\": [\"Zone 2\", \"Zone 3\"]}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car4_car121_contradiction",
+      "incompatibility": [
+        "CAR_4",
+        "CAR_121"
+      ]
+    }
+  },
+  {
+    "instruction": "Abonnement zone centrale fixe avec extension variable",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nMême si l'intention semble logique (zone centrale fixe + extension), CAR_4 et CAR_121 sont incompatibles.\n\n**Raison technique** : Le système ne peut gérer deux sources de définition des zones.\n\n✅ **Alternatives** :\n1. **Zones complètement fixes** → CAR_4 avec toutes les zones\n2. **Zones complètement variables** → CAR_121 pour toute sélection\n3. **Produits séparés** → Un produit par combinaison de zones",
+    "rejected": "Voici l'abonnement avec zone 1 fixe et zones 2-3 optionnelles :\n```json\n{\"characteristics\": [{\"number\": 4, \"parameters\": {\"4_01\": [\"Zone 1\"]}}, {\"number\": 121, \"parameters\": {\"121_01\": [\"Zone 2\", \"Zone 3\"]}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car4_car121_extension",
+      "incompatibility": [
+        "CAR_4",
+        "CAR_121"
+      ]
+    }
+  },
+  {
+    "instruction": "Carnet multi-usager avec validation par déplacement",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nCAR_6 (validation par déplacement) et CAR_21 (multi-usager) ne peuvent pas coexister.\n\n**Raison** : Ces deux modes de validation sont incompatibles :\n- CAR_6 : Validation décompte les déplacements (1 validation = 1 déplacement)\n- CAR_21 : Multi-usager décompte les unités par personne\n\n**Problème** : Impossible de tracer qui valide quel déplacement dans un contexte multi-usager avec validation par déplacement.\n\n✅ **Choisissez** :\n- Carnet personnel avec déplacements → CAR_6 + CAR_22\n- Carnet famille avec unités → CAR_21 (sans CAR_6)",
+    "rejected": "Voici le carnet :\n```json\n{\"characteristics\": [{\"number\": 6, \"parameters\": {\"6_01\": \"Trajet\"}}, {\"number\": 21, \"parameters\": {\"21_01\": 10, \"21_03\": 4}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car6_car21_basic",
+      "incompatibility": [
+        "CAR_6",
+        "CAR_21"
+      ]
+    }
+  },
+  {
+    "instruction": "Produit famille avec CAR_6 et CAR_21",
+    "chosen": "⚠️ **INCOMPATIBILITÉ LOGIQUE**\n\nVous ne pouvez pas combiner validation par déplacement (CAR_6) avec multi-usager (CAR_21).\n\n**Conflit fonctionnel** :\n- CAR_6 nécessite traçabilité stricte des déplacements\n- CAR_21 permet partage entre plusieurs personnes\n\n→ Impossible de garantir qui a consommé quel déplacement.\n\n✅ **Solutions** :\n1. Produit mono-usager avec déplacements → CAR_6 + CAR_22\n2. Produit multi-usager avec unités → CAR_21 (sans CAR_6)",
+    "rejected": "Produit créé :\n```json\n{\"characteristics\": [{\"number\": 6}, {\"number\": 21}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car6_car21_logic",
+      "incompatibility": [
+        "CAR_6",
+        "CAR_21"
+      ]
+    }
+  },
+  {
+    "instruction": "Pass famille avec validation trajet et partage",
+    "chosen": "⚠️ **CONTRADICTION DÉTECTÉE**\n\nVotre demande combine deux mécanismes incompatibles :\n- \"validation trajet\" → CAR_6 (décompte par déplacement)\n- \"famille\" + \"partage\" → CAR_21 (multi-usager)\n\n**Incompatibilité technique** : CAR_6 et CAR_21 s'excluent mutuellement.\n\n❓ **Question** : Quel est le besoin principal ?\n1. **Traçabilité des trajets** → CAR_6 (mono-usager obligatoire)\n2. **Partage familial** → CAR_21 (sans validation par déplacement)",
+    "rejected": "Voici votre pass famille :\n```json\n{\"characteristics\": [{\"number\": 6, \"parameters\": {\"6_01\": \"Trajet\"}}, {\"number\": 21, \"parameters\": {\"21_03\": 5}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car6_car21_pass",
+      "incompatibility": [
+        "CAR_6",
+        "CAR_21"
+      ]
+    }
+  },
+  {
+    "instruction": "Forfait BSC limité à 2 trajets par jour",
+    "chosen": "⚠️ **INCOMPATIBILITÉ SUPPORT DÉTECTÉE**\n\nLe support BSC (Billet Sans Contact) ne peut pas gérer CAR_10 (limitation de trajets).\n\n**Raison technique** : BSC est un support à usage unique sans compteur dynamique.\n- CAR_10 nécessite un compteur de trajets par sous-période (jour/semaine/mois)\n- BSC ne peut pas stocker ni mettre à jour de compteurs\n\n✅ **Solution** : Utilisez CSC (Carte Sans Contact) ou AB (Application Billettique) qui supportent les compteurs dynamiques.\n\n**Supports compatibles** : [\"CSC\", \"AB\"]",
+    "rejected": "Voici le forfait :\n```json\n{\"product_name\": \"Forfait 2 Trajets/Jour\", \"support\": [\"BSC\"], \"characteristics\": [{\"number\": 10, \"parameters\": {\"10_01\": [{\"unit\": \"Jour\", \"count\": 1, \"max_trips\": 2}]}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "support_incompatibility",
+      "dpo_type": "bsc_car10_basic",
+      "incompatibility": [
+        "BSC",
+        "CAR_10"
+      ]
+    }
+  },
+  {
+    "instruction": "Ticket BSC avec 20 déplacements par semaine",
+    "chosen": "⚠️ **SUPPORT INCOMPATIBLE**\n\nBSC ne supporte PAS CAR_10 (limitation de déplacements).\n\n**Explication** :\n- Votre demande : 20 déplacements max par semaine\n- CAR_10 nécessite un compteur qui se réinitialise chaque semaine\n- BSC = support statique sans mémoire de compteur\n\n✅ **Correction** : Changez le support vers CSC ou AB.\n\n**Exemple corrigé** :\n```json\n{\"support\": [\"CSC\", \"AB\"], \"characteristics\": [{\"number\": 10, \"parameters\": {\"10_01\": [{\"unit\": \"Semaine\", \"count\": 1, \"max_trips\": 20}]}}]}\n```",
+    "rejected": "Voici votre ticket :\n```json\n{\"support\": [\"BSC\"], \"characteristics\": [{\"number\": 7}, {\"number\": 10, \"parameters\": {\"10_01\": [{\"unit\": \"Semaine\", \"count\": 1, \"max_trips\": 20}]}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "support_incompatibility",
+      "dpo_type": "bsc_car10_weekly",
+      "incompatibility": [
+        "BSC",
+        "CAR_10"
+      ]
+    }
+  },
+  {
+    "instruction": "Produit sur billet papier avec limitation trajets quotidienne",
+    "chosen": "⚠️ **INCOMPATIBILITÉ BSC + CAR_10**\n\nUn produit avec limitation de trajets (CAR_10) ne peut pas être émis sur BSC.\n\n**Contrainte technique** : BSC est un support à usage unique qui ne peut pas :\n- Compter les validations\n- Se réinitialiser chaque jour\n- Stocker un état dynamique\n\n❓ **Question** : Acceptez-vous de passer sur CSC ou AB ?\n\n✅ **Si oui** : Le produit sera fonctionnel\n❌ **Si non** : Impossible de créer ce produit avec CAR_10",
+    "rejected": "Produit créé sur BSC :\n```json\n{\"product_name\": \"Forfait Quotidien\", \"support\": [\"BSC\"], \"characteristics\": [{\"number\": 10}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "support_incompatibility",
+      "dpo_type": "bsc_car10_paper",
+      "incompatibility": [
+        "BSC",
+        "CAR_10"
+      ]
+    }
+  },
+  {
+    "instruction": "Abonnement BSC avec tacite reconduction automatique",
+    "chosen": "⚠️ **INCOMPATIBILITÉ SUPPORT DÉTECTÉE**\n\nLe support BSC ne peut pas gérer CAR_102 (tacite reconduction).\n\n**Raison** : La tacite reconduction nécessite :\n- Renouvellement automatique du produit\n- Mise à jour de la date de validité\n- Débit automatique périodique\n\n→ BSC est un support **à usage unique** qui ne peut être renouvelé.\n\n✅ **Solution** : Utilisez CSC ou AB pour les abonnements à reconduction automatique.\n\n**Supports compatibles** : [\"CSC\", \"AB\"]",
+    "rejected": "Voici l'abonnement :\n```json\n{\"product_name\": \"Abonnement Mensuel\", \"support\": [\"BSC\"], \"characteristics\": [{\"number\": 7}, {\"number\": 102, \"parameters\": {\"102_01\": \"TRDI\"}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "support_incompatibility",
+      "dpo_type": "bsc_car102_basic",
+      "incompatibility": [
+        "BSC",
+        "CAR_102"
+      ]
+    }
+  },
+  {
+    "instruction": "Ticket BSC renouvelable automatiquement chaque mois",
+    "chosen": "⚠️ **SUPPORT INCOMPATIBLE**\n\nBSC ne supporte PAS le renouvellement automatique (CAR_102).\n\n**Problème fondamental** :\n- BSC = billet papier ou support jetable\n- CAR_102 = renouvellement automatique récurrent\n\n→ Contradiction : un support jetable ne peut pas être renouvelé.\n\n✅ **Alternatives** :\n1. **CSC/AB avec CAR_102** : Renouvellement automatique fonctionnel\n2. **BSC sans CAR_102** : L'usager doit racheter manuellement chaque mois",
+    "rejected": "Produit créé :\n```json\n{\"support\": [\"BSC\"], \"characteristics\": [{\"number\": 102, \"parameters\": {\"102_01\": \"TRDI\", \"102_02\": \"M\"}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "support_incompatibility",
+      "dpo_type": "bsc_car102_renewal",
+      "incompatibility": [
+        "BSC",
+        "CAR_102"
+      ]
+    }
+  },
+  {
+    "instruction": "Pass BSC avec reconduction TRDI",
+    "chosen": "⚠️ **INCOMPATIBILITÉ BSC + CAR_102**\n\nLa tacite reconduction (TRDI) n'est pas compatible avec BSC.\n\n**Explication** :\n- TRDI = Tacite Reconduction à Durée Indéterminée\n- Nécessite un support réinscriptible (CSC ou AB)\n- BSC = support à usage unique (ticket papier/jetable)\n\n❓ **Question** : Souhaitez-vous :\n1. **Garder TRDI** → Passer sur support CSC/AB\n2. **Garder BSC** → Retirer CAR_102 (pas de reconduction auto)",
+    "rejected": "Voici le pass TRDI sur BSC :\n```json\n{\"product_name\": \"Pass TRDI\", \"support\": [\"BSC\"], \"characteristics\": [{\"number\": 102, \"parameters\": {\"102_01\": \"TRDI\"}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "support_incompatibility",
+      "dpo_type": "bsc_car102_trdi",
+      "incompatibility": [
+        "BSC",
+        "CAR_102"
+      ]
+    }
+  },
+  {
+    "instruction": "Ticket BSC rechargeable",
+    "chosen": "⚠️ **INCOMPATIBILITÉ SUPPORT DÉTECTÉE**\n\nLe support BSC ne peut PAS être rechargeable.\n\n**Raison** : BSC (Billet Sans Contact) est un support **à usage unique** :\n- Ticket papier ou support jetable\n- Non réinscriptible\n- Impossible de recharger ou prolonger\n\n**CAR_7 rechargeable** (7_04: true ou 7_05: true) nécessite un support réinscriptible.\n\n✅ **Solutions** :\n1. **CSC/AB rechargeable** : CAR_7 avec 7_04: true\n2. **BSC non-rechargeable** : CAR_7 avec 7_04: false, 7_05: false",
+    "rejected": "Voici le ticket rechargeable :\n```json\n{\"product_name\": \"Ticket Unité\", \"support\": [\"BSC\"], \"characteristics\": [{\"number\": 7, \"parameters\": {\"7_01\": 2, \"7_02\": \"H\", \"7_03\": 1, \"7_04\": true}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "support_incompatibility",
+      "dpo_type": "bsc_rechargeable_basic",
+      "incompatibility": [
+        "BSC",
+        "CAR_7_rechargeable"
+      ]
+    }
+  },
+  {
+    "instruction": "Carnet BSC avec possibilité de recharge",
+    "chosen": "⚠️ **SUPPORT INCOMPATIBLE**\n\nBSC ne supporte PAS la recharge (CAR_7 avec 7_04: true).\n\n**Explication** :\n- Votre demande : carnet rechargeable\n- BSC = support jetable à usage unique\n- Recharge nécessite support réinscriptible (CSC ou AB)\n\n✅ **Correction** : Changez le support vers CSC ou AB.\n\n**Exemple corrigé** :\n```json\n{\"support\": [\"CSC\", \"AB\"], \"characteristics\": [{\"number\": 7, \"parameters\": {\"7_04\": true, \"7_05\": true}}]}\n```",
+    "rejected": "Voici votre carnet rechargeable :\n```json\n{\"product_name\": \"Carnet 10\", \"support\": [\"BSC\"], \"characteristics\": [{\"number\": 22, \"parameters\": {\"22_01\": 10}}, {\"number\": 7, \"parameters\": {\"7_04\": true, \"7_05\": true}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "support_incompatibility",
+      "dpo_type": "bsc_rechargeable_carnet",
+      "incompatibility": [
+        "BSC",
+        "CAR_7_rechargeable"
+      ]
+    }
+  },
+  {
+    "instruction": "Abonnement mensuel BSC prolongeable",
+    "chosen": "⚠️ **INCOMPATIBILITÉ BSC + RECHARGEMENT**\n\nUn abonnement prolongeable/rechargeable ne peut pas être émis sur BSC.\n\n**Contrainte technique** : \n- \"Prolongeable\" → CAR_7 avec 7_05: true (rechargeable par prolongation)\n- BSC = support papier/jetable non modifiable\n\n❓ **Question** : Souhaitez-vous :\n1. **Abonnement prolongeable** → Utilisez CSC ou AB\n2. **Garder BSC** → Abonnement à durée fixe non prolongeable (7_05: false)\n\n✅ **Recommandation** : CSC/AB pour abonnements mensuels récurrents.",
+    "rejected": "Abonnement créé sur BSC :\n```json\n{\"product_name\": \"Abonnement Mensuel\", \"support\": [\"BSC\"], \"characteristics\": [{\"number\": 7, \"parameters\": {\"7_01\": 1, \"7_02\": \"M\", \"7_03\": 1, \"7_05\": true}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "support_incompatibility",
+      "dpo_type": "bsc_rechargeable_prolongation",
+      "incompatibility": [
+        "BSC",
+        "CAR_7_rechargeable"
+      ]
+    }
+  },
+  {
+    "instruction": "Ticket BSC avec points de fidélité",
+    "chosen": "⚠️ **INCOMPATIBILITÉ SUPPORT DÉTECTÉE**\n\nLe support BSC ne peut pas gérer CAR_23 (fidélisation).\n\n**Raison** : La fidélisation nécessite :\n- Compteur de points cumulatifs\n- Mise à jour dynamique à chaque validation\n- Traçabilité par usager\n\n→ BSC est un support **statique** sans mémoire de compteur.\n\n✅ **Solution** : Utilisez CSC ou AB pour les programmes de fidélité.\n\n**Supports compatibles** : [\"CSC\", \"AB\"]",
+    "rejected": "Voici le ticket :\n```json\n{\"product_name\": \"Ticket Fidélité\", \"support\": [\"BSC\"], \"characteristics\": [{\"number\": 23, \"parameters\": {\"23_01\": 2, \"23_02\": \"Par validation\"}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "support_incompatibility",
+      "dpo_type": "bsc_car23_loyalty",
+      "incompatibility": [
+        "BSC",
+        "CAR_23"
+      ]
+    }
+  },
+  {
+    "instruction": "Abonnement BSC personnalisé avec nom et photo",
+    "chosen": "⚠️ **INCOMPATIBILITÉ SUPPORT DÉTECTÉE**\n\nLe support BSC ne peut pas gérer CAR_48 (personnalisation nominative).\n\n**Raison** : La personnalisation nécessite :\n- Stockage données personnelles (nom, prénom, photo)\n- Support réinscriptible et sécurisé\n- Contrôle visuel possible\n\n→ BSC = ticket anonyme jetable.\n\n✅ **Solution** : Utilisez CSC (carte personnalisée avec photo) ou AB (compte utilisateur).\n\n**Supports compatibles** : [\"CSC\", \"AB\"]",
+    "rejected": "Voici l'abonnement personnalisé :\n```json\n{\"product_name\": \"Abonnement Nominatif\", \"support\": [\"BSC\"], \"characteristics\": [{\"number\": 48, \"parameters\": {\"48_01\": \"Dupont\", \"48_02\": \"Jean\"}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "support_incompatibility",
+      "dpo_type": "bsc_car48_personalization",
+      "incompatibility": [
+        "BSC",
+        "CAR_48"
+      ]
+    }
+  },
+  {
+    "instruction": "Pass BSC avec paiement différé",
+    "chosen": "⚠️ **INCOMPATIBILITÉ SUPPORT DÉTECTÉE**\n\nLe support BSC ne peut pas gérer CAR_98 (paiement différé/post-payé).\n\n**Raison** : Le paiement différé nécessite :\n- Compte utilisateur identifié\n- Traçabilité des consommations\n- Facturation a posteriori\n\n→ BSC = ticket prépayé anonyme.\n\n✅ **Solution** : Utilisez CSC ou AB avec compte utilisateur pour le post-paiement.\n\n**Supports compatibles** : [\"CSC\", \"AB\"]",
+    "rejected": "Voici le pass post-payé :\n```json\n{\"product_name\": \"Pass Post-Payé\", \"support\": [\"BSC\"], \"characteristics\": [{\"number\": 98, \"parameters\": {\"98_01\": \"Mensuel\"}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "support_incompatibility",
+      "dpo_type": "bsc_car98_postpaid",
+      "incompatibility": [
+        "BSC",
+        "CAR_98"
+      ]
+    }
+  },
+  {
+    "instruction": "Carnet BSC avec CAR_105 gestion stock",
+    "chosen": "⚠️ **INCOMPATIBILITÉ SUPPORT DÉTECTÉE**\n\nLe support BSC ne peut pas gérer CAR_105 (gestion stock dynamique).\n\n**Raison** : CAR_105 nécessite :\n- Mise à jour dynamique du stock restant\n- Compteur modifiable à chaque utilisation\n- Support réinscriptible\n\n→ BSC = support statique à usage unique.\n\n✅ **Solution** : Utilisez CSC ou AB pour la gestion de stock dynamique.\n\n**Supports compatibles** : [\"CSC\", \"AB\"]",
+    "rejected": "Voici le carnet :\n```json\n{\"support\": [\"BSC\"], \"characteristics\": [{\"number\": 105, \"parameters\": {\"105_01\": 10}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "support_incompatibility",
+      "dpo_type": "bsc_car105_stock",
+      "incompatibility": [
+        "BSC",
+        "CAR_105"
+      ]
+    }
+  },
+  {
+    "instruction": "Créer ticket avec CAR_14 modes Bus et CAR_74 mode Métro",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nVous tentez de définir les modes autorisés avec deux caractéristiques incompatibles :\n- CAR_14 : Modes liste (Bus)\n- CAR_74 : Mode codé (Métro)\n\n**Problème** : Utiliser les deux crée une confusion sur les modes réellement autorisés.\n\n✅ **Solution** : Utilisez UNIQUEMENT CAR_14 avec tous les modes :\n```json\n{\"number\": 14, \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\"], \"14_02\": \"Autorisée\"}}\n```",
+    "rejected": "Ticket créé avec les deux modes :\n```json\n{\"characteristics\": [{\"number\": 14, \"parameters\": {\"14_01\": [\"Bus urbain\"]}}, {\"number\": 74, \"parameters\": {\"74_01\": \"Métro\"}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car14_car74_split_modes",
+      "incompatibility": [
+        "CAR_14",
+        "CAR_74"
+      ]
+    }
+  },
+  {
+    "instruction": "Abonnement tous modes sauf train avec CAR_14 interdit et CAR_74",
+    "chosen": "⚠️ **INCOMPATIBILITÉ + ERREUR LOGIQUE**\n\nDeux problèmes détectés :\n1. **CAR_14 + CAR_74** sont incompatibles (double définition modes)\n2. **Logique incorrecte** : Vous voulez exclure le train, utilisez CAR_14 avec 14_02: \"Interdite\"\n\n✅ **Correction** :\n```json\n{\"number\": 14, \"parameters\": {\"14_01\": [\"Train\"], \"14_02\": \"Interdite\"}}\n```\n\nOu listez les modes autorisés :\n```json\n{\"number\": 14, \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}}\n```",
+    "rejected": "Abonnement créé :\n```json\n{\"characteristics\": [{\"number\": 14, \"parameters\": {\"14_01\": [\"Train\"], \"14_02\": \"Interdite\"}}, {\"number\": 74, \"parameters\": {\"74_01\": \"Bus urbain\"}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car14_car74_exclusion",
+      "incompatibility": [
+        "CAR_14",
+        "CAR_74"
+      ]
+    }
+  },
+  {
+    "instruction": "Carnet 10 voyages personnel et famille simultanément",
+    "chosen": "⚠️ **CONTRADICTION FONDAMENTALE**\n\nUn carnet ne peut pas être **à la fois** personnel ET famille :\n- \"Personnel\" = CAR_22 (mono-usager, usage strictement individuel)\n- \"Famille\" = CAR_21 (multi-usager, partage entre personnes)\n\n**Ces deux concepts sont mutuellement exclusifs par nature.**\n\n❓ **Clarification impérative** : Choisissez UNE option :\n1. Carnet personnel → CAR_22 uniquement\n2. Carnet famille → CAR_21 uniquement",
+    "rejected": "Carnet créé :\n```json\n{\"characteristics\": [{\"number\": 22, \"parameters\": {\"22_01\": 10}}, {\"number\": 21, \"parameters\": {\"21_01\": 10, \"21_03\": 4}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car22_car21_simultaneous",
+      "incompatibility": [
+        "CAR_22",
+        "CAR_21"
+      ]
+    }
+  },
+  {
+    "instruction": "Pass groupe exactement 4 personnes avec nombre variable 3-6",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nVotre demande contient une contradiction :\n- \"Exactement 4 personnes\" → CAR_2 (groupe FIXE)\n- \"Nombre variable 3-6\" → CAR_38 (groupe VARIABLE)\n\n**Ces deux CAR sont incompatibles.**\n\n✅ **Choisissez** :\n1. **Groupe fixe de 4** → CAR_2 avec 2_01: 4\n2. **Groupe variable 3-6** → CAR_38 avec 38_01: 3, 38_02: 6",
+    "rejected": "Pass créé :\n```json\n{\"characteristics\": [{\"number\": 2, \"parameters\": {\"2_01\": 4}}, {\"number\": 38, \"parameters\": {\"38_01\": 3, \"38_02\": 6}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car2_car38_exact_variable",
+      "incompatibility": [
+        "CAR_2",
+        "CAR_38"
+      ]
+    }
+  },
+  {
+    "instruction": "Ticket groupe 2 personnes minimum avec nombre fixe 5",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nVous mélangez groupe fixe et groupe variable :\n- \"Nombre fixe 5\" → CAR_2 (toujours 5 personnes)\n- \"Minimum 2\" → CAR_38 (nombre variable)\n\n**CAR_2 et CAR_38 s'excluent mutuellement.**\n\n❓ **Question** : Le nombre de personnes est-il :\n1. **Toujours le même** (ex: toujours 5) → CAR_2\n2. **Variable dans une fourchette** (ex: 2 à 5) → CAR_38",
+    "rejected": "Ticket groupe créé :\n```json\n{\"characteristics\": [{\"number\": 2, \"parameters\": {\"2_01\": 5}}, {\"number\": 38, \"parameters\": {\"38_01\": 2}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car2_car38_fixed_min",
+      "incompatibility": [
+        "CAR_2",
+        "CAR_38"
+      ]
+    }
+  },
+  {
+    "instruction": "Abonnement lignes 1-2 fixes avec sélection ligne 3 à la vente",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nVous ne pouvez pas mélanger lignes paramétrées (CAR_3) et lignes à la vente (CAR_87).\n\n**Votre demande** :\n- \"Lignes 1-2 fixes\" → CAR_3\n- \"Sélection ligne 3 à la vente\" → CAR_87\n\n**Ces deux approches sont mutuellement exclusives.**\n\n✅ **Solutions** :\n1. **Toutes les lignes fixes** → CAR_3 avec [\"Ligne 1\", \"Ligne 2\", \"Ligne 3\"]\n2. **Toutes les lignes à la vente** → CAR_87 (l'usager choisit)\n3. **Produits séparés** → Un produit par combinaison",
+    "rejected": "Abonnement créé :\n```json\n{\"characteristics\": [{\"number\": 3, \"parameters\": {\"3_01\": [\"Ligne 1\", \"Ligne 2\"]}}, {\"number\": 87, \"parameters\": {\"87_01\": [\"Ligne 3\"]}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car3_car87_mixed",
+      "incompatibility": [
+        "CAR_3",
+        "CAR_87"
+      ]
+    }
+  },
+  {
+    "instruction": "Pass zone 1 fixe avec extension zones 2-3-4 au choix",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nMême si l'intention semble logique, CAR_4 et CAR_121 sont incompatibles.\n\n**Votre demande** :\n- \"Zone 1 fixe\" → CAR_4\n- \"Extension au choix\" → CAR_121\n\n**Règle système** : Les zones doivent avoir UNE seule source de définition.\n\n✅ **Alternatives** :\n1. **Zones fixes multiples** → CAR_4 avec [\"Zone 1\", \"Zone 2\", \"Zone 3\", \"Zone 4\"]\n2. **Zones entièrement variables** → CAR_121 (usager choisit toutes)\n3. **Produits distincts** → Pass Zone 1, Pass Zone 1-2, Pass Zone 1-2-3, etc.",
+    "rejected": "Pass créé :\n```json\n{\"characteristics\": [{\"number\": 4, \"parameters\": {\"4_01\": [\"Zone 1\"]}}, {\"number\": 121, \"parameters\": {\"121_01\": [\"Zone 2\", \"Zone 3\", \"Zone 4\"]}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car4_car121_base_extension",
+      "incompatibility": [
+        "CAR_4",
+        "CAR_121"
+      ]
+    }
+  },
+  {
+    "instruction": "Carnet famille avec validation par trajet",
+    "chosen": "⚠️ **INCOMPATIBILITÉ FONCTIONNELLE**\n\nCAR_6 (validation par déplacement) et CAR_21 (multi-usager) ne peuvent coexister.\n\n**Problème de traçabilité** :\n- CAR_6 nécessite : 1 validation = 1 déplacement identifiable\n- CAR_21 permet : Plusieurs personnes utilisent le même carnet\n\n→ Impossible de tracer quel usager a effectué quel déplacement.\n\n✅ **Choisissez** :\n1. Carnet personnel avec traçabilité → CAR_6 + CAR_22\n2. Carnet famille sans traçabilité stricte → CAR_21 seule",
+    "rejected": "Carnet famille créé :\n```json\n{\"characteristics\": [{\"number\": 6, \"parameters\": {\"6_01\": \"Trajet\"}}, {\"number\": 21, \"parameters\": {\"21_01\": 10, \"21_03\": 5}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car6_car21_carnet_famille",
+      "incompatibility": [
+        "CAR_6",
+        "CAR_21"
+      ]
+    }
+  },
+  {
+    "instruction": "Produit BSC avec limitation 3 trajets/jour et tacite reconduction",
+    "chosen": "⚠️ **DOUBLE INCOMPATIBILITÉ BSC DÉTECTÉE**\n\nVotre demande combine DEUX incompatibilités avec BSC :\n1. **BSC + CAR_10** (limitation trajets) → IMPOSSIBLE (pas de compteur)\n2. **BSC + CAR_102** (tacite reconduction) → IMPOSSIBLE (support jetable)\n\n**BSC = support statique à usage unique.**\n\n✅ **Solution impérative** : Changez vers CSC ou AB :\n```json\n{\"support\": [\"CSC\", \"AB\"], \"characteristics\": [{\"number\": 10}, {\"number\": 102}]}\n```",
+    "rejected": "Produit créé :\n```json\n{\"support\": [\"BSC\"], \"characteristics\": [{\"number\": 10, \"parameters\": {\"10_01\": [{\"unit\": \"Jour\", \"count\": 1, \"max_trips\": 3}]}}, {\"number\": 102, \"parameters\": {\"102_01\": \"TRDI\"}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "support_incompatibility",
+      "dpo_type": "bsc_multiple_car10_car102",
+      "incompatibility": [
+        "BSC",
+        "CAR_10",
+        "CAR_102"
+      ]
+    }
+  },
+  {
+    "instruction": "Abonnement BSC rechargeable avec fidélité",
+    "chosen": "⚠️ **TRIPLE INCOMPATIBILITÉ BSC**\n\nVotre produit cumule TROIS incompatibilités BSC :\n1. **BSC + rechargeable** (CAR_7 7_04: true) → Support non réinscriptible\n2. **BSC + fidélité** (CAR_23) → Pas de compteur de points\n3. **BSC + abonnement long terme** → Support jetable\n\n**BSC est fondamentalement incompatible avec ce type de produit.**\n\n✅ **Obligation** : Utilisez CSC ou AB.",
+    "rejected": "Abonnement créé :\n```json\n{\"support\": [\"BSC\"], \"characteristics\": [{\"number\": 7, \"parameters\": {\"7_04\": true}}, {\"number\": 23, \"parameters\": {\"23_01\": 1}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "support_incompatibility",
+      "dpo_type": "bsc_multiple_triple",
+      "incompatibility": [
+        "BSC",
+        "CAR_7_rechargeable",
+        "CAR_23"
+      ]
+    }
+  },
+  {
+    "instruction": "Ticket avec CAR_14, CAR_74, et mono-usager multi-usager",
+    "chosen": "⚠️ **INCOMPATIBILITÉS MULTIPLES DÉTECTÉES**\n\nVotre demande contient PLUSIEURS erreurs :\n1. **CAR_14 ⊗ CAR_74** → Double définition modes (incompatible)\n2. **CAR_22 ⊗ CAR_21** → Mono ET multi-usager (impossible)\n\n**Ces produits sont fondamentalement incohérents.**\n\n✅ **Corrections nécessaires** :\n- Modes : CAR_14 UNIQUEMENT\n- Usage : CAR_22 OU CAR_21 (pas les deux)",
+    "rejected": "Ticket créé :\n```json\n{\"characteristics\": [{\"number\": 14}, {\"number\": 74}, {\"number\": 22}, {\"number\": 21}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "multiple_incomp_car14_car74_car22_car21",
+      "incompatibility": [
+        "CAR_14",
+        "CAR_74",
+        "CAR_22",
+        "CAR_21"
+      ]
+    }
+  },
+  {
+    "instruction": "Pass groupe fixe 3 et variable 2-5 avec lignes fixes et variables",
+    "chosen": "⚠️ **QUADRUPLE INCOMPATIBILITÉ**\n\nVotre demande combine 4 incompatibilités :\n1. **CAR_2 ⊗ CAR_38** → Groupe fixe ET variable\n2. **CAR_3 ⊗ CAR_87** → Lignes fixes ET variables\n3. **Groupe fixe 3 vs variable 2-5** → Contradiction logique\n4. **Lignes fixes vs variables** → Contradiction logique\n\n**Ce produit est conceptuellement impossible.**\n\n✅ **Simplification requise** : Choisissez UNE option pour chaque dimension.",
+    "rejected": "Pass créé :\n```json\n{\"characteristics\": [{\"number\": 2, \"parameters\": {\"2_01\": 3}}, {\"number\": 38, \"parameters\": {\"38_01\": 2, \"38_02\": 5}}, {\"number\": 3}, {\"number\": 87}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "quadruple_incomp",
+      "incompatibility": [
+        "CAR_2",
+        "CAR_38",
+        "CAR_3",
+        "CAR_87"
+      ]
+    }
+  },
+  {
+    "instruction": "Carnet 15 voyages mono et multi avec modes CAR_14 et CAR_74",
+    "chosen": "⚠️ **DOUBLE INCOMPATIBILITÉ**\n\nVotre demande contient deux problèmes distincts :\n1. **CAR_22 ⊗ CAR_21** → Mono-usager ET multi-usager (impossible)\n2. **CAR_14 ⊗ CAR_74** → Double définition modes (incompatible)\n\n**Corrections obligatoires** :\n- Choisir mono OU multi (pas les deux)\n- Utiliser CAR_14 uniquement pour les modes",
+    "rejected": "Carnet 15 voyages créé :\n```json\n{\"characteristics\": [{\"number\": 22, \"parameters\": {\"22_01\": 15}}, {\"number\": 21, \"parameters\": {\"21_01\": 15}}, {\"number\": 14}, {\"number\": 74}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "double_incomp_carnet",
+      "incompatibility": [
+        "CAR_22",
+        "CAR_21",
+        "CAR_14",
+        "CAR_74"
+      ]
+    }
+  },
+  {
+    "instruction": "Abonnement zones fixes et saisies avec lignes fixes et saisies",
+    "chosen": "⚠️ **DOUBLE INCOMPATIBILITÉ SYMÉTRIQUE**\n\nVotre demande répète la même erreur sur deux dimensions :\n1. **CAR_4 ⊗ CAR_121** → Zones fixes ET variables\n2. **CAR_3 ⊗ CAR_87** → Lignes fixes ET variables\n\n**Patron d'erreur** : Vous mélangez paramétrage et saisie à la vente.\n\n✅ **Règle générale** : Choisissez SOIT paramétrage SOIT saisie vente (jamais les deux).",
+    "rejected": "Abonnement créé :\n```json\n{\"characteristics\": [{\"number\": 4}, {\"number\": 121}, {\"number\": 3}, {\"number\": 87}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "symmetric_double_incomp",
+      "incompatibility": [
+        "CAR_4",
+        "CAR_121",
+        "CAR_3",
+        "CAR_87"
+      ]
+    }
+  },
+  {
+    "instruction": "Ticket BSC multi-usager avec validation déplacement",
+    "chosen": "⚠️ **INCOMPATIBILITÉ CAR_6 ⊗ CAR_21 (+ BSC inadapté)**\n\nProblème principal : CAR_6 et CAR_21 sont incompatibles.\n\n**Incompatibilité fonctionnelle** :\n- CAR_6 (validation déplacement) nécessite traçabilité stricte\n- CAR_21 (multi-usager) permet partage sans traçabilité individuelle\n\n**Note supplémentaire** : BSC serait de toute façon inadapté pour CAR_6.\n\n✅ **Correction** : Utilisez CAR_22 (mono-usager) avec CAR_6 sur CSC/AB.",
+    "rejected": "Ticket créé :\n```json\n{\"support\": [\"BSC\"], \"characteristics\": [{\"number\": 6, \"parameters\": {\"6_01\": \"Trajet\"}}, {\"number\": 21, \"parameters\": {\"21_03\": 3}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car6_car21_bsc",
+      "incompatibility": [
+        "CAR_6",
+        "CAR_21",
+        "BSC"
+      ]
+    }
+  },
+  {
+    "instruction": "Pass tous modes avec CAR_74 obsolète au lieu de CAR_14",
+    "chosen": "⚠️ **USAGE CARACTÉRISTIQUE OBSOLÈTE**\n\nVous utilisez CAR_74 qui est **OBSOLÈTE** et ne doit plus être utilisée.\n\n**Problème** : CAR_74 définit un mode unique codé sur support (ancienne norme).\n\n**Norme actuelle** : CAR_14 permet une liste flexible de modes autorisés/interdits.\n\n✅ **Migration obligatoire** :\n```json\n{\"number\": 14, \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}}\n```\n\n**CAR_74 ne doit JAMAIS être utilisée dans les nouveaux produits.**",
+    "rejected": "Pass créé avec CAR_74 :\n```json\n{\"characteristics\": [{\"number\": 74, \"parameters\": {\"74_01\": \"Tous modes\"}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car74_obsolete_usage",
+      "incompatibility": [
+        "CAR_74"
+      ]
+    }
+  },
+  {
+    "instruction": "Forfait groupe variable mono-usager",
+    "chosen": "⚠️ **CONTRADICTION LOGIQUE GROUPE**\n\nVotre demande contient une contradiction fondamentale :\n- \"Groupe variable\" → CAR_38 (plusieurs personnes, nombre variable)\n- \"Mono-usager\" → CAR_22 (UNE seule personne)\n\n**Incompatibilité conceptuelle** : Un produit groupe (CAR_38) implique nécessairement plusieurs personnes, ce qui est incompatible avec mono-usager (CAR_22).\n\n✅ **Clarification** :\n- **Groupe** → Utilisez CAR_2 ou CAR_38 (SANS CAR_22)\n- **Mono-usager** → Utilisez CAR_22 (SANS CAR_2/CAR_38)",
+    "rejected": "Forfait créé :\n```json\n{\"characteristics\": [{\"number\": 38, \"parameters\": {\"38_01\": 2, \"38_02\": 6}}, {\"number\": 22}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "incompatibility_detection",
+      "dpo_type": "car38_car22_logic",
+      "incompatibility": [
+        "CAR_38",
+        "CAR_22"
+      ]
+    }
+  }
+]

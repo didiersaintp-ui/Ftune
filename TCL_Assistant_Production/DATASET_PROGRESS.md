@@ -17,10 +17,10 @@
   - Pass temporels (24h, 48h, 72h, hebdo)
   - Carnet multi-usager
 
-#### Batch 2 : Core SFT Medium (9/30) 🔄
+#### Batch 2 : Core SFT Medium (30/30) ✅
 - **Fichier** : `dataset/core_sft_batch2.json`
-- **Status** : 🔄 EN COURS (30%)
-- **Exemples** : 9/30
+- **Status** : ✅ COMPLET
+- **Exemples** : 30/30
 - **Complexité** : MEDIUM (3-4 CAR)
 - **CAR couvertes** : 3, 10, 102, 107, 97, 2
 - **Produits types** :
@@ -31,7 +31,6 @@
   - Remboursement
   - Pass groupe
 
-**À terminer** : 21 exemples restants
 
 ### 🔄 En Cours / À Faire
 
@@ -64,18 +63,22 @@
 **CAR manquantes** : 6, 8, 11, 23, 38, 48, 58, 73, 74, 86, 87, 90, 91, 98, 103, 105, 121
 **Complexité** : MEDIUM to HIGH
 
-#### DPO Pairs : Incompatibilités (50 paires)
-**Incompatibilités à couvrir** :
-- CAR_14 ⊗ CAR_74 (10 variations)
-- CAR_22 ⊗ CAR_21 (10 variations)
-- CAR_2 ⊗ CAR_38 (5 variations)
-- CAR_3 ⊗ CAR_87 (5 variations)
-- CAR_4 ⊗ CAR_121 (5 variations)
-- CAR_6 ⊗ CAR_21 (3 variations)
-- BSC + CAR_10 (3 variations)
-- BSC + CAR_102 (3 variations)
-- BSC + rechargement (3 variations)
-- Autres combinaisons (3 variations)
+#### DPO Pairs : Incompatibilités (50/50) ✅
+- **Fichier** : `dataset/dpo_incompatibilities.json`
+- **Status** : ✅ COMPLET
+- **Paires** : 50/50
+- **Incompatibilités couvertes** :
+  - CAR_14 ⊗ CAR_74 (8 variations) ✅
+  - CAR_22 ⊗ CAR_21 (6 variations) ✅
+  - CAR_2 ⊗ CAR_38 (5 variations) ✅
+  - CAR_3 ⊗ CAR_87 (4 variations) ✅
+  - CAR_4 ⊗ CAR_121 (6 variations) ✅
+  - CAR_6 ⊗ CAR_21 (4 variations) ✅
+  - BSC + CAR_10 (3 variations) ✅
+  - BSC + CAR_102 (3 variations) ✅
+  - BSC + rechargement (3 variations) ✅
+  - BSC + autres CAR (4 variations) ✅
+  - Incompatibilités multiples (4 variations) ✅
 
 #### DPO Pairs : Qualité Conversationnelle (30 paires)
 **Scénarios** :
@@ -122,15 +125,15 @@
 | Catégorie | Complété | Objectif | % |
 |-----------|----------|----------|---|
 | Batch 1 | 20 | 20 | 100% |
-| Batch 2 | 9 | 30 | 30% |
+| Batch 2 | 30 | 30 | 100% |
 | Batch 3 | 0 | 50 | 0% |
-| DPO Incomp. | 0 | 50 | 0% |
+| DPO Incomp. | 50 | 50 | 100% |
 | DPO Conv. | 0 | 30 | 0% |
 | Advanced SFT | 0 | 100 | 0% |
 | Edge Cases | 0 | 100 | 0% |
 | Multi-Turn | 0 | 50 | 0% |
 | CAR Expl. | 0 | 60 | 0% |
-| **TOTAL** | **29** | **490** | **5.9%** |
+| **TOTAL** | **100** | **490** | **20.4%** |
 
 Note : Objectif ajusté à 490 (vs 550 initial) pour focus qualité
 
@@ -146,9 +149,9 @@ Note : Objectif ajusté à 490 (vs 550 initial) pour focus qualité
 ## 💾 Fichiers à Créer
 
 - ✅ `core_sft_batch1.json` (20)
-- 🔄 `core_sft_batch2.json` (9/30)
-- ⏳ `core_sft_batch3.json` (0/50)
-- ⏳ `dpo_incompatibilities.json` (0/50)
+- ✅ `core_sft_batch2.json` (30)
+- 🔄 `core_sft_batch3.json` (0/50)
+- ✅ `dpo_incompatibilities.json` (50)
 - ⏳ `dpo_conversational.json` (0/30)
 - ⏳ `advanced_sft.json` (0/100)
 - ⏳ `edge_cases.json` (0/100)
@@ -159,5 +162,5 @@ Note : Objectif ajusté à 490 (vs 550 initial) pour focus qualité
 
 ---
 
-**Dernière mise à jour** : 2025-01-16
-**Progression globale** : 29/490 (5.9%)
+**Dernière mise à jour** : 2025-01-17
+**Progression globale** : 100/490 (20.4%)
