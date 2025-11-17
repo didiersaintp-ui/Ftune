@@ -1,0 +1,433 @@
+[
+  {
+    "instruction": "Pass valide uniquement le 14/07/2025 (Fête Nationale)",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass valide un jour spécifique : le 14 juillet 2025 (Fête Nationale).\n\n**Analyse** :\n- Type : Pass événement date fixe\n- Date : 14/07/2025 uniquement (Fête Nationale)\n- Modes : Tous modes TCL\n- Prix : 5.00€\n- Support : BSC ou AB\n- Usage : Événement spécial, feux d'artifice, festivités\n- Non rechargeable\n\n**Justification de l'edge case** :\nCAR_11 avec une date spécifique unique teste la capacité du système à gérer des périodes de validité d'un seul jour calendaire. Utile pour événements ponctuels (14 juillet, festivals, concerts).\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 24 heures glissant\n- CAR_11 : Période spécifique 14/07/2025-14/07/2025\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Fête Nationale 14 Juillet 2025\",\n  \"price_cents\": 500,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 24,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 11,\n      \"parameters\": {\n        \"11_01\": \"14/07/2025\",\n        \"11_02\": \"14/07/2025\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass 14 juillet 2025 créé. Date spécifique événement. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_datetime",
+      "subcategory": "specific_single_date",
+      "product": "Pass Fête Nationale",
+      "cars": [
+        7,
+        11,
+        14
+      ],
+      "complexity": "high",
+      "edge_case_type": "datetime_specific_date_14juillet"
+    }
+  },
+  {
+    "instruction": "Abonnement valide du 01/12/2025 au 31/12/2025 mois de décembre uniquement",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un abonnement valide uniquement en décembre 2025.\n\n**Analyse** :\n- Type : Abonnement période calendaire spécifique\n- Période : 01/12/2025 - 31/12/2025 (mois complet)\n- Durée : 1 mois calendaire (31 jours)\n- Modes : Tous modes TCL\n- Prix : 65.00€\n- Support : CSC ou AB\n- Usage : Abonnement mois de décembre spécifique (fêtes de fin d'année)\n- Rechargeable\n\n**Justification de l'edge case** :\nCAR_11 avec période calendaire complète (31/12/2025 fin de mois) teste les limites de fin de mois et fin d'année. Ce cas valide le comportement système aux changements d'année.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois, rechargeable\n- CAR_11 : Période 01/12/2025-31/12/2025\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Décembre 2025\",\n  \"price_cents\": 6500,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 11,\n      \"parameters\": {\n        \"11_01\": \"01/12/2025\",\n        \"11_02\": \"31/12/2025\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nAbonnement décembre 2025 créé. Période fin d'année avec limite 31/12. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_datetime",
+      "subcategory": "end_of_month_boundary",
+      "product": "Abonnement Décembre",
+      "cars": [
+        7,
+        11,
+        14
+      ],
+      "complexity": "high",
+      "edge_case_type": "datetime_end_of_year_31dec"
+    }
+  },
+  {
+    "instruction": "Pass année bissextile valide le 29/02/2024 uniquement",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass valide le 29 février 2024 (jour d'année bissextile).\n\n**Analyse** :\n- Type : Pass jour bissextile rare\n- Date : 29/02/2024 UNIQUEMENT (existe seulement années bissextiles)\n- Modes : Tous modes TCL\n- Prix : 6.00€ (événement rare)\n- Support : BSC ou AB\n- Usage : Événement spécial année bissextile\n- Non rechargeable\n\n**Justification de l'edge case** :\n29 février est un edge case calendaire critique qui teste la gestion des années bissextiles. Cette date n'existe que tous les 4 ans, ce qui valide la robustesse du système CAR_11 avec des dates exceptionnelles.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 24 heures\n- CAR_11 : Date spécifique 29/02/2024-29/02/2024\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Année Bissextile 29 Février 2024\",\n  \"price_cents\": 600,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 24,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 11,\n      \"parameters\": {\n        \"11_01\": \"29/02/2024\",\n        \"11_02\": \"29/02/2024\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass 29 février 2024 créé. Cas rare année bissextile. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_datetime",
+      "subcategory": "leap_year_edge",
+      "product": "Pass Année Bissextile",
+      "cars": [
+        7,
+        11,
+        14
+      ],
+      "complexity": "high",
+      "edge_case_type": "datetime_leap_year_29feb"
+    }
+  },
+  {
+    "instruction": "Pass périodes non-consécutives juillet et décembre 2025",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass avec deux périodes non-consécutives : juillet ET décembre 2025.\n\n**Analyse** :\n- Type : Pass périodes multiples discontinues\n- Périodes : 01/07/2025-31/07/2025 ET 01/12/2025-31/12/2025\n- Modes : Tous modes TCL\n- Prix : 120.00€ (2 mois séparés)\n- Support : CSC ou AB (requis pour périodes multiples)\n- Usage : Vacances scolaires été + fêtes fin d'année\n- Non rechargeable\n\n**Justification de l'edge case** :\nCAR_11 avec périodes non-consécutives (juillet puis décembre) teste la capacité à gérer des plages temporelles disjointes. Gap de 5 mois entre les deux périodes valide la logique de périodes multiples.\n\n**Incompatibilité respectée** :\n- CAR_11 périodes multiples nécessite support CSC/AB\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité durant périodes spécifiées\n- CAR_11 : Deux périodes 01/07-31/07 ET 01/12-31/12\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Juillet + Décembre 2025\",\n  \"price_cents\": 12000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 2,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 11,\n      \"parameters\": {\n        \"11_01\": \"01/07/2025\",\n        \"11_02\": \"31/07/2025\",\n        \"11_03\": [\n          {\n            \"start\": \"01/12/2025\",\n            \"end\": \"31/12/2025\"\n          }\n        ]\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass périodes non-consécutives juillet + décembre créé. Gap 5 mois. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_datetime",
+      "subcategory": "multiple_non_consecutive_periods",
+      "product": "Pass Périodes Discontinues",
+      "cars": [
+        7,
+        11,
+        14
+      ],
+      "complexity": "high",
+      "edge_case_type": "datetime_non_consecutive_periods"
+    }
+  },
+  {
+    "instruction": "Pass week-ends uniquement samedi-dimanche toute l'année",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass valide uniquement les week-ends (samedi-dimanche).\n\n**Analyse** :\n- Type : Pass jours spécifiques récurrents\n- Validité : Samedi et Dimanche uniquement (toute l'année)\n- Modes : Tous modes TCL\n- Prix : 200.00€ (52 week-ends/an)\n- Support : CSC ou AB\n- Usage : Loisirs week-end, tourisme\n- Rechargeable\n\n**Justification de l'edge case** :\nValidité week-end uniquement teste CAR_11 avec restriction par jours de semaine récurrents. Cas typique pour profils loisirs n'utilisant les transports que samedi-dimanche.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 12 mois, rechargeable\n- CAR_11 : Restriction jours : Samedi, Dimanche uniquement\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Week-ends Annuel\",\n  \"price_cents\": 20000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 12,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 11,\n      \"parameters\": {\n        \"11_01\": \"01/01/2025\",\n        \"11_02\": \"31/12/2025\",\n        \"11_04\": [\n          \"Samedi\",\n          \"Dimanche\"\n        ]\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nPass week-ends uniquement créé. Samedi-dimanche toute l'année. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_datetime",
+      "subcategory": "weekend_only_validity",
+      "product": "Pass Week-ends",
+      "cars": [
+        7,
+        11,
+        14
+      ],
+      "complexity": "high",
+      "edge_case_type": "datetime_weekend_only"
+    }
+  },
+  {
+    "instruction": "Pass validité limite minuit 23h59-00h00 changement de jour",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass avec validité traversant minuit (23:59 → 00:00).\n\n**Analyse** :\n- Type : Pass boundary temporelle minuit\n- Durée : 3 heures (22h00 - 01h00 du lendemain)\n- Horaires : Couvre minuit (23:59→00:00)\n- Modes : Métro, Bus, Tramway (service nuit)\n- Prix : 3.50€\n- Support : BSC ou AB\n- Usage : Sorties nocturnes, fin de soirée début de nuit\n- Non rechargeable\n\n**Justification de l'edge case** :\nValidité traversant minuit (changement de jour calendaire) teste le comportement système aux boundaries horaires critiques. Important pour services de nuit.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 3 heures glissant\n- CAR_11 : Horaires 22:00-01:00 (traverse minuit)\n- CAR_14 : Métro, Bus urbain, Tramway\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Soirée 22h-01h (Minuit Inclus)\",\n  \"price_cents\": 350,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 3,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 11,\n      \"parameters\": {\n        \"11_01\": \"01/01/2025\",\n        \"11_02\": \"31/12/2025\",\n        \"11_05\": \"22:00\",\n        \"11_06\": \"01:00\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass traversant minuit (22h-01h) créé. Boundary temporelle critique. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_datetime",
+      "subcategory": "midnight_boundary",
+      "product": "Pass Minuit",
+      "cars": [
+        7,
+        11,
+        14
+      ],
+      "complexity": "high",
+      "edge_case_type": "datetime_midnight_boundary"
+    }
+  },
+  {
+    "instruction": "Abonnement jours fériés uniquement toute l'année",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un abonnement valide uniquement les jours fériés.\n\n**Analyse** :\n- Type : Abonnement jours fériés spécifiques\n- Validité : 11 jours fériés français/an\n- Modes : Tous modes TCL\n- Prix : 35.00€ (environ 3€/jour férié)\n- Support : CSC ou AB\n- Usage : Tourisme jours fériés, déplacements exceptionnels\n- Rechargeable\n\n**Justification de l'edge case** :\nRestreindre validité aux seuls jours fériés (1er janvier, 1er mai, 8 mai, 14 juillet, 15 août, 1er novembre, 11 novembre, 25 décembre + Pâques variables) teste CAR_11 avec dates spécifiques multiples.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 12 mois, rechargeable\n- CAR_11 : Dates multiples jours fériés\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Jours Fériés Annuel\",\n  \"price_cents\": 3500,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 12,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 11,\n      \"parameters\": {\n        \"11_01\": \"01/01/2025\",\n        \"11_02\": \"31/12/2025\",\n        \"11_07\": [\n          \"01/01/2025\",\n          \"21/04/2025\",\n          \"01/05/2025\",\n          \"08/05/2025\",\n          \"14/07/2025\",\n          \"15/08/2025\",\n          \"01/11/2025\",\n          \"11/11/2025\",\n          \"25/12/2025\"\n        ]\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nAbonnement jours fériés uniquement créé. 9 dates spécifiques. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_datetime",
+      "subcategory": "holiday_specific_periods",
+      "product": "Abonnement Jours Fériés",
+      "cars": [
+        7,
+        11,
+        14
+      ],
+      "complexity": "high",
+      "edge_case_type": "datetime_holiday_specific"
+    }
+  },
+  {
+    "instruction": "Pass récurrent 1er de chaque mois pendant 12 mois",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass valide le 1er de chaque mois uniquement (récurrence mensuelle).\n\n**Analyse** :\n- Type : Pass récurrence mensuelle date fixe\n- Validité : 1er jour de chaque mois (12 jours/an)\n- Modes : Tous modes TCL\n- Prix : 40.00€ (12 jours × ~3.30€)\n- Support : CSC ou AB\n- Usage : Déplacements mensuels ponctuels (rendez-vous réguliers)\n- Rechargeable\n\n**Justification de l'edge case** :\nRécurrence mensuelle (1er jour chaque mois) teste CAR_11 avec pattern temporel récurrent. Utile pour rendez-vous mensuels fixes.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 12 mois, rechargeable\n- CAR_11 : Récurrence mensuelle jour 1\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass 1er du Mois Annuel\",\n  \"price_cents\": 4000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 12,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 11,\n      \"parameters\": {\n        \"11_01\": \"01/01/2025\",\n        \"11_02\": \"31/12/2025\",\n        \"11_08\": \"monthly\",\n        \"11_09\": 1\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nPass récurrent 1er de chaque mois créé. Pattern mensuel. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_datetime",
+      "subcategory": "monthly_recurring_date",
+      "product": "Pass Récurrent Mensuel",
+      "cars": [
+        7,
+        11,
+        14
+      ],
+      "complexity": "high",
+      "edge_case_type": "datetime_monthly_recurring"
+    }
+  },
+  {
+    "instruction": "Pass trimestriel dates spécifiques 1er janvier avril juillet octobre",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass valide le 1er jour de chaque trimestre uniquement.\n\n**Analyse** :\n- Type : Pass récurrence trimestrielle\n- Validité : 01/01, 01/04, 01/07, 01/10 (4 jours/an)\n- Modes : Tous modes TCL\n- Prix : 18.00€ (4 jours × 4.50€)\n- Support : CSC ou AB\n- Usage : Déplacements trimestriels ponctuels\n- Non rechargeable\n\n**Justification de l'edge case** :\nRécurrence trimestrielle teste CAR_11 avec 4 dates spécifiques espacées de 3 mois. Utile pour rendez-vous trimestriels (bilans, réunions).\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 12 mois\n- CAR_11 : 4 dates spécifiques trimestrielles\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Trimestriel 1er Jour\",\n  \"price_cents\": 1800,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 12,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 11,\n      \"parameters\": {\n        \"11_01\": \"01/01/2025\",\n        \"11_02\": \"31/12/2025\",\n        \"11_07\": [\n          \"01/01/2025\",\n          \"01/04/2025\",\n          \"01/07/2025\",\n          \"01/10/2025\"\n        ]\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass trimestriel 4 dates créé. Récurrence 3 mois. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_datetime",
+      "subcategory": "quarterly_specific_dates",
+      "product": "Pass Trimestriel",
+      "cars": [
+        7,
+        11,
+        14
+      ],
+      "complexity": "high",
+      "edge_case_type": "datetime_quarterly_recurring"
+    }
+  },
+  {
+    "instruction": "Pass annuel valide uniquement le 31 décembre chaque année",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass valide uniquement le 31 décembre de chaque année (récurrence annuelle).\n\n**Analyse** :\n- Type : Pass récurrence annuelle date fixe\n- Validité : 31/12 uniquement (1 jour/an - Réveillon)\n- Modes : Tous modes TCL\n- Prix : 8.00€ (événement Nouvel An)\n- Support : BSC ou AB\n- Usage : Réveillon Nouvel An, service de nuit\n- Non rechargeable\n\n**Justification de l'edge case** :\nRécurrence annuelle le 31/12 (fin d'année) teste CAR_11 avec date unique récurrente. Edge case combinant fin de mois (31) ET fin d'année (décembre).\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 24 heures\n- CAR_11 : Date spécifique 31/12 récurrence annuelle\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Réveillon 31 Décembre\",\n  \"price_cents\": 800,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 24,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 11,\n      \"parameters\": {\n        \"11_01\": \"31/12/2025\",\n        \"11_02\": \"31/12/2025\",\n        \"11_08\": \"yearly\",\n        \"11_09\": 31,\n        \"11_10\": 12\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass récurrent 31 décembre créé. Réveillon annuel. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_datetime",
+      "subcategory": "annual_specific_date",
+      "product": "Pass Réveillon Annuel",
+      "cars": [
+        7,
+        11,
+        14
+      ],
+      "complexity": "high",
+      "edge_case_type": "datetime_annual_recurring_31dec"
+    }
+  },
+  {
+    "instruction": "Carnet 10 voyages avec CAR_7 validité 30 jours ratio exact",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un carnet 10 voyages avec validité 30 jours, ratio optimal 1:3.\n\n**Analyse** :\n- Type : Carnet avec ratio CAR_7/CAR_22 équilibré\n- Voyages : 10 voyages\n- Validité : 30 jours (1 mois)\n- Ratio : 10 voyages / 30 jours = 1 voyage tous les 3 jours\n- Modes : Bus, Métro, Tramway\n- Prix : 15.00€ (1.50€/voyage)\n- Support : CSC ou AB\n- Usage : Usage modéré régulier\n- Mono-usager\n\n**Justification de l'edge case** :\nCombiner CAR_7 (30j) et CAR_22 (10 voyages) crée un ratio précis qui SEMBLE incompatible mais ne l'est PAS. Le ratio 1:3 est optimal et valide.\n\n**Incompatibilité vérifiée** :\n- ✅ VALIDE : Pas d'incompatibilité CAR_7 + CAR_22 avec ces valeurs\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 30 jours (1 mois)\n- CAR_14 : Bus urbain, Métro, Tramway\n- CAR_22 : 10 voyages mono-usager\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet 10 Voyages 30 Jours\",\n  \"price_cents\": 1500,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 10,\n        \"22_02\": 10,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nCarnet 10 voyages 30 jours créé. Ratio équilibré 1:3. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_almost_incompatible",
+      "subcategory": "car7_car22_balanced_ratio",
+      "product": "Carnet Ratio Optimal",
+      "cars": [
+        7,
+        14,
+        22
+      ],
+      "complexity": "medium",
+      "edge_case_type": "almost_incompatible_car7_car22_ratio"
+    }
+  },
+  {
+    "instruction": "Pass zones 1-3-5 non-consécutives avec CAR_102 liste inhabituelle",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass avec zones non-consécutives (1, 3, 5) utilisant CAR_102, configuration atypique mais VALIDE.\n\n**Analyse** :\n- Type : Pass zones non-consécutives\n- Zones : Zone 1, Zone 3, Zone 5 (saute zones 2 et 4)\n- Modes : Tous modes TCL\n- Prix : 85.00€ (mensuel, zones disjointes)\n- Support : CSC ou AB\n- Usage : Parcours spécifiques évitant zones intermédiaires\n- Rechargeable\n\n**Justification de l'edge case** :\nCAR_102 (zones multiples) avec zones NON-CONSÉCUTIVES (1-3-5, pas 2-4) SEMBLE illogique mais est VALIDE. Teste liste zones inhabituelle.\n\n**Incompatibilité vérifiée** :\n- ✅ VALIDE : CAR_102 accepte toute combinaison de zones\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois, rechargeable\n- CAR_102 : Liste zones [1, 3, 5] non-consécutives\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Zones 1-3-5 Non-consécutives\",\n  \"price_cents\": 8500,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 102,\n      \"parameters\": {\n        \"102_01\": [\n          \"Zone 1\",\n          \"Zone 3\",\n          \"Zone 5\"\n        ]\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nPass zones 1-3-5 non-consécutives créé (CAR_102). Atypique mais valide. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_almost_incompatible",
+      "subcategory": "car102_unusual_zone_list",
+      "product": "Pass Zones Non-consécutives",
+      "cars": [
+        7,
+        102,
+        14
+      ],
+      "complexity": "high",
+      "edge_case_type": "almost_incompatible_car102_zones"
+    }
+  },
+  {
+    "instruction": "Abonnement CAR_105 profils Étudiant + Senior combinaison limite",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un abonnement avec CAR_105 combinant profils multiples (Étudiant + Senior), cas limite VALIDE.\n\n**Analyse** :\n- Type : Abonnement multi-profils edge case\n- Durée : 1 mois rechargeable\n- Profils : Étudiant OU Senior (CAR_105 - double éligibilité)\n- Modes : Tous modes TCL\n- Prix : 35.00€ (tarif réduit multi-profil)\n- Support : CSC ou AB\n- Usage : Étudiant senior (reprise études)\n- Rechargeable\n\n**Justification de l'edge case** :\nCAR_105 avec profils ÉTUDIANT + SENIOR SEMBLE impossible (âges différents) mais est VALIDE pour cas : étudiants seniors (reprise études après 60 ans). Edge case réel.\n\n**Incompatibilité vérifiée** :\n- ✅ VALIDE : CAR_105 peut combiner profils (étudiant senior existe)\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois, rechargeable\n- CAR_105 : Profils multiples [Étudiant, Senior]\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Étudiant-Senior Mensuel\",\n  \"price_cents\": 3500,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 105,\n      \"parameters\": {\n        \"105_01\": [\n          \"Étudiant\",\n          \"Senior\"\n        ]\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Tarif réduit\"\n}\n```\n\n✅ **Confirmation** :\nAbonnement double profil Étudiant-Senior créé (CAR_105). Cas réel valide. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_almost_incompatible",
+      "subcategory": "car105_edge_profile_combo",
+      "product": "Abonnement Multi-profils",
+      "cars": [
+        7,
+        105,
+        14
+      ],
+      "complexity": "high",
+      "edge_case_type": "almost_incompatible_car105_profiles"
+    }
+  },
+  {
+    "instruction": "Pass avec CAR_91 zones interdites 2-3 et CAR_4 zones 1-4-5",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass complexe avec zones autorisées (1,4,5) ET zones interdites (2,3), VALIDE.\n\n**Analyse** :\n- Type : Pass avec exclusions zones complexes\n- Zones autorisées : Zone 1, Zone 4, Zone 5 (CAR_4)\n- Zones interdites : Zone 2, Zone 3 (CAR_91)\n- Modes : Bus urbain, Tramway\n- Prix : 50.00€ (mensuel)\n- Support : CSC ou AB\n- Usage : Périphérie + centre, sans zones intermédiaires\n- Rechargeable\n\n**Justification de l'edge case** :\nCAR_91 (interdire 2-3) + CAR_4 (autoriser 1-4-5) crée configuration complexe qui SEMBLE contradictoire mais est VALIDE. Zones interdites renforcent restrictions.\n\n**Incompatibilité vérifiée** :\n- ✅ VALIDE : CAR_91 complète CAR_4 pour restrictions supplémentaires\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois, rechargeable\n- CAR_4 : Zones 1, 4, 5 autorisées\n- CAR_91 : Zones 2, 3 interdites (renforce CAR_4)\n- CAR_14 : Bus urbain, Tramway\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Zones 1-4-5 (Interdit 2-3)\",\n  \"price_cents\": 5000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 1\",\n          \"Zone 4\",\n          \"Zone 5\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 91,\n      \"parameters\": {\n        \"91_01\": [\n          \"Zone 2\",\n          \"Zone 3\"\n        ]\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Tramway\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nPass zones complexes (CAR_4 + CAR_91) créé. Configuration avancée valide. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_almost_incompatible",
+      "subcategory": "car91_complex_exclusions",
+      "product": "Pass Zones Exclusions Complexes",
+      "cars": [
+        7,
+        4,
+        91,
+        14
+      ],
+      "complexity": "high",
+      "edge_case_type": "almost_incompatible_car91_complex"
+    }
+  },
+  {
+    "instruction": "Pass CAR_11 horaires 06h-09h avec CAR_4 zones 1-2 timing précis",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass avec horaires précis (06h-09h) ET zones spécifiques, combinaison VALIDE.\n\n**Analyse** :\n- Type : Pass horaires + zones combinés\n- Horaires : 06:00-09:00 uniquement (heures de pointe)\n- Zones : Zone 1 et Zone 2 (CAR_4)\n- Modes : Métro, Tramway\n- Prix : 45.00€ (mensuel heures pointe)\n- Support : CSC ou AB\n- Usage : Pendulaires heures de pointe strictes\n- Rechargeable\n\n**Justification de l'edge case** :\nCAR_11 (horaires 06h-09h) + CAR_4 (zones 1-2) crée restriction double temporelle ET géographique. SEMBLE très restrictif mais VALIDE pour heures pointe.\n\n**Incompatibilité vérifiée** :\n- ✅ VALIDE : CAR_11 et CAR_4 compatibles (restrictions cumulatives)\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois, rechargeable\n- CAR_11 : Horaires 06:00-09:00\n- CAR_4 : Zones 1 et 2\n- CAR_14 : Métro, Tramway\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Heures Pointe 06h-09h Zones 1-2\",\n  \"price_cents\": 4500,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 11,\n      \"parameters\": {\n        \"11_01\": \"01/01/2025\",\n        \"11_02\": \"31/12/2025\",\n        \"11_05\": \"06:00\",\n        \"11_06\": \"09:00\"\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 1\",\n          \"Zone 2\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Métro\",\n          \"Tramway\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nPass horaires + zones combinés créé. Restrictions multiples valides. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_almost_incompatible",
+      "subcategory": "car11_car4_timing_zones",
+      "product": "Pass Horaires-Zones",
+      "cars": [
+        7,
+        11,
+        4,
+        14
+      ],
+      "complexity": "high",
+      "edge_case_type": "almost_incompatible_car11_car4"
+    }
+  },
+  {
+    "instruction": "Ticket CAR_2 tarification variable 1.50€ base + 0.20€ par zone",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un ticket avec tarification variable (CAR_2) selon zones traversées, VALIDE.\n\n**Analyse** :\n- Type : Ticket tarification dynamique\n- Tarif base : 1.50€\n- Tarif additionnel : +0.20€ par zone supplémentaire\n- Modes : Tous modes TCL\n- Prix : Variable selon trajet (1.50-2.50€)\n- Support : BSC, CSC ou AB\n- Usage : Tarification au trajet réel\n- Non rechargeable\n\n**Justification de l'edge case** :\nCAR_2 (tarification variable) est rarement utilisé. Ici prix change selon zones traversées, créant tarif dynamique inhabituel mais VALIDE.\n\n**Incompatibilité vérifiée** :\n- ✅ VALIDE : CAR_2 compatible avec CAR_14 (tarif variable par zone)\n\n**Caractéristiques utilisées** :\n- CAR_2 : Tarif variable (base 1.50€ + 0.20€/zone)\n- CAR_7 : Validité 1 heure\n- CAR_14 : Tous modes TCL\n- CAR_22 : 1 voyage\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Ticket Tarif Variable Par Zone\",\n  \"price_cents\": 150,\n  \"support\": [\n    \"BSC\",\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 2,\n      \"parameters\": {\n        \"2_01\": 150,\n        \"2_02\": \"zone\",\n        \"2_03\": 20\n      }\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 1,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 1,\n        \"22_02\": 1,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nTicket tarification variable créé (CAR_2). Prix dynamique par zone. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_almost_incompatible",
+      "subcategory": "car2_unusual_variable_pricing",
+      "product": "Ticket Tarif Variable",
+      "cars": [
+        2,
+        7,
+        14,
+        22
+      ],
+      "complexity": "high",
+      "edge_case_type": "almost_incompatible_car2_variable"
+    }
+  },
+  {
+    "instruction": "Pass avec 5 CARs simultanés zones profils modes horaires parking",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass utilisant 5 CARs simultanément, configuration maximale complexe VALIDE.\n\n**Analyse** :\n- Type : Pass multi-CAR maximal\n- Durée : 1 mois rechargeable\n- Zones : Zone 1, 2 (CAR_4)\n- Horaires : 06:00-22:00 (CAR_11)\n- Modes : Métro, Tramway (CAR_14)\n- Parking : 8h inclus (CAR_58)\n- Profil : Senior (CAR_105)\n- Prix : 55.00€ (tarif réduit senior + parking)\n- Support : CSC ou AB\n- Usage : Senior avec parking et restrictions horaires\n\n**Justification de l'edge case** :\nCombiner 5 CARs (4, 7, 11, 14, 58, 105) teste limite système avec restrictions multiples TOUTES compatibles. Configuration complexe maximale.\n\n**Incompatibilités vérifiées** :\n- ✅ VALIDE : Tous ces CARs sont compatibles entre eux\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois, rechargeable\n- CAR_4 : Zones 1, 2\n- CAR_11 : Horaires 06:00-22:00\n- CAR_14 : Métro, Tramway\n- CAR_58 : Parking 8h\n- CAR_105 : Profil Senior\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Senior Multi-services\",\n  \"price_cents\": 5500,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 1\",\n          \"Zone 2\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 11,\n      \"parameters\": {\n        \"11_01\": \"01/01/2025\",\n        \"11_02\": \"31/12/2025\",\n        \"11_05\": \"06:00\",\n        \"11_06\": \"22:00\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Métro\",\n          \"Tramway\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 58,\n      \"parameters\": {\n        \"58_01\": \"P+R\",\n        \"58_02\": 8\n      }\n    },\n    {\n      \"number\": 105,\n      \"parameters\": {\n        \"105_01\": [\n          \"Senior\"\n        ]\n      }\n    }\n  ],\n  \"profile\": \"Senior\"\n}\n```\n\n✅ **Confirmation** :\nPass 6 CARs simultanés créé. Configuration maximale complexe valide. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_almost_incompatible",
+      "subcategory": "multiple_cars_at_limits",
+      "product": "Pass Multi-CAR Maximal",
+      "cars": [
+        7,
+        4,
+        11,
+        14,
+        58,
+        105
+      ],
+      "complexity": "very_high",
+      "edge_case_type": "almost_incompatible_multi_car"
+    }
+  },
+  {
+    "instruction": "Carnet 20 voyages CAR_7 rechargeable 6 mois qui semble incompatible",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un carnet 20 voyages avec CAR_7 rechargeable, combinaison qui SEMBLE incompatible mais ne l'est PAS.\n\n**Analyse** :\n- Type : Carnet avec recharge (cas limite)\n- Voyages : 20 voyages\n- Validité : 6 mois rechargeable (CAR_7 7_04 = true)\n- Modes : Tous modes TCL\n- Prix : 30.00€\n- Support : CSC ou AB (requis pour rechargeable)\n- Usage : Carnet longue durée rechargeable\n- Mono-usager\n\n**Justification de l'edge case** :\nCAR_7 rechargeable (7_04 = true) + CAR_22 (carnet voyages) SEMBLE incompatible car carnets sont normalement non-rechargeables. MAIS c'est VALIDE : la recharge permet d'ajouter 6 mois supplémentaires, pas de recharger les voyages.\n\n**Incompatibilité vérifiée** :\n- ✅ VALIDE : CAR_7 rechargeable + CAR_22 compatible (recharge = prolongation durée, pas ajout voyages)\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 6 mois, RECHARGEABLE (7_04 = true)\n- CAR_14 : Tous modes TCL\n- CAR_22 : 20 voyages mono-usager\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet 20 Voyages 6 Mois Rechargeable\",\n  \"price_cents\": 3000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 6,\n        \"7_04\": true,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 20,\n        \"22_02\": 20,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nCarnet 20 voyages rechargeable créé. SEMBLE incompatible mais VALIDE (recharge = prolongation). Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_almost_incompatible",
+      "subcategory": "car7_rechargeable_with_car22",
+      "product": "Carnet Rechargeable",
+      "cars": [
+        7,
+        14,
+        22
+      ],
+      "complexity": "high",
+      "edge_case_type": "almost_incompatible_car7_rechargeable_car22"
+    }
+  },
+  {
+    "instruction": "Ticket CAR_22 unique passage 1 seul voyage limite minimale",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un ticket avec CAR_22 = 1 voyage unique (valeur minimale extrême).\n\n**Analyse** :\n- Type : Ticket passage unique strict\n- Voyages : 1 seul voyage (CAR_22 valeur min)\n- Validité : 1 heure\n- Modes : Métro uniquement\n- Prix : 1.90€\n- Support : BSC, CSC ou AB\n- Usage : Trajet simple sans correspondance\n- Mono-usager strict\n\n**Justification de l'edge case** :\nCAR_22 avec 22_01 = 1 est la valeur minimale absolue. Teste limite basse du système pour nombre de voyages.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 heure\n- CAR_14 : Métro uniquement\n- CAR_22 : 1 voyage minimum strict\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Ticket 1 Passage Unique Métro\",\n  \"price_cents\": 190,\n  \"support\": [\n    \"BSC\",\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 1,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Métro\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 1,\n        \"22_02\": 1,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nTicket 1 passage unique créé. CAR_22 valeur minimale. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_extreme_values",
+      "subcategory": "car22_minimum_single",
+      "product": "Ticket Passage Unique",
+      "cars": [
+        7,
+        14,
+        22
+      ],
+      "complexity": "low",
+      "edge_case_type": "extreme_car22_minimum_1"
+    }
+  },
+  {
+    "instruction": "Carnet CAR_22 = 500 voyages volume très élevé",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un carnet de 500 voyages, volume très élevé (mid-range high).\n\n**Analyse** :\n- Type : Carnet très gros volume\n- Voyages : 500 voyages (CAR_22 valeur haute)\n- Validité : 12 mois\n- Modes : Tous modes TCL\n- Prix : 750.00€ (1.50€/voyage dégressif)\n- Support : CSC ou AB (BSC impossible)\n- Usage : Entreprises, collectivités, volume important\n- Mono-usager\n\n**Justification de l'edge case** :\nCAR_22 = 500 teste valeur élevée (pas maximum 999 mais mid-range high). Volume important pour besoins professionnels.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 12 mois\n- CAR_14 : Tous modes TCL\n- CAR_22 : 500 voyages\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet 500 Voyages Annuel\",\n  \"price_cents\": 75000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 12,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 500,\n        \"22_02\": 500,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nCarnet 500 voyages créé. Volume très élevé. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_extreme_values",
+      "subcategory": "car22_high_volume",
+      "product": "Carnet 500 Voyages",
+      "cars": [
+        7,
+        14,
+        22
+      ],
+      "complexity": "medium",
+      "edge_case_type": "extreme_car22_high_500"
+    }
+  },
+  {
+    "instruction": "Pass CAR_7 ultra-court 5 minutes durée minimale",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass de 5 minutes, durée ultra-courte extrême.\n\n**Analyse** :\n- Type : Pass durée ultra-minimale\n- Durée : 5 minutes (0.0833 heures)\n- Mode : Métro uniquement\n- Prix : 0.50€\n- Support : BSC ou AB\n- Usage : Correspondance ultra-rapide, test système\n- Non rechargeable\n\n**Justification de l'edge case** :\nCAR_7 avec 7_03 = 0.0833 (5 minutes) teste la limite basse absolue de durée. Cas extrême pour correspondances immédiates.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 5 minutes (0.0833h)\n- CAR_14 : Métro uniquement\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass 5 Minutes Ultra-court Métro\",\n  \"price_cents\": 50,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 0.0833,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Métro\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass 5 minutes créé. Durée ultra-minimale extrême. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_extreme_values",
+      "subcategory": "car7_ultra_short_duration",
+      "product": "Pass 5 Minutes",
+      "cars": [
+        7,
+        14
+      ],
+      "complexity": "medium",
+      "edge_case_type": "extreme_car7_5minutes"
+    }
+  },
+  {
+    "instruction": "Abonnement CAR_7 ultra-long 10 ans durée maximale exceptionnelle",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un abonnement de 10 ans (120 mois), durée ultra-longue extrême.\n\n**Analyse** :\n- Type : Abonnement durée exceptionnelle maximale\n- Durée : 120 mois (10 ans)\n- Modes : Tous modes TCL\n- Zones : Toutes zones (1-2-3-4-5)\n- Prix : 6000.00€ (120×50€, tarif longue durée)\n- Support : CSC ou AB\n- Usage : Engagement ultra long terme exceptionnel\n- Rechargeable\n\n**Justification de l'edge case** :\nCAR_7 = 120 mois (10 ans) teste la limite haute extrême du système. Durée exceptionnelle pour contrats spéciaux très long terme.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 120 mois (10 ans), rechargeable\n- CAR_4 : Toutes zones 1-2-3-4-5\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement 10 Ans Toutes Zones\",\n  \"price_cents\": 600000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 120,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 1\",\n          \"Zone 2\",\n          \"Zone 3\",\n          \"Zone 4\",\n          \"Zone 5\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nAbonnement 10 ans créé. Durée ultra-longue extrême. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_extreme_values",
+      "subcategory": "car7_ultra_long_duration",
+      "product": "Abonnement 10 Ans",
+      "cars": [
+        7,
+        4,
+        14
+      ],
+      "complexity": "high",
+      "edge_case_type": "extreme_car7_10years"
+    }
+  },
+  {
+    "instruction": "Ticket 10 centimes prix ultra-minimum",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un ticket à 10 centimes, prix ultra-minimal extrême.\n\n**Analyse** :\n- Type : Ticket prix plancher absolu\n- Durée : 15 minutes\n- Mode : Bus urbain uniquement\n- Prix : 0.10€ (10 centimes - prix minimum absolu)\n- Support : BSC ou AB\n- Usage : Tarif social extrême, test tarifaire\n- Non rechargeable\n\n**Justification de l'edge case** :\nPrix = 10 centimes teste la limite basse absolue du système tarifaire. Cas extrême pour accessibilité maximale.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 15 minutes\n- CAR_14 : Bus urbain uniquement\n- CAR_22 : 1 voyage\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Ticket Social 10 Centimes\",\n  \"price_cents\": 10,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 0.25,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 1,\n        \"22_02\": 1,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nTicket 10 centimes créé. Prix ultra-minimum absolu. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_extreme_values",
+      "subcategory": "price_ultra_low",
+      "product": "Ticket 10 Centimes",
+      "cars": [
+        7,
+        14,
+        22
+      ],
+      "complexity": "low",
+      "edge_case_type": "extreme_price_10cents"
+    }
+  },
+  {
+    "instruction": "Abonnement 5 ans 5000 euros prix ultra-maximum premium",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un abonnement 5 ans à 5000€, prix ultra-élevé extrême.\n\n**Analyse** :\n- Type : Abonnement premium prix maximum\n- Durée : 60 mois (5 ans)\n- Zones : Toutes zones (1-2-3-4-5)\n- Modes : Tous modes TCL\n- Prix : 5000.00€ (prix ultra-premium)\n- Services : Support commercial premium (CAR_103)\n- Support : CSC ou AB\n- Usage : VIP ultra-premium, services maximaux\n- Rechargeable\n\n**Justification de l'edge case** :\nPrix = 5000€ teste la limite haute extrême du système tarifaire. Justifié par : durée 5 ans + toutes zones + support commercial premium.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 60 mois (5 ans), rechargeable\n- CAR_4 : Toutes zones\n- CAR_14 : Tous modes\n- CAR_103 : Support commercial premium\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement 5 Ans Ultra-Premium 5000€\",\n  \"price_cents\": 500000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 60,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 1\",\n          \"Zone 2\",\n          \"Zone 3\",\n          \"Zone 4\",\n          \"Zone 5\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 103,\n      \"parameters\": {\n        \"103_01\": \"Premium\",\n        \"103_02\": true\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nAbonnement 5000€ créé. Prix ultra-maximum extrême premium. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_extreme_values",
+      "subcategory": "price_ultra_high",
+      "product": "Abonnement 5000 Euros",
+      "cars": [
+        7,
+        4,
+        14,
+        103
+      ],
+      "complexity": "high",
+      "edge_case_type": "extreme_price_5000euros"
+    }
+  },
+  {
+    "instruction": "Carnet CAR_22 = 1000 voyages maximum absolu limite système",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un carnet de 1000 voyages, limite maximale absolue.\n\n**Analyse** :\n- Type : Carnet volume maximum système\n- Voyages : 1000 voyages (CAR_22 limite haute absolue)\n- Validité : 24 mois (2 ans pour utiliser)\n- Modes : Tous modes TCL\n- Prix : 1500.00€ (1.50€/voyage)\n- Support : CSC ou AB\n- Usage : Collectivités, très gros volumes entreprise\n- Mono-usager\n\n**Justification de l'edge case** :\nCAR_22 = 1000 teste la limite maximale absolue du paramètre 22_01. Volume exceptionnel pour besoins collectivités ou achats massifs.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 24 mois\n- CAR_14 : Tous modes TCL\n- CAR_22 : 1000 voyages maximum\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet 1000 Voyages Maximum\",\n  \"price_cents\": 150000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 24,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 1000,\n        \"22_02\": 1000,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nCarnet 1000 voyages créé. Limite maximale absolue système. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_extreme_values",
+      "subcategory": "car22_absolute_maximum",
+      "product": "Carnet 1000 Voyages",
+      "cars": [
+        7,
+        14,
+        22
+      ],
+      "complexity": "high",
+      "edge_case_type": "extreme_car22_maximum_1000"
+    }
+  }
+]
