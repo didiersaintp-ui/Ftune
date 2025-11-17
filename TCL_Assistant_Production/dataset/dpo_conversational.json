@@ -1,0 +1,332 @@
+[
+  {
+    "instruction": "Je veux un abonnement",
+    "chosen": "Je serais ravi de vous aider à créer un abonnement TCL.\n\nPour vous proposer la meilleure solution, j'ai besoin de quelques précisions :\n\n❓ **Questions** :\n1. **Durée** : Mensuel, hebdomadaire ou annuel ?\n2. **Modes de transport** : Tous modes (bus, métro, tramway, funiculaire) ou seulement certains ?\n3. **Zones** : Zone 1 uniquement, zones 1-2, ou toutes zones ?\n4. **Profil** : Plein tarif, jeune (-26 ans), senior (+65 ans), étudiant, ou solidaire ?\n\nCes informations me permettront de calculer le prix exact et de configurer les bonnes caractéristiques.",
+    "rejected": "Voici votre abonnement mensuel tous modes :\n```json\n{\n  \"product_name\": \"Abonnement Mensuel\",\n  \"price_cents\": 6700,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 7, \"parameters\": {\"7_01\": 2, \"7_02\": \"M\", \"7_03\": 1, \"7_04\": true, \"7_05\": true}},\n    {\"number\": 14, \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}}\n  ]\n}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "incomplete_request_subscription",
+      "quality_aspect": "asking_clarifying_questions"
+    }
+  },
+  {
+    "instruction": "Créer un ticket pour le bus",
+    "chosen": "Je peux créer un ticket bus pour vous.\n\n❓ **Précisions nécessaires** :\n1. **Type de ticket** : \n   - Ticket unité (1 voyage, 1 heure) ?\n   - Carnet de plusieurs tickets ?\n2. **Si carnet, combien de voyages** : 5, 10, ou 20 ?\n3. **Durée de validité** : Combien de temps voulez-vous utiliser ce produit ?\n\nCes détails influencent le prix et la configuration du produit.",
+    "rejected": "```json\n{\n  \"product_name\": \"Ticket Unité Bus\",\n  \"price_cents\": 200,\n  \"support\": [\"BSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 7, \"parameters\": {\"7_01\": 4, \"7_02\": \"H\", \"7_03\": 1, \"7_04\": false, \"7_05\": false}},\n    {\"number\": 14, \"parameters\": {\"14_01\": [\"Bus urbain\"], \"14_02\": \"Autorisée\"}},\n    {\"number\": 22, \"parameters\": {\"22_01\": 1, \"22_02\": 1, \"22_03\": false}}\n  ]\n}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "incomplete_request_ticket_type",
+      "quality_aspect": "asking_clarifying_questions"
+    }
+  },
+  {
+    "instruction": "Pass pour plusieurs jours",
+    "chosen": "Je peux créer un pass temporel pour vous.\n\n❓ **Précisions nécessaires** :\n1. **Nombre de jours exact** : 2 jours (48h), 3 jours (72h), ou 7 jours (1 semaine) ?\n2. **Type de validité** :\n   - **Glissante** : Validité à partir de la première validation (ex: valable 48h à partir du moment où vous validez)\n   - **Calendaire** : Validité pour une période fixe (ex: valable du lundi au chargement jusqu'à dimanche soir)\n3. **Modes** : Tous modes TCL ou seulement certains ?\n\nCes choix impactent le prix et la flexibilité d'utilisation.",
+    "rejected": "Pass 3 jours créé :\n```json\n{\"product_name\": \"Pass 72h\", \"price_cents\": 1500, \"characteristics\": [{\"number\": 7, \"parameters\": {\"7_01\": 4, \"7_02\": \"H\", \"7_03\": 72}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "incomplete_request_duration",
+      "quality_aspect": "asking_clarifying_questions"
+    }
+  },
+  {
+    "instruction": "Besoin d'un titre de transport pour la zone 2",
+    "chosen": "Je note que vous avez besoin d'un titre pour la zone 2.\n\n❓ **Questions complémentaires** :\n1. **Zone 1 incluse** : Avez-vous également besoin de la zone 1 (centre-ville Lyon), ou uniquement zone 2 ?\n   - Généralement : Zone 1 + Zone 2 pour une couverture complète\n   - Rare : Zone 2 seule\n2. **Type de produit** :\n   - Abonnement (usage régulier) ?\n   - Carnet de tickets (usage occasionnel) ?\n   - Pass temporel (visiteur/temporaire) ?\n3. **Profil tarifaire** : Plein tarif, réduit (jeune/senior/étudiant), ou solidaire ?\n\nLa plupart des usagers ont besoin de Zone 1 + Zone 2. Est-ce votre cas ?",
+    "rejected": "Abonnement zone 2 créé :\n```json\n{\"characteristics\": [{\"number\": 4, \"parameters\": {\"4_01\": [\"Zone 2\"], \"4_02\": \"Autorisée\"}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "incomplete_request_zone_info",
+      "quality_aspect": "asking_clarifying_questions"
+    }
+  },
+  {
+    "instruction": "Titre de transport tarif réduit",
+    "chosen": "Je peux vous aider à créer un titre à tarif réduit.\n\n❓ **Informations nécessaires** :\n1. **Profil** : Quel tarif réduit vous concerne ?\n   - **Jeune** : Moins de 26 ans (34€/mois)\n   - **Senior** : Plus de 65 ans (34€/mois)\n   - **Étudiant** : Carte étudiant requise (34€/mois)\n   - **Solidaire** : RSA, chômage, etc. (12€/mois)\n2. **Type de produit** : Abonnement mensuel, hebdomadaire, ou carnet de tickets ?\n3. **Modes** : Tous modes TCL ou seulement certains ?\n\n**Note** : Un justificatif sera requis lors de l'achat (carte étudiant, carte senior, attestation sociale, etc.).",
+    "rejected": "Abonnement jeune créé :\n```json\n{\"product_name\": \"Abonnement Jeune\", \"price_cents\": 3400, \"profile\": \"Jeune\"}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "incomplete_request_profile",
+      "quality_aspect": "asking_clarifying_questions"
+    }
+  },
+  {
+    "instruction": "Carnet de tickets",
+    "chosen": "Je peux créer un carnet de tickets pour vous.\n\n❓ **Précisions nécessaires** :\n1. **Nombre de voyages** : 5, 10, ou 20 tickets ?\n   - 5 voyages : ~8.50€ (usage très occasionnel)\n   - 10 voyages : ~16€ (usage occasionnel)\n   - 20 voyages : ~30€ (usage régulier)\n2. **Modes autorisés** : \n   - Tous modes (bus, métro, tramway) ?\n   - Un seul mode (ex: métro uniquement) ?\n3. **Type d'usage** :\n   - **Mono-usager** : Pour vous uniquement (CAR_22)\n   - **Multi-usager/Famille** : Partageable entre plusieurs personnes (CAR_21)\n\nLe choix mono vs multi impacte le prix et les validations possibles.",
+    "rejected": "Carnet 10 voyages :\n```json\n{\"product_name\": \"Carnet 10\", \"price_cents\": 1600, \"characteristics\": [{\"number\": 22, \"parameters\": {\"22_01\": 10}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "incomplete_request_carnet_details",
+      "quality_aspect": "asking_clarifying_questions"
+    }
+  },
+  {
+    "instruction": "Produit pour métro et tramway zone 1",
+    "chosen": "Je comprends votre besoin pour métro et tramway en zone 1.\n\n❓ **Question importante** :\n**Type de produit** : Quel usage prévoyez-vous ?\n1. **Usage quotidien** (travail/études) → Abonnement mensuel (meilleur rapport qualité/prix)\n2. **Usage régulier** (2-3 fois/semaine) → Carnet de tickets\n3. **Usage ponctuel** (visiteur, rare) → Tickets unité ou pass temporel\n\n**Autres précisions** :\n- **Bus urbain** : Souhaitez-vous également inclure le bus ? (même prix pour tous modes en zone 1)\n- **Durée** : Si abonnement, mensuel ou annuel ?\n- **Profil** : Tarif plein ou réduit ?\n\nCes informations optimiseront votre coût et votre confort d'usage.",
+    "rejected": "```json\n{\"characteristics\": [{\"number\": 14, \"parameters\": {\"14_01\": [\"Métro\", \"Tramway\"]}}, {\"number\": 4, \"parameters\": {\"4_01\": [\"Zone 1\"]}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "incomplete_request_product_type",
+      "quality_aspect": "asking_clarifying_questions"
+    }
+  },
+  {
+    "instruction": "Titre valable après-midi",
+    "chosen": "Je peux créer un titre avec restriction horaire pour l'après-midi.\n\n❓ **Précisions nécessaires** :\n1. **Horaire exact** :\n   - À partir de quelle heure ? (12h, 13h, 14h ?)\n   - Jusqu'à quelle heure ? (19h, fin de service ?)\n2. **Jours concernés** :\n   - Tous les jours de la semaine ?\n   - Uniquement en semaine (lundi-vendredi) ?\n   - Week-end uniquement ?\n3. **Type de produit** :\n   - Ticket unique (1 utilisation) ?\n   - Carnet de tickets ?\n   - Abonnement ?\n4. **Durée de validité par usage** : 1h, 2h, ou plus ?\n\nLes restrictions horaires permettent généralement un tarif réduit.",
+    "rejected": "Ticket après-midi :\n```json\n{\"characteristics\": [{\"number\": 9, \"parameters\": {\"9_01\": [{\"days\": \"Lundi-Dimanche\", \"start\": \"13:00\", \"end\": \"19:00\"}]}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "incomplete_request_time_restriction",
+      "quality_aspect": "asking_clarifying_questions"
+    }
+  },
+  {
+    "instruction": "Combien ça coûte pour aller en banlieue",
+    "chosen": "Pour calculer le tarif vers la banlieue, j'ai besoin de précisions.\n\n❓ **Informations nécessaires** :\n1. **Destination précise** : Quelle commune de banlieue ?\n   - Cela détermine la zone tarifaire (Zone 2, 3, 4, ou 5)\n2. **Fréquence d'utilisation** :\n   - **Quotidien** → Abonnement mensuel/annuel (économique)\n   - **Occasionnel** → Ticket ou carnet\n   - **Ponctuel** → Ticket unité\n3. **Départ** : Depuis le centre-ville Lyon (zone 1) ou autre ?\n\n**Exemples de tarifs indicatifs** :\n- Abonnement mensuel Zone 1+2 : ~54€ plein tarif\n- Ticket Zone 1+2 : ~3€\n\nPrécisez votre destination pour un calcul exact.",
+    "rejected": "Abonnement banlieue : 67€/mois",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "incomplete_request_pricing",
+      "quality_aspect": "asking_clarifying_questions"
+    }
+  },
+  {
+    "instruction": "J'ai un problème avec mon titre",
+    "chosen": "Je suis désolé que vous rencontriez un problème avec votre titre.\n\n❓ **Pour vous aider efficacement, j'ai besoin de comprendre** :\n1. **Type de problème** :\n   - Technique (ne valide pas, ne se charge pas) ?\n   - Tarifaire (prix incorrect, débit non attendu) ?\n   - Fonctionnel (dates incorrectes, modes non reconnus) ?\n   - Autre ?\n2. **Type de titre concerné** :\n   - Abonnement, carnet, ticket unité, ou pass ?\n   - Sur quel support (carte CSC, application AB, billet BSC) ?\n3. **Message d'erreur** : Y a-t-il un message affiché ?\n4. **Contexte** : Quand le problème est-il apparu (à l'achat, au chargement, à la validation) ?\n\nSelon le type de problème, je pourrai :\n- Vous guider pour résoudre techniquement\n- Vous orienter vers le service client TCL\n- Vous aider à recréer un produit fonctionnel",
+    "rejected": "Contactez le service client TCL.",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "incomplete_request_support_type",
+      "quality_aspect": "asking_clarifying_questions"
+    }
+  },
+  {
+    "instruction": "Comment fonctionne CAR_7",
+    "chosen": "**CAR_7 : Caractéristique de Validité Temporelle**\n\nCAR_7 définit **comment et combien de temps** un produit est valable.\n\n📋 **Paramètres** :\n- **7_01 (Nature)** : Type de validité\n  - `1` = Validité calendaire (ex: valable jusqu'au 31 décembre)\n  - `2` = Glissant au chargement (ex: valable 1 mois à partir du chargement)\n  - `4` = Glissant à la validation (ex: valable 1h à partir de la première validation)\n- **7_02 (Unité)** : `H` (heures), `D` (jours), `W` (semaines), `M` (mois), `Y` (années)\n- **7_03 (Quantité)** : Nombre d'unités (ex: 1, 24, 7, 12)\n- **7_04 (Rechargeable)** : `true` = peut être rechargé avec le même produit\n- **7_05 (Prolongeable)** : `true` = peut être prolongé par prorogation\n\n💡 **Exemples concrets** :\n1. **Ticket 1h** : Nature 4, H, 1 (glissant à validation, 1 heure)\n2. **Abonnement mensuel** : Nature 2, M, 1, rechargeable (glissant au chargement, 1 mois)\n3. **Pass 24h** : Nature 4, H, 24 (glissant à validation, 24 heures)\n\nAvez-vous un cas d'usage spécifique pour lequel vous souhaitez utiliser CAR_7 ?",
+    "rejected": "```json\n{\"number\": 7, \"parameters\": {\"7_01\": 2, \"7_02\": \"M\", \"7_03\": 1, \"7_04\": true, \"7_05\": true}}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "json_vs_explanation_car7",
+      "quality_aspect": "explaining_vs_raw_json"
+    }
+  },
+  {
+    "instruction": "Quelle est la différence entre CAR_2 et CAR_38",
+    "chosen": "**CAR_2 vs CAR_38 : Groupe Fixe vs Groupe Variable**\n\n🔍 **Différence fondamentale** : Le moment où le nombre de passagers est défini.\n\n**CAR_2 : Groupe à effectif FIXE**\n- Le nombre de passagers est **défini au paramétrage** du produit\n- Exemple : \"Pass Groupe 5 personnes\" → toujours 5 personnes\n- Paramètre : `2_01` = nombre fixe (ex: 5)\n- Usage : Groupes de taille constante (scolaires, visites organisées)\n\n**CAR_38 : Groupe à effectif VARIABLE**\n- Le nombre de passagers est **saisi à la vente**\n- Exemple : \"Pass Groupe 2-10 personnes\" → l'acheteur choisit\n- Paramètres : `38_01` = min, `38_02` = max\n- Usage : Groupes de taille variable (familles, groupes d'amis)\n\n⚠️ **INCOMPATIBILITÉ** : CAR_2 et CAR_38 s'excluent mutuellement.\n\n❓ **Votre besoin** :\n- Groupe toujours de même taille → CAR_2\n- Groupe de taille flexible → CAR_38\n\nQuel cas correspond à votre situation ?",
+    "rejected": "CAR_2 : groupe fixe\nCAR_38 : groupe variable\n\nIncompatibles.",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "json_vs_explanation_comparison",
+      "quality_aspect": "explaining_vs_raw_json"
+    }
+  },
+  {
+    "instruction": "Puis-je combiner CAR_14 et CAR_22 dans le même produit",
+    "chosen": "**Oui, CAR_14 et CAR_22 peuvent parfaitement coexister.**\n\n✅ **Compatibilité** : Ces deux caractéristiques sont complémentaires.\n\n**Explication** :\n- **CAR_14** : Définit les **modes de transport** autorisés (bus, métro, tramway, etc.)\n- **CAR_22** : Définit le **nombre de voyages** et l'usage **mono-usager**\n\n**Exemple typique : Carnet 10 voyages Bus-Métro**\n```json\n{\n  \"characteristics\": [\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\"Bus urbain\", \"Métro\"],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 10,\n        \"22_02\": 10,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n💡 **Utilisation** : Carnet de 10 voyages utilisable sur bus et métro, pour une seule personne.\n\nSouhaitez-vous créer ce type de produit ?",
+    "rejected": "Oui, compatible.",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "json_vs_explanation_compatibility",
+      "quality_aspect": "explaining_vs_raw_json"
+    }
+  },
+  {
+    "instruction": "Comparer abonnement mensuel et carnet 20 voyages",
+    "chosen": "**Comparaison : Abonnement Mensuel vs Carnet 20 Voyages**\n\n📊 **Critères de décision** :\n\n| Critère | Abonnement Mensuel | Carnet 20 Voyages |\n|---------|-------------------|-------------------|\n| **Prix** | 67€ plein tarif / 34€ réduit | ~30€ |\n| **Voyages** | Illimités | 20 trajets |\n| **Durée** | 1 mois calendaire | Validité carnet 3 mois |\n| **Flexibilité** | Voyages illimités | Consommation au besoin |\n| **Rentabilité** | À partir de 34 voyages/mois | ~1.50€/voyage |\n| **Support** | CSC ou AB (rechargeable) | BSC, CSC ou AB |\n| **Profils** | Tarifs réduits disponibles | Tarif unique |\n\n💡 **Recommandation** :\n- **Abonnement** si vous voyagez **quotidiennement** (≥34 fois/mois pour rentabiliser)\n- **Carnet** si vous voyagez **occasionnellement** (1-2 fois/semaine)\n\n❓ **Votre usage prévu** : Combien de trajets par semaine prévoyez-vous ?",
+    "rejected": "Abonnement : 67€ illimité\nCarnet : 30€ pour 20 voyages\n\nChoisissez selon usage.",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "json_vs_explanation_structured_comparison",
+      "quality_aspect": "explaining_vs_raw_json"
+    }
+  },
+  {
+    "instruction": "Est-ce possible de créer un pass 5 jours",
+    "chosen": "**Oui, un pass 5 jours (120 heures) est techniquement possible.**\n\n✅ **Faisabilité technique** :\nCAR_7 permet de créer une validité de 120 heures glissantes.\n\n```json\n{\n  \"number\": 7,\n  \"parameters\": {\n    \"7_01\": 4,\n    \"7_02\": \"H\",\n    \"7_03\": 120,\n    \"7_04\": false,\n    \"7_05\": false\n  }\n}\n```\n\n💡 **Contexte TCL** :\nActuellement, TCL propose :\n- Pass 24h (1 jour)\n- Pass 48h (2 jours / week-end)\n- Pass 72h (3 jours)\n- Pass hebdomadaire (7 jours)\n\n**Le pass 5 jours n'est pas un produit standard**, mais peut être créé pour un besoin spécifique.\n\n❓ **Questions** :\n1. **Usage** : Quel est le contexte (tourisme, événement spécial) ?\n2. **Tarification** : Quel prix envisagez-vous (entre pass 3 jours ~15€ et pass 7 jours ~18€) ?\n\nSouhaitez-vous que je configure ce produit personnalisé ?",
+    "rejected": "Oui.\n```json\n{\"number\": 7, \"parameters\": {\"7_01\": 4, \"7_02\": \"H\", \"7_03\": 120}}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "json_vs_explanation_context",
+      "quality_aspect": "explaining_vs_raw_json"
+    }
+  },
+  {
+    "instruction": "Créer abonnement mensuel étudiant zones 1-2 tous modes",
+    "chosen": "🧠 **Raisonnement** :\nJe vais créer un abonnement étudiant pour zones 1-2 avec tous les modes TCL.\n\n**Analyse des besoins** :\n- **Profil** : Étudiant → Tarif réduit (34€ vs 67€ plein tarif)\n- **Zones** : 1 et 2 → Couvre Lyon centre + proche banlieue\n- **Modes** : Tous → Bus, Métro, Tramway, Funiculaire\n- **Durée** : Mensuel → Rechargeable chaque mois\n- **Support** : CSC ou AB (rechargeable requis)\n\n**Choix des caractéristiques** :\n- **CAR_7** : Validité mensuelle glissante, rechargeable\n  - Nature 2 (glissant au chargement), 1 mois, rechargeable et prolongeable\n- **CAR_4** : Zones tarifaires 1 et 2 autorisées\n- **CAR_14** : Tous modes TCL autorisés\n\n**Justificatif requis** : Carte étudiant en cours de validité\n\n➡️ **JSON Produit** :\n```json\n{\n  \"product_name\": \"Abonnement Étudiant Zones 1-2\",\n  \"price_cents\": 3400,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\"Zone 1\", \"Zone 2\"],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Étudiant\"\n}\n```\n\n✅ **Confirmation** : Produit configuré. Validez-vous ?",
+    "rejected": "```json\n{\n  \"product_name\": \"Abonnement Étudiant\",\n  \"price_cents\": 3400,\n  \"characteristics\": [\n    {\"number\": 7, \"parameters\": {\"7_01\": 2, \"7_02\": \"M\", \"7_03\": 1}},\n    {\"number\": 4, \"parameters\": {\"4_01\": [\"Zone 1\", \"Zone 2\"]}},\n    {\"number\": 14, \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"]}}\n  ]\n}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "reasoning_vs_direct_subscription",
+      "quality_aspect": "showing_reasoning"
+    }
+  },
+  {
+    "instruction": "Pourquoi ne puis-je pas mettre CAR_22 et CAR_21 ensemble",
+    "chosen": "🧠 **Raisonnement de l'incompatibilité** :\n\n**CAR_22 et CAR_21 sont incompatibles pour une raison logique et technique.**\n\n**Explication** :\n- **CAR_22** : Carnet **mono-usager**\n  - Une seule personne peut utiliser le carnet\n  - Validation individuelle stricte\n  - Traçabilité par usager unique\n  \n- **CAR_21** : Carnet **multi-usager**\n  - Plusieurs personnes (jusqu'à X) peuvent utiliser le même carnet\n  - Validations simultanées possibles (ex: 3 personnes en même temps)\n  - Partage familial ou groupe\n\n**Pourquoi l'incompatibilité ?**\n1. **Contradiction conceptuelle** : Un produit ne peut pas être \"pour une seule personne\" ET \"pour plusieurs personnes\" simultanément\n2. **Validation** : Le système ne peut pas appliquer deux règles de validation opposées\n3. **Tarification** : Les carnets multi-usagers ont généralement un prix différent\n4. **Décompte** : CAR_22 décompte par validation unique, CAR_21 décompte par nombre d'usagers validant\n\n**Conséquence** : Il faut choisir UNE des deux CAR selon le besoin réel.\n\n❓ **Votre besoin** :\n- Usage strictement personnel → CAR_22\n- Partage en famille/groupe → CAR_21",
+    "rejected": "CAR_22 et CAR_21 sont incompatibles car l'une est mono-usager et l'autre multi-usager. Vous ne pouvez pas utiliser les deux.",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "reasoning_vs_direct_incompatibility",
+      "quality_aspect": "showing_reasoning"
+    }
+  },
+  {
+    "instruction": "Quel est le meilleur choix entre abonnement annuel 720€ et 12 mois à 67€",
+    "chosen": "🧠 **Analyse comparative** :\n\n**Calcul financier** :\n- Abonnement annuel : 720€ payé en une fois\n- 12 mois séparés : 12 × 67€ = 804€\n- **Économie** : 804€ - 720€ = **84€ (10.4% de réduction)**\n\n**Trade-offs à considérer** :\n\n**Abonnement annuel (720€)** :\n- ✅ Économie de 84€ sur l'année\n- ✅ Pas de gestion mensuelle (rechargement automatique)\n- ✅ Tranquillité pour 12 mois\n- ❌ Investissement initial important (720€)\n- ❌ Pas de flexibilité si changement de situation\n- ❌ Risque si vous n'utilisez plus (déménagement, changement travail)\n\n**Mensuel (67€/mois)** :\n- ✅ Flexibilité totale (arrêt à tout moment)\n- ✅ Coût mensuel gérable (67€)\n- ✅ Adaptation si changement de besoin\n- ❌ Coût total supérieur (+84€/an)\n- ❌ Rechargement mensuel à gérer\n\n**Recommandation** :\n- **Annuel** : Si votre situation est **stable** (études longues, CDI, résidence fixe)\n- **Mensuel** : Si votre situation est **incertaine** (stage, CDD, possibilité de déménagement)\n\n❓ **Votre situation** : Avez-vous une certitude d'utilisation pour les 12 prochains mois ?",
+    "rejected": "Annuel = 720€, économie de 84€ vs mensuel.\nChoisissez annuel pour économiser.",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "reasoning_vs_direct_optimization",
+      "quality_aspect": "showing_reasoning"
+    }
+  },
+  {
+    "instruction": "Je veux un carnet famille mais avec validation par trajet, est-ce possible",
+    "chosen": "🧠 **Analyse de la demande** :\n\nVous souhaitez combiner :\n- **Carnet famille** → CAR_21 (multi-usager)\n- **Validation par trajet** → CAR_6 (validation par déplacement)\n\n⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\n**Pourquoi ce n'est pas possible** :\n1. **CAR_6** nécessite une **traçabilité stricte** : 1 validation = 1 déplacement identifiable par usager\n2. **CAR_21** permet le **partage entre plusieurs personnes** sans traçabilité individuelle stricte\n3. **Conflit technique** : Le système ne peut pas garantir qui a effectué quel déplacement dans un contexte multi-usager\n\n**Exemple du problème** :\n- Parent + 2 enfants utilisent le carnet\n- Validation simultanée de 3 personnes\n- CAR_6 ne peut pas tracer individuellement les 3 déplacements distincts\n\n**Alternatives possibles** :\n1. **Carnet personnel avec CAR_6** :\n   - CAR_22 (mono-usager) + CAR_6 (validation trajet)\n   - Usage strictement individuel\n   \n2. **Carnet famille sans CAR_6** :\n   - CAR_21 (multi-usager)\n   - Décompte par unités, pas par trajets tracés\n\n❓ **Votre priorité** :\n- **Traçabilité des trajets** → Carnet mono-usager\n- **Partage familial** → Carnet multi-usager sans traçabilité stricte",
+    "rejected": "Non, CAR_6 et CAR_21 sont incompatibles.",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "reasoning_vs_direct_edge_case",
+      "quality_aspect": "showing_reasoning"
+    }
+  },
+  {
+    "instruction": "Configurer un produit avec zones 1-2, modes bus-métro-tramway, 10 voyages, mono-usager",
+    "chosen": "🧠 **Raisonnement** :\n\nVotre demande est complète et cohérente. Je vais créer un carnet multi-modes zoné.\n\n**Analyse des caractéristiques** :\n1. **Zones 1-2** → CAR_4 (zones tarifaires)\n2. **Modes bus-métro-tramway** → CAR_14 (modes autorisés)\n3. **10 voyages** → CAR_22 (nombre de déplacements)\n4. **Mono-usager** → CAR_22 (usage personnel)\n\n**Choix de conception** :\n- **CAR_7** : Validité du carnet = 3 mois (standard pour carnets)\n- **Prix** : ~20€ (zones 1-2, multi-modes, 10 voyages)\n- **Support** : BSC, CSC ou AB (tous compatibles pour carnet mono-usager)\n- **Rechargeable** : Non (carnet à usage unique)\n\n**Justification des paramètres CAR_7** :\n- Nature 2 (glissant au chargement) : carnet valable 3 mois dès l'achat\n- Non rechargeable (7_04: false) : carnet à usage unique\n\n➡️ **JSON Produit** :\n```json\n{\n  \"product_name\": \"Carnet 10 Voyages Bus-Métro-Tramway Zones 1-2\",\n  \"price_cents\": 2000,\n  \"support\": [\"BSC\", \"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 3,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\"Zone 1\", \"Zone 2\"],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\"],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 10,\n        \"22_02\": 10,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** : Carnet configuré. Les 10 voyages sont valables 3 mois sur bus, métro et tramway en zones 1-2. Validez-vous ?",
+    "rejected": "```json\n{\n  \"characteristics\": [\n    {\"number\": 4, \"parameters\": {\"4_01\": [\"Zone 1\", \"Zone 2\"]}},\n    {\"number\": 14, \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\"]}},\n    {\"number\": 22, \"parameters\": {\"22_01\": 10}}\n  ]\n}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "reasoning_vs_direct_multi_car",
+      "quality_aspect": "showing_reasoning"
+    }
+  },
+  {
+    "instruction": "Je veux un pass",
+    "chosen": "Je peux vous aider à créer un pass.\n\nPour vous proposer la solution adaptée, j'ai besoin de quelques informations :\n\n❓ **Questions** :\n1. **Durée** : Pour combien de temps ?\n   - Courte durée : 24h, 48h (week-end), 72h (3 jours) ?\n   - Moyenne durée : 1 semaine ?\n   - Autre durée spécifique ?\n\n2. **Usage** : Dans quel contexte ?\n   - Tourisme/visite ?\n   - Usage temporaire (attente abonnement, courte mission) ?\n   - Essai avant abonnement ?\n\n3. **Zones et modes** :\n   - Zones : Zone 1 uniquement ou plusieurs zones ?\n   - Modes : Tous modes TCL ou seulement certains ?\n\n**Exemples de pass TCL** :\n- Pass 24h : 6.50€ (tous modes zone 1)\n- Pass 72h : 15€ (tous modes zone 1)\n- Pass hebdomadaire : 18€ (tous modes)\n\nQue recherchez-vous précisément ?",
+    "rejected": "Pass 24h créé :\n```json\n{\"product_name\": \"Pass 24h\", \"price_cents\": 650}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "multiturn_vs_oneshot_pass",
+      "quality_aspect": "multi_turn_conversation"
+    }
+  },
+  {
+    "instruction": "Abonnement mensuel",
+    "chosen": "Je vais vous aider à configurer un abonnement mensuel.\n\nAvant de créer le produit, précisons vos besoins :\n\n❓ **Informations nécessaires** :\n1. **Profil tarifaire** :\n   - Plein tarif (67€/mois) ?\n   - Jeune -26 ans (34€/mois) ?\n   - Senior +65 ans (34€/mois) ?\n   - Étudiant (34€/mois) ?\n   - Solidaire (12€/mois) ?\n\n2. **Couverture** :\n   - Zones : Zone 1 seulement (54€) ou zones 1-2 (prix variable selon profil) ?\n   - Modes : Tous modes ou seulement certains ?\n\n3. **Support** :\n   - Carte CSC (si vous en avez une) ?\n   - Application AB (smartphone) ?\n\nLe prix final dépend fortement de ces paramètres. Quelles sont vos réponses ?",
+    "rejected": "Abonnement mensuel tous modes 67€ :\n```json\n{\"product_name\": \"Abonnement Mensuel\", \"price_cents\": 6700, \"characteristics\": [{\"number\": 7, \"parameters\": {\"7_02\": \"M\", \"7_03\": 1}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "multiturn_vs_oneshot_subscription",
+      "quality_aspect": "multi_turn_conversation"
+    }
+  },
+  {
+    "instruction": "Ticket étudiant",
+    "chosen": "Je note que vous cherchez un titre étudiant.\n\n❓ **Clarifications importantes** :\n\n1. **Type de produit** : \"Ticket\" peut désigner :\n   - **Ticket unité** (1 voyage) → Généralement pas de tarif étudiant (prix unique 2€)\n   - **Carnet de tickets** → Pas de réduction étudiant\n   - **Abonnement étudiant** → Tarif réduit 34€/mois (au lieu de 67€)\n\n💡 **Information importante** : \nLes tarifs étudiants s'appliquent principalement aux **abonnements**, pas aux tickets unité ou carnets.\n\n2. **Si abonnement étudiant** :\n   - Durée : Mensuel ou annuel ?\n   - Zones : Zone 1 ou zones 1-2 ?\n   - Modes : Tous modes ou spécifiques ?\n\n3. **Justificatif requis** : Carte étudiant en cours de validité\n\nPrécisez-vous votre besoin : s'agit-il d'un abonnement étudiant mensuel ?",
+    "rejected": "Ticket étudiant 2€ :\n```json\n{\"product_name\": \"Ticket Étudiant\", \"price_cents\": 200, \"profile\": \"Étudiant\"}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "multiturn_vs_oneshot_student",
+      "quality_aspect": "multi_turn_conversation"
+    }
+  },
+  {
+    "instruction": "Option la moins chère",
+    "chosen": "Je comprends que vous recherchez la solution la plus économique.\n\nPour vous conseiller au mieux, j'ai besoin de comprendre votre usage :\n\n❓ **Questions essentielles** :\n1. **Fréquence d'utilisation** :\n   - Quotidien (travail/études) ?\n   - Régulier (2-3 fois/semaine) ?\n   - Occasionnel (1 fois/semaine ou moins) ?\n   - Ponctuel (exceptionnel) ?\n\n2. **Distance/Zones** :\n   - Uniquement centre-ville Lyon (zone 1) ?\n   - Lyon + banlieue proche (zones 1-2) ?\n\n3. **Modes** :\n   - Tous modes nécessaires ?\n   - Un seul mode suffit (ex: métro uniquement) ?\n\n💡 **Pourquoi ces questions ?** \n- Usage quotidien → Abonnement souvent plus économique\n- Usage occasionnel → Carnet ou tickets unité\n- Un trajet exceptionnel → Ticket unité (2€)\n\n**Exemples selon usage** :\n- 1 trajet/mois → Ticket unité 2€\n- 10 trajets/mois → Carnet 10 voyages 16€ (1.60€/voyage)\n- 30+ trajets/mois → Abonnement 67€ (ou 34€ si tarif réduit)\n\nCombien de trajets prévoyez-vous par mois ?",
+    "rejected": "Ticket unité 2€ le moins cher.",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "multiturn_vs_oneshot_cheap",
+      "quality_aspect": "multi_turn_conversation"
+    }
+  },
+  {
+    "instruction": "Meilleure option pour aller au travail tous les jours",
+    "chosen": "Pour des trajets quotidiens domicile-travail, je vais vous aider à identifier la meilleure solution.\n\n❓ **Informations pour optimiser** :\n1. **Zones géographiques** :\n   - Où habitez-vous (quelle zone) ?\n   - Où travaillez-vous (quelle zone) ?\n   - → Cela détermine les zones tarifaires nécessaires\n\n2. **Jours travaillés** :\n   - 5 jours/semaine (lundi-vendredi) ?\n   - Ou un rythme différent ?\n\n3. **Profil** :\n   - Plein tarif ?\n   - Jeune (-26 ans), senior (+65 ans), ou autre tarif réduit ?\n\n💡 **Analyse préliminaire** :\nPour un usage quotidien, **l'abonnement mensuel est presque toujours optimal** :\n- 20 jours ouvrés × 2 trajets (aller-retour) = 40 trajets/mois\n- Ticket unité : 40 × 2€ = 80€\n- Carnet : ~4 carnets de 10 = 64€\n- **Abonnement mensuel : 67€ plein tarif ou 34€ réduit** (illimité !)\n\n→ L'abonnement est plus économique et vous offre une liberté totale (trajets supplémentaires week-end, etc.).\n\nConfirmez-vous un usage quotidien (5j/semaine) ? Dans quelles zones ?",
+    "rejected": "Abonnement mensuel 67€ recommandé.",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "multiturn_vs_oneshot_best_option",
+      "quality_aspect": "multi_turn_conversation"
+    }
+  },
+  {
+    "instruction": "Créer pass 15 jours tous modes",
+    "chosen": "⚠️ **DURÉE INHABITUELLE DÉTECTÉE**\n\nVous demandez un pass de **15 jours**, ce qui est atypique dans l'offre TCL.\n\n**Produits standard disponibles** :\n- Pass 7 jours (1 semaine) : 18€\n- Pass mensuel (environ 30 jours) : 67€ plein tarif\n\n💡 **Calcul pour 15 jours** :\n- 2 × Pass 7 jours = 2 × 18€ = 36€\n- 1 × Pass mensuel (30 jours) = 67€ → plus de durée, meilleur rapport\n\n❓ **Question de validation** :\n**Est-ce volontaire de demander exactement 15 jours ?**\n- Si oui → Je peux créer un produit personnalisé (360 heures glissantes)\n- Si non → Je recommande soit :\n  - **Pass mensuel 67€** (meilleur rapport pour 15+ jours)\n  - **2 × Pass 7 jours 36€** (si vraiment limité à 15 jours)\n\nConfirmez-vous le besoin de 15 jours précisément, ou puis-je vous proposer une alternative plus adaptée ?",
+    "rejected": "Pass 15 jours créé :\n```json\n{\"product_name\": \"Pass 15 Jours\", \"characteristics\": [{\"number\": 7, \"parameters\": {\"7_01\": 4, \"7_02\": \"H\", \"7_03\": 360}}]}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "validation_vs_silent_unusual_duration",
+      "quality_aspect": "validating_inputs"
+    }
+  },
+  {
+    "instruction": "Abonnement avec CAR_14 et CAR_74 pour tous modes",
+    "chosen": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nVous tentez d'utiliser **CAR_14 ET CAR_74** ensemble, ce qui est incompatible.\n\n**Problème identifié** :\n- CAR_14 : Liste de modes autorisés (norme actuelle)\n- CAR_74 : Mode codé sur support (OBSOLÈTE)\n\n**Ces deux caractéristiques servent le même objectif et s'excluent mutuellement.**\n\n✅ **Correction** : Utilisez UNIQUEMENT CAR_14 (norme actuelle) :\n```json\n{\n  \"number\": 14,\n  \"parameters\": {\n    \"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"],\n    \"14_02\": \"Autorisée\"\n  }\n}\n```\n\n❓ **Question** : Souhaitez-vous que je corrige et crée l'abonnement avec CAR_14 uniquement ?",
+    "rejected": "Abonnement créé :\n```json\n{\n  \"characteristics\": [\n    {\"number\": 14, \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"]}},\n    {\"number\": 74, \"parameters\": {\"74_01\": \"Tous modes\"}}\n  ]\n}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "validation_vs_silent_incompatible_cars",
+      "quality_aspect": "validating_inputs"
+    }
+  },
+  {
+    "instruction": "Pass zones 1-2-3-4-5-6 tous modes",
+    "chosen": "⚠️ **CONFIGURATION INHABITUELLE DÉTECTÉE**\n\nVous demandez un pass couvrant **6 zones** (1 à 6).\n\n**Vérification** : Le réseau TCL Lyon compte généralement **5 zones tarifaires** (Zone 1 à Zone 5).\n\n❓ **Question de validation** :\n**La Zone 6 existe-t-elle dans votre contexte ?**\n- Si **erreur** → Je recommande zones 1-2-3-4-5 (couverture réseau complet)\n- Si **intentionnel** (extension spéciale) → Je configure avec Zone 6\n\n💡 **Information** :\nUn pass toutes zones (1 à 5) est généralement suffisant pour l'intégralité du réseau TCL Grand Lyon.\n\nConfirmez-vous le besoin de 6 zones ou s'agit-il d'une erreur ?",
+    "rejected": "Pass toutes zones créé :\n```json\n{\n  \"characteristics\": [{\"number\": 4, \"parameters\": {\"4_01\": [\"Zone 1\", \"Zone 2\", \"Zone 3\", \"Zone 4\", \"Zone 5\", \"Zone 6\"]}}]\n}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "validation_vs_silent_invalid_zone",
+      "quality_aspect": "validating_inputs"
+    }
+  },
+  {
+    "instruction": "Ticket unité 50 euros",
+    "chosen": "⚠️ **PRIX INHABITUEL DÉTECTÉ**\n\nVous spécifiez un **ticket unité à 50€**, ce qui est très atypique.\n\n**Prix standard TCL** :\n- Ticket unité : **2.00€**\n- Carnet 10 voyages : ~16€\n- Pass 24h : 6.50€\n- Abonnement mensuel : 67€\n\n💡 **Vérification** :\nUn ticket unité à 50€ représente **25 fois le prix normal**.\n\n❓ **Questions** :\n1. **S'agit-il d'une erreur de saisie ?** (peut-être 5.00€ ou 2.00€ ?)\n2. **Est-ce un produit spécial** (événement, tarification exceptionnelle) ?\n3. **Avez-vous confondu** avec un autre type de produit ?\n\n**Si tarif normal souhaité** : Le prix devrait être 200 centimes (2.00€).\n\nConfirmez-vous intentionnellement le prix de 50€ ou s'agit-il d'une erreur ?",
+    "rejected": "Ticket unité 50€ créé :\n```json\n{\"product_name\": \"Ticket Unité\", \"price_cents\": 5000}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "validation_vs_silent_unusual_price",
+      "quality_aspect": "validating_inputs"
+    }
+  },
+  {
+    "instruction": "Créer carnet 10 voyages mono-usager et multi-usager",
+    "chosen": "⚠️ **CONTRADICTION DÉTECTÉE**\n\nVotre demande contient une **incompatibilité logique** :\n- \"Mono-usager\" → CAR_22 (usage strictement personnel)\n- \"Multi-usager\" → CAR_21 (partage entre plusieurs personnes)\n\n**Un carnet ne peut pas être les deux simultanément.**\n\n❓ **Clarification nécessaire** : Quel est le besoin réel ?\n1. **Carnet personnel** (une seule personne l'utilise) :\n   - → CAR_22\n   - Prix : ~16€\n   - Validations : 1 personne à la fois\n\n2. **Carnet famille/partageable** (plusieurs personnes) :\n   - → CAR_21\n   - Prix : ~18€\n   - Validations : Jusqu'à X personnes simultanément\n\n💡 **Question complémentaire** : \nLe carnet sera-t-il utilisé par une seule personne ou partagé en famille/groupe ?\n\nMerci de choisir UNE option.",
+    "rejected": "Carnet créé :\n```json\n{\n  \"characteristics\": [\n    {\"number\": 22, \"parameters\": {\"22_01\": 10}},\n    {\"number\": 21, \"parameters\": {\"21_01\": 10}}\n  ]\n}\n```",
+    "metadata": {
+      "type": "dpo",
+      "category": "conversational_quality",
+      "dpo_type": "validation_vs_silent_conflicting_requirements",
+      "quality_aspect": "validating_inputs"
+    }
+  }
+]

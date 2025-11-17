@@ -1,0 +1,327 @@
+[
+  {
+    "instruction": "Créer un pass de 15 minutes pour le métro",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass très court de 15 minutes, ce qui est inhabituel mais techniquement valide.\n\n**Analyse** :\n- Type : Pass ultra-court (validité très limitée)\n- Durée : 15 minutes seulement\n- Mode : Métro uniquement\n- Prix : 1.00€ (réduit vu la très courte durée)\n- Support : BSC ou AB\n- Usage : Trajets très courts, correspondances immédiates\n- Non rechargeable\n\n**Justification de l'edge case** :\nBien que TCL propose normalement des passes de 1h minimum, un pass de 15 minutes est techniquement possible avec CAR_7 (7_03: 15 minutes en unité H). Cela pourrait servir pour des trajets ultra-courts ou des tests système.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 15 minutes, nature 4 (glissant à validation)\n- CAR_14 : Métro uniquement\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass 15 Minutes Métro\",\n  \"price_cents\": 100,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 0.25,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Métro\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass 15 minutes créé. Durée très courte mais valide techniquement. Confirmez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_unusual_duration",
+      "subcategory": "very_short_duration",
+      "product": "Pass 15 Minutes",
+      "cars": [7, 14],
+      "complexity": "medium",
+      "edge_case_type": "unusual_duration_15min"
+    }
+  },
+  {
+    "instruction": "Pass 30 minutes tous modes zone 1",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass de 30 minutes, une durée atypique mais valide.\n\n**Analyse** :\n- Type : Pass très court\n- Durée : 30 minutes (0.5 heure)\n- Modes : Tous modes TCL\n- Zone : Zone 1 uniquement\n- Prix : 1.50€ (proportionnel à la courte durée)\n- Support : BSC ou AB\n- Usage : Déplacements très rapides en centre-ville\n\n**Justification de l'edge case** :\nUn pass de 30 minutes est inhabituel (TCL propose normalement 1h minimum), mais techniquement faisable. Utile pour des trajets express ou des tests de service.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 30 minutes (0.5h)\n- CAR_4 : Zone 1 uniquement\n- CAR_14 : Tous modes autorisés\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass 30 Minutes Zone 1\",\n  \"price_cents\": 150,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 0.5,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 1\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass 30 minutes configuré pour zone 1. Durée atypique mais techniquement valide. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_unusual_duration",
+      "subcategory": "very_short_duration",
+      "product": "Pass 30 Minutes",
+      "cars": [7, 4, 14],
+      "complexity": "medium",
+      "edge_case_type": "unusual_duration_30min"
+    }
+  },
+  {
+    "instruction": "Ticket 45 minutes bus-tramway",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un ticket de 45 minutes, durée non standard.\n\n**Analyse** :\n- Type : Ticket courte durée\n- Durée : 45 minutes (0.75 heure)\n- Modes : Bus urbain et Tramway\n- Prix : 1.80€\n- Support : BSC, CSC ou AB\n- Usage : Trajets courts multi-modaux\n- Non rechargeable\n\n**Justification de l'edge case** :\n45 minutes est une durée intermédiaire entre 30 min et 1h. Bien que non standard TCL, c'est techniquement valide avec CAR_7. Pourrait servir pour des offres promotionnelles ou tests.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 45 minutes (0.75h), glissant à validation\n- CAR_14 : Bus urbain et Tramway\n- CAR_22 : 1 voyage mono-usager\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Ticket 45 Minutes Bus-Tramway\",\n  \"price_cents\": 180,\n  \"support\": [\n    \"BSC\",\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 0.75,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Tramway\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 1,\n        \"22_02\": 1,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nTicket 45 minutes créé. Durée inhabituelle mais valide. Confirmez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_unusual_duration",
+      "subcategory": "very_short_duration",
+      "product": "Ticket 45 Minutes",
+      "cars": [7, 14, 22],
+      "complexity": "medium",
+      "edge_case_type": "unusual_duration_45min"
+    }
+  },
+  {
+    "instruction": "Pass de 73 minutes pour tous modes",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass de 73 minutes, une durée très spécifique et atypique.\n\n**Analyse** :\n- Type : Pass durée non standard\n- Durée : 73 minutes (1h13)\n- Modes : Tous modes TCL\n- Prix : 2.20€\n- Support : BSC ou AB\n- Usage : Durée spécifique pour besoin particulier\n- Non rechargeable\n\n**Justification de l'edge case** :\n73 minutes est une durée très particulière, ni ronde ni standard. Cela teste la flexibilité du système CAR_7 avec des valeurs décimales précises (1.2167 heures). Pourrait être utilisé pour des événements spéciaux ou des tests de précision.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 73 minutes (environ 1.22h)\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass 73 Minutes Tous Modes\",\n  \"price_cents\": 220,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 1.2167,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass 73 minutes configuré. Durée très spécifique mais techniquement valide. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_unusual_duration",
+      "subcategory": "odd_minutes",
+      "product": "Pass 73 Minutes",
+      "cars": [7, 14],
+      "complexity": "medium",
+      "edge_case_type": "unusual_duration_73min"
+    }
+  },
+  {
+    "instruction": "Créer pass 127 minutes métro-tramway",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass de 127 minutes (2h07), durée atypique.\n\n**Analyse** :\n- Type : Pass durée inhabituelle\n- Durée : 127 minutes (2.1167 heures)\n- Modes : Métro et Tramway\n- Prix : 2.80€\n- Support : BSC ou AB\n- Usage : Déplacements prolongés mais non standards\n- Non rechargeable\n\n**Justification de l'edge case** :\n127 minutes est une durée très spécifique qui teste la précision du paramètre 7_03 avec des valeurs décimales complexes. Bien que non standard, c'est techniquement valide et pourrait servir pour des besoins particuliers.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 127 minutes (2.1167h), glissant à validation\n- CAR_14 : Métro et Tramway\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass 127 Minutes Métro-Tramway\",\n  \"price_cents\": 280,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 2.1167,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Métro\",\n          \"Tramway\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass 127 minutes (2h07) créé. Durée très atypique mais valide. Confirmez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_unusual_duration",
+      "subcategory": "odd_minutes",
+      "product": "Pass 127 Minutes",
+      "cars": [7, 14],
+      "complexity": "medium",
+      "edge_case_type": "unusual_duration_127min"
+    }
+  },
+  {
+    "instruction": "Pass 17 heures tous modes zones 1-2",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass de 17 heures, durée inhabituelle entre journée et 24h.\n\n**Analyse** :\n- Type : Pass longue durée atypique\n- Durée : 17 heures\n- Modes : Tous modes TCL\n- Zones : Zone 1 et Zone 2\n- Prix : 5.50€ (entre ticket journée et pass 24h)\n- Support : BSC ou AB\n- Usage : Journée étendue, horaires atypiques\n- Non rechargeable\n\n**Justification de l'edge case** :\n17 heures est une durée non ronde entre un pass journée classique et un pass 24h. Cela pourrait servir pour des événements spéciaux (concerts, événements culturels) ou des horaires de travail atypiques (équipes de nuit).\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 17 heures, glissant à validation\n- CAR_4 : Zones 1 et 2\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass 17 Heures Zones 1-2\",\n  \"price_cents\": 550,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 17,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 1\",\n          \"Zone 2\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass 17 heures zones 1-2 configuré. Durée atypique entre journée et 24h. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_unusual_duration",
+      "subcategory": "odd_hours",
+      "product": "Pass 17 Heures",
+      "cars": [7, 4, 14],
+      "complexity": "medium",
+      "edge_case_type": "unusual_duration_17h"
+    }
+  },
+  {
+    "instruction": "Pass 83 heures tous modes",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass de 83 heures (environ 3.5 jours), durée atypique.\n\n**Analyse** :\n- Type : Pass multi-jours atypique\n- Durée : 83 heures (3 jours et 11 heures)\n- Modes : Tous modes TCL\n- Prix : 16.50€ (entre pass 72h et hebdomadaire)\n- Support : BSC ou AB\n- Usage : Séjour prolongé non standard\n- Non rechargeable\n\n**Justification de l'edge case** :\n83 heures est une durée très inhabituelle, ni 3 jours (72h) ni 4 jours (96h). Cela teste la flexibilité du système avec des durées non conventionnelles. Pourrait être utile pour des séjours touristiques spécifiques.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 83 heures, glissant à validation\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass 83 Heures Tous Modes\",\n  \"price_cents\": 1650,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 83,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass 83 heures (environ 3.5 jours) créé. Durée très atypique mais valide. Confirmez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_unusual_duration",
+      "subcategory": "odd_hours",
+      "product": "Pass 83 Heures",
+      "cars": [7, 14],
+      "complexity": "medium",
+      "edge_case_type": "unusual_duration_83h"
+    }
+  },
+  {
+    "instruction": "Abonnement 2 ans tous modes rechargeable",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un abonnement de 2 ans (24 mois), durée très longue et inhabituelle.\n\n**Analyse** :\n- Type : Abonnement très longue durée\n- Durée : 24 mois (2 ans)\n- Modes : Tous modes TCL\n- Prix : 1440.00€ (24×60€, tarif préférentiel longue durée)\n- Support : CSC ou AB (rechargeable requis)\n- Usage : Engagement très long terme\n- Rechargeable et prolongeable\n\n**Justification de l'edge case** :\nUn abonnement de 2 ans est extrêmement rare (TCL propose normalement max 1 an). Cela teste les limites du paramètre 7_03 avec des valeurs élevées en mois. Pourrait servir pour des contrats d'entreprise ou des offres spéciales très long terme.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 24 mois, rechargeable, prolongeable\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement 2 Ans Tous Modes\",\n  \"price_cents\": 144000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 24,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nAbonnement 2 ans créé. Durée très longue mais techniquement valide. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_unusual_duration",
+      "subcategory": "very_long_duration",
+      "product": "Abonnement 2 Ans",
+      "cars": [7, 14],
+      "complexity": "high",
+      "edge_case_type": "unusual_duration_2years"
+    }
+  },
+  {
+    "instruction": "Abonnement 3 ans zones 1-2-3",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un abonnement de 3 ans (36 mois), durée extrêmement longue.\n\n**Analyse** :\n- Type : Abonnement très longue durée\n- Durée : 36 mois (3 ans)\n- Zones : Zone 1, 2 et 3\n- Modes : Tous modes TCL\n- Prix : 2160.00€ (36×60€, tarif négocié longue durée)\n- Support : CSC ou AB\n- Usage : Engagement exceptionnel très long terme\n- Rechargeable et prolongeable\n\n**Justification de l'edge case** :\n3 ans est une durée exceptionnelle pour un abonnement transport. Cela teste les limites hautes de CAR_7 avec 36 mois. Pourrait être utilisé pour des partenariats d'entreprise ou des programmes d'expatriés.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 36 mois, rechargeable\n- CAR_4 : Zones 1, 2 et 3\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement 3 Ans Zones 1-2-3\",\n  \"price_cents\": 216000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 36,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 1\",\n          \"Zone 2\",\n          \"Zone 3\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nAbonnement 3 ans zones 1-2-3 configuré. Durée exceptionnelle mais valide. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_unusual_duration",
+      "subcategory": "very_long_duration",
+      "product": "Abonnement 3 Ans",
+      "cars": [7, 4, 14],
+      "complexity": "high",
+      "edge_case_type": "unusual_duration_3years"
+    }
+  },
+  {
+    "instruction": "Abonnement 5 ans tous modes toutes zones",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un abonnement de 5 ans (60 mois), la durée maximale envisageable.\n\n**Analyse** :\n- Type : Abonnement durée exceptionnelle maximale\n- Durée : 60 mois (5 ans)\n- Zones : Toutes zones (1 à 5)\n- Modes : Tous modes TCL\n- Prix : 3600.00€ (60×60€, tarif très préférentiel)\n- Support : CSC ou AB\n- Usage : Engagement exceptionnel ultra long terme\n- Rechargeable et prolongeable\n\n**Justification de l'edge case** :\n5 ans est une durée extrême qui teste la limite absolue du système. Bien qu'exceptionnellement rare, c'est techniquement valide avec CAR_7 (7_03: 60 en unité M). Pourrait servir pour des contrats gouvernementaux ou des programmes spéciaux très long terme.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 60 mois (5 ans), rechargeable\n- CAR_4 : Toutes zones 1-2-3-4-5\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement 5 Ans Toutes Zones\",\n  \"price_cents\": 360000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 60,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 1\",\n          \"Zone 2\",\n          \"Zone 3\",\n          \"Zone 4\",\n          \"Zone 5\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nAbonnement 5 ans toutes zones créé. Durée maximale exceptionnelle mais techniquement valide. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_unusual_duration",
+      "subcategory": "very_long_duration",
+      "product": "Abonnement 5 Ans",
+      "cars": [7, 4, 14],
+      "complexity": "high",
+      "edge_case_type": "unusual_duration_5years"
+    }
+  },
+  {
+    "instruction": "Ticket métro avec parking associé CAR_58",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un ticket métro avec parking associé (CAR_58), combinaison rare.\n\n**Analyse** :\n- Type : Ticket avec service parking\n- Durée : 4 heures (ticket + stationnement)\n- Mode : Métro uniquement\n- Parking : Stationnement P+R (Park and Ride)\n- Prix : 5.00€ (2€ ticket + 3€ parking)\n- Support : BSC ou AB\n- Usage : Intermodalité voiture + métro\n\n**Justification de l'edge case** :\nCAR_58 (Parking) est rarement utilisé dans les produits TCL. Cette combinaison ticket + parking teste l'intégration des services de stationnement avec les titres de transport. Valide pour encourager l'usage de parkings relais.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 4 heures\n- CAR_14 : Métro uniquement\n- CAR_58 : Parking associé (durée 4h)\n- CAR_22 : 1 voyage mono-usager\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Ticket Métro + Parking 4h\",\n  \"price_cents\": 500,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 4,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Métro\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 1,\n        \"22_02\": 1,\n        \"22_03\": false\n      }\n    },\n    {\n      \"number\": 58,\n      \"parameters\": {\n        \"58_01\": \"P+R\",\n        \"58_02\": 4\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nTicket métro avec parking 4h créé. Combinaison rare CAR_58. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_rare_car",
+      "subcategory": "car_58_parking",
+      "product": "Ticket Métro + Parking",
+      "cars": [7, 14, 22, 58],
+      "complexity": "high",
+      "edge_case_type": "rare_car_58_parking"
+    }
+  },
+  {
+    "instruction": "Pass zones 1-2 avec zones interdites CAR_91 zone 4",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass avec restriction de zones interdites (CAR_91), cas complexe.\n\n**Analyse** :\n- Type : Pass avec exclusion de zones\n- Durée : 24 heures\n- Zones autorisées : Zone 1 et Zone 2\n- Zones interdites : Zone 4 (CAR_91)\n- Modes : Tous modes TCL\n- Prix : 6.00€\n- Support : BSC ou AB\n- Usage : Pass avec restriction géographique stricte\n\n**Justification de l'edge case** :\nCAR_91 (Zones interdites) est rarement utilisé. Cette combinaison avec CAR_4 (zones autorisées) crée une configuration complexe : autoriser zones 1-2 ET interdire explicitement zone 4. Utile pour des restrictions contractuelles ou tarifaires spécifiques.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 24 heures\n- CAR_4 : Zones 1 et 2 autorisées\n- CAR_14 : Tous modes\n- CAR_91 : Zone 4 explicitement interdite\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass 24h Zones 1-2 (Zone 4 Interdite)\",\n  \"price_cents\": 600,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 24,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 1\",\n          \"Zone 2\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 91,\n      \"parameters\": {\n        \"91_01\": [\n          \"Zone 4\"\n        ]\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass avec zones interdites (CAR_91) configuré. Complexe mais valide. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_rare_car",
+      "subcategory": "car_91_forbidden_zones",
+      "product": "Pass Zones Interdites",
+      "cars": [7, 4, 14, 91],
+      "complexity": "high",
+      "edge_case_type": "rare_car_91_zones_interdites"
+    }
+  },
+  {
+    "instruction": "Abonnement mensuel avec débit différé CAR_97",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un abonnement avec paiement différé (CAR_97), fonctionnalité rare.\n\n**Analyse** :\n- Type : Abonnement avec paiement différé\n- Durée : 1 mois rechargeable\n- Modes : Tous modes TCL\n- Prix : 67.00€\n- Débit différé : 15 jours après activation\n- Support : CSC ou AB\n- Usage : Facilité de paiement\n\n**Justification de l'edge case** :\nCAR_97 (Débit différé) est rarement utilisé dans les produits TCL. Cette fonctionnalité permet de différer le prélèvement bancaire, utile pour des arrangements de paiement spéciaux ou des services post-payés.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois, rechargeable\n- CAR_14 : Tous modes\n- CAR_97 : Débit différé de 15 jours\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Mensuel Débit Différé\",\n  \"price_cents\": 6700,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 97,\n      \"parameters\": {\n        \"97_01\": 15\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nAbonnement avec débit différé (CAR_97) créé. Paiement 15 jours après activation. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_rare_car",
+      "subcategory": "car_97_deferred_payment",
+      "product": "Abonnement Débit Différé",
+      "cars": [7, 14, 97],
+      "complexity": "high",
+      "edge_case_type": "rare_car_97_debit_differe"
+    }
+  },
+  {
+    "instruction": "Abonnement annuel avec support commercial CAR_103",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un abonnement annuel avec support commercial dédié (CAR_103), très rare.\n\n**Analyse** :\n- Type : Abonnement premium avec service commercial\n- Durée : 12 mois\n- Modes : Tous modes TCL\n- Prix : 800.00€ (720€ + 80€ service commercial)\n- Support commercial : Assistance dédiée, gestionnaire de compte\n- Support : CSC ou AB\n- Usage : Entreprises, VIP, services premium\n\n**Justification de l'edge case** :\nCAR_103 (Support commercial) est extrêmement rare et réservé aux offres premium ou B2B. Cette caractéristique ajoute un service commercial personnalisé (hotline dédiée, gestionnaire de compte, facturation spéciale).\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 12 mois, rechargeable\n- CAR_14 : Tous modes\n- CAR_103 : Support commercial dédié (niveau premium)\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Annuel Premium Support Commercial\",\n  \"price_cents\": 80000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 12,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 103,\n      \"parameters\": {\n        \"103_01\": \"Premium\",\n        \"103_02\": true\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nAbonnement annuel avec support commercial dédié (CAR_103) créé. Service premium. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_rare_car",
+      "subcategory": "car_103_commercial_support",
+      "product": "Abonnement Support Commercial",
+      "cars": [7, 14, 103],
+      "complexity": "high",
+      "edge_case_type": "rare_car_103_support_commercial"
+    }
+  },
+  {
+    "instruction": "Pass journée parking P+R 8 heures CAR_58",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass journée avec parking longue durée (CAR_58).\n\n**Analyse** :\n- Type : Pass + Parking relais\n- Durée : 8 heures (journée de travail)\n- Mode : Tous modes TCL\n- Parking : 8 heures incluses\n- Prix : 8.50€ (6.50€ pass + 2€ parking)\n- Support : BSC ou AB\n- Usage : Intermodalité Park and Ride journée complète\n\n**Justification de l'edge case** :\nCombiner CAR_58 avec un pass journée pour une durée de parking de 8h est atypique mais très pratique pour les pendulaires. Teste l'usage avancé de CAR_58 avec durées prolongées.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 8 heures\n- CAR_14 : Tous modes TCL\n- CAR_58 : Parking 8 heures\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass 8h + Parking P+R\",\n  \"price_cents\": 850,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 8,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 58,\n      \"parameters\": {\n        \"58_01\": \"P+R\",\n        \"58_02\": 8\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass 8h avec parking P+R (CAR_58) créé. Intermodalité complète. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_rare_car",
+      "subcategory": "car_58_parking_extended",
+      "product": "Pass Parking 8h",
+      "cars": [7, 14, 58],
+      "complexity": "high",
+      "edge_case_type": "rare_car_58_parking_extended"
+    }
+  },
+  {
+    "instruction": "Pass zones 2-3-4 avec zone 1 interdite CAR_91",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass périphérique excluant le centre-ville (CAR_91), très atypique.\n\n**Analyse** :\n- Type : Pass périphérique avec exclusion centre\n- Durée : 24 heures\n- Zones autorisées : Zone 2, 3 et 4\n- Zone interdite : Zone 1 (CAR_91 - centre-ville exclu)\n- Modes : Bus urbain et Tramway\n- Prix : 5.00€ (réduit car pas zone 1)\n- Support : BSC ou AB\n- Usage : Banlieue-à-banlieue sans passage centre\n\n**Justification de l'edge case** :\nUtiliser CAR_91 pour interdire la zone 1 (centre-ville) est très inhabituel. Ce cas teste une restriction inverse : autoriser les périphéries mais interdire le centre. Pourrait servir pour des tarifs banlieue-banlieue spécifiques.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 24 heures\n- CAR_4 : Zones 2, 3 et 4 autorisées\n- CAR_14 : Bus urbain et Tramway\n- CAR_91 : Zone 1 explicitement interdite\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass 24h Périphérique (Sans Zone 1)\",\n  \"price_cents\": 500,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 24,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 2\",\n          \"Zone 3\",\n          \"Zone 4\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Tramway\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 91,\n      \"parameters\": {\n        \"91_01\": [\n          \"Zone 1\"\n        ]\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass périphérique avec zone 1 interdite (CAR_91) créé. Configuration atypique. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_rare_car",
+      "subcategory": "car_91_forbidden_zone1",
+      "product": "Pass Périphérique Zone 1 Interdite",
+      "cars": [7, 4, 14, 91],
+      "complexity": "high",
+      "edge_case_type": "rare_car_91_exclude_zone1"
+    }
+  },
+  {
+    "instruction": "Carnet 5 voyages débit différé 30 jours CAR_97",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un carnet avec paiement différé à 30 jours (CAR_97), rare pour un carnet.\n\n**Analyse** :\n- Type : Carnet avec débit post-payé\n- Nombre : 5 voyages\n- Durée validité carnet : 2 mois\n- Modes : Bus urbain, Métro, Tramway\n- Prix : 8.50€ (débit 30 jours après achat)\n- Support : CSC ou AB\n- Usage : Facilité de paiement pour carnet\n\n**Justification de l'edge case** :\nAppliquer CAR_97 (débit différé) à un carnet de tickets est très inhabituel. Normalement utilisé pour abonnements. Ce cas teste la flexibilité du paiement différé sur des produits à usage limité.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 2 mois pour le carnet\n- CAR_14 : Bus, Métro, Tramway\n- CAR_22 : 5 voyages mono-usager\n- CAR_97 : Débit différé 30 jours\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet 5 Voyages Débit Différé 30j\",\n  \"price_cents\": 850,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 2,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 5,\n        \"22_02\": 5,\n        \"22_03\": false\n      }\n    },\n    {\n      \"number\": 97,\n      \"parameters\": {\n        \"97_01\": 30\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nCarnet 5 voyages avec débit différé 30 jours (CAR_97) créé. Rare pour un carnet. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_rare_car",
+      "subcategory": "car_97_deferred_carnet",
+      "product": "Carnet Débit Différé",
+      "cars": [7, 14, 22, 97],
+      "complexity": "high",
+      "edge_case_type": "rare_car_97_carnet_differe"
+    }
+  },
+  {
+    "instruction": "Pass hebdomadaire support commercial premium CAR_103",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass hebdomadaire avec service commercial premium (CAR_103).\n\n**Analyse** :\n- Type : Pass temporel avec service premium\n- Durée : 7 jours (1 semaine)\n- Modes : Tous modes TCL\n- Prix : 25.00€ (18€ pass + 7€ service commercial)\n- Support commercial : Assistance téléphonique dédiée\n- Support : BSC ou AB\n- Usage : Pass premium pour visiteurs VIP ou événements\n\n**Justification de l'edge case** :\nCAR_103 sur un pass hebdomadaire est extrêmement rare. Normalement réservé aux abonnements annuels. Ce cas teste l'application du support commercial sur des produits courts, utile pour VIP ou événements spéciaux.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 7 jours (168h)\n- CAR_14 : Tous modes TCL\n- CAR_103 : Support commercial premium\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Hebdomadaire Premium Support Commercial\",\n  \"price_cents\": 2500,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 168,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 103,\n      \"parameters\": {\n        \"103_01\": \"Premium\",\n        \"103_02\": true\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass hebdomadaire avec support commercial premium (CAR_103) créé. Très rare. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_rare_car",
+      "subcategory": "car_103_weekly_pass",
+      "product": "Pass Hebdo Support Commercial",
+      "cars": [7, 14, 103],
+      "complexity": "high",
+      "edge_case_type": "rare_car_103_weekly_premium"
+    }
+  },
+  {
+    "instruction": "Ticket 50 centimes métro durée minimale",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un ticket au prix minimum de 50 centimes, cas limite tarifaire.\n\n**Analyse** :\n- Type : Ticket prix minimum\n- Durée : 30 minutes (durée courte pour prix réduit)\n- Mode : Métro uniquement\n- Prix : 0.50€ (50 centimes - prix plancher)\n- Support : BSC ou AB\n- Usage : Tarif social, test tarifaire, offre promotionnelle\n- Non rechargeable\n\n**Justification de l'edge case** :\n50 centimes est un prix minimum extrême qui teste la limite basse du système tarifaire. Bien que très rare, pourrait être utilisé pour des tarifs sociaux très réduits, des promotions, ou des tests système.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 30 minutes\n- CAR_14 : Métro uniquement\n- CAR_22 : 1 voyage\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Ticket Métro 50 Centimes\",\n  \"price_cents\": 50,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 0.5,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Métro\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 1,\n        \"22_02\": 1,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nTicket 50 centimes créé. Prix minimum extrême mais valide. Confirmez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_boundary",
+      "subcategory": "minimum_price",
+      "product": "Ticket 50 Centimes",
+      "cars": [7, 14, 22],
+      "complexity": "medium",
+      "edge_case_type": "boundary_minimum_price_50cents"
+    }
+  },
+  {
+    "instruction": "Pass 1 heure bus 1 euro exactement",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass 1h au prix plancher de 1 euro exactement.\n\n**Analyse** :\n- Type : Pass courte durée prix minimal\n- Durée : 1 heure\n- Mode : Bus urbain uniquement\n- Prix : 1.00€ (prix minimum arrondi)\n- Support : BSC ou AB\n- Usage : Tarif social, promotion, accessibilité tarifaire\n- Non rechargeable\n\n**Justification de l'edge case** :\n1 euro est un prix psychologique minimal qui teste la limite basse tout en restant pratique (pas de centimes). Utile pour des offres d'accessibilité ou tarifs sociaux simplifiés.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 heure\n- CAR_14 : Bus urbain uniquement\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass 1h Bus 1 Euro\",\n  \"price_cents\": 100,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 1,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass 1h bus à 1 euro créé. Prix minimum simple. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_boundary",
+      "subcategory": "minimum_price",
+      "product": "Pass 1 Euro",
+      "cars": [7, 14],
+      "complexity": "low",
+      "edge_case_type": "boundary_minimum_price_1euro"
+    }
+  },
+  {
+    "instruction": "Abonnement annuel premium 500 euros tous modes toutes zones",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un abonnement annuel premium à 500€, prix élevé.\n\n**Analyse** :\n- Type : Abonnement annuel tarif élevé\n- Durée : 12 mois\n- Zones : Toutes zones (1-2-3-4-5)\n- Modes : Tous modes TCL\n- Prix : 500.00€ (tarif élevé mais pas maximum)\n- Support : CSC ou AB\n- Usage : Tarif plein sans réduction, toutes zones\n- Rechargeable\n\n**Justification de l'edge case** :\n500€ est un prix élevé qui teste les limites supérieures du système sans être extrême. Reflète un abonnement annuel toutes zones sans réduction, proche des tarifs réels pour couverture maximale.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 12 mois, rechargeable\n- CAR_4 : Toutes zones 1-2-3-4-5\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Annuel Premium Toutes Zones\",\n  \"price_cents\": 50000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 12,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 1\",\n          \"Zone 2\",\n          \"Zone 3\",\n          \"Zone 4\",\n          \"Zone 5\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nAbonnement annuel 500€ toutes zones créé. Prix élevé mais valide. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_boundary",
+      "subcategory": "high_price",
+      "product": "Abonnement 500 Euros",
+      "cars": [7, 4, 14],
+      "complexity": "medium",
+      "edge_case_type": "boundary_high_price_500euros"
+    }
+  },
+  {
+    "instruction": "Abonnement 2 ans premium 1000 euros support commercial",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un abonnement 2 ans à 1000€, prix maximum avec services premium.\n\n**Analyse** :\n- Type : Abonnement très longue durée prix maximum\n- Durée : 24 mois (2 ans)\n- Zones : Toutes zones (1-2-3-4-5)\n- Modes : Tous modes TCL\n- Prix : 1000.00€ (prix très élevé avec services)\n- Support commercial : Premium inclus (CAR_103)\n- Support : CSC ou AB\n- Usage : Offre corporate VIP, services maximaux\n- Rechargeable\n\n**Justification de l'edge case** :\n1000€ teste la limite haute du système tarifaire. Ce prix élevé se justifie par : durée longue (2 ans), couverture totale (toutes zones), et support commercial premium (CAR_103). Destiné aux contrats d'entreprise ou VIP.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 24 mois, rechargeable\n- CAR_4 : Toutes zones\n- CAR_14 : Tous modes\n- CAR_103 : Support commercial premium\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement 2 Ans Premium 1000€\",\n  \"price_cents\": 100000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 24,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 1\",\n          \"Zone 2\",\n          \"Zone 3\",\n          \"Zone 4\",\n          \"Zone 5\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 103,\n      \"parameters\": {\n        \"103_01\": \"Premium\",\n        \"103_02\": true\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nAbonnement 2 ans 1000€ avec support commercial créé. Prix maximum, services premium. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_boundary",
+      "subcategory": "maximum_price",
+      "product": "Abonnement 1000 Euros Premium",
+      "cars": [7, 4, 14, 103],
+      "complexity": "high",
+      "edge_case_type": "boundary_maximum_price_1000euros"
+    }
+  },
+  {
+    "instruction": "Pass zone 5 uniquement sans autres zones",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un pass zone 5 exclusivement, sans zones 1-2-3-4, cas très atypique.\n\n**Analyse** :\n- Type : Pass zone périphérique unique\n- Durée : 24 heures\n- Zone : Zone 5 UNIQUEMENT (pas zones intérieures)\n- Modes : Bus urbain et Tramway\n- Prix : 3.50€ (réduit car zone unique périphérique)\n- Support : BSC ou AB\n- Usage : Déplacements exclusifs en grande périphérie\n- Non rechargeable\n\n**Justification de l'edge case** :\nZone 5 seule est extrêmement rare. Normalement les usagers ont zone 1 + zones périphériques. Ce cas teste une configuration inverse : accès périphérie uniquement, sans pouvoir traverser le centre. Utile pour des trajets banlieue-à-banlieue en grande couronne.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 24 heures\n- CAR_4 : Zone 5 uniquement\n- CAR_14 : Bus urbain et Tramway\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass 24h Zone 5 Uniquement\",\n  \"price_cents\": 350,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 24,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 5\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Tramway\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nPass zone 5 uniquement créé. Configuration très atypique. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_boundary",
+      "subcategory": "single_outer_zone",
+      "product": "Pass Zone 5 Uniquement",
+      "cars": [7, 4, 14],
+      "complexity": "high",
+      "edge_case_type": "boundary_zone5_only"
+    }
+  },
+  {
+    "instruction": "Abonnement mensuel funiculaire uniquement mode unique",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un abonnement funiculaire exclusivement, mode unique très restrictif.\n\n**Analyse** :\n- Type : Abonnement mono-mode extrême\n- Durée : 1 mois rechargeable\n- Mode : Funiculaire UNIQUEMENT (pas bus, métro, tramway)\n- Zone : Zone 1 (funiculaire Fourvière)\n- Prix : 25.00€ (réduit car 1 seul mode)\n- Support : CSC ou AB\n- Usage : Usagers exclusifs funiculaire (résidents Fourvière)\n- Rechargeable\n\n**Justification de l'edge case** :\nFuniculaire seul est extrêmement restrictif et rare. La plupart des abonnements incluent tous modes. Ce cas teste la limite de restriction modale : 1 seul mode, le moins utilisé. Pourrait servir pour des résidents de Fourvière n'utilisant que le funiculaire.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois, rechargeable\n- CAR_14 : Funiculaire UNIQUEMENT\n- CAR_4 : Zone 1\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Mensuel Funiculaire Uniquement\",\n  \"price_cents\": 2500,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 1\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nAbonnement funiculaire uniquement créé. Restriction modale extrême. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_boundary",
+      "subcategory": "single_mode_restrictive",
+      "product": "Abonnement Funiculaire Seul",
+      "cars": [7, 14, 4],
+      "complexity": "high",
+      "edge_case_type": "boundary_single_mode_funiculaire"
+    }
+  },
+  {
+    "instruction": "Carnet 999 voyages très grand nombre",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un carnet de 999 voyages, nombre maximum extrême.\n\n**Analyse** :\n- Type : Carnet très grand volume\n- Nombre : 999 voyages (limite haute)\n- Durée validité : 12 mois (1 an pour utiliser)\n- Modes : Tous modes TCL\n- Prix : 1500.00€ (environ 1.50€/voyage, tarif très dégressif)\n- Support : CSC ou AB (BSC impossible pour 999 voyages)\n- Usage : Entreprises, collectivités, très gros volumes\n- Mono-usager\n\n**Justification de l'edge case** :\n999 voyages teste la limite maximale du paramètre CAR_22 (22_01). Bien qu'extrême, c'est techniquement valide pour des besoins d'entreprise ou de collectivité. Pourrait servir pour des achats groupés massifs.\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 12 mois pour le carnet\n- CAR_14 : Tous modes TCL\n- CAR_22 : 999 voyages maximum\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet 999 Voyages Tous Modes\",\n  \"price_cents\": 150000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 12,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 999,\n        \"22_02\": 999,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nCarnet 999 voyages créé. Nombre maximum extrême mais valide. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "edge_case_boundary",
+      "subcategory": "maximum_trips",
+      "product": "Carnet 999 Voyages",
+      "cars": [7, 14, 22],
+      "complexity": "high",
+      "edge_case_type": "boundary_maximum_trips_999"
+    }
+  }
+]

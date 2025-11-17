@@ -1,0 +1,302 @@
+[
+  {
+    "instruction": "Qu'est-ce que le CAR_2 (Tarif variable) dans le système billettique TCL ?",
+    "response": "📚 **Définition** :\nLe CAR_2 est la Caractéristique d'Application de Règles qui définit si un produit dispose d'un **tarif variable** selon des critères spécifiques (zones, distance, heures, profil...).\n\n🎯 **Fonction** :\nPermet d'appliquer une tarification dynamique adaptée au contexte du déplacement plutôt qu'un prix fixe unique.\n\n⚙️ **Paramètres** :\n- **0** : Tarif fixe (prix unique)\n- **1** : Tarif variable (prix dépend de critères)\n\n💡 **Exemple concret** :\n- **Ticket 1h** : CAR_2 = 0 (tarif fixe 2,00€ quel que soit le trajet)\n- **Ticket Périurbain SNCF** : CAR_2 = 1 (tarif varie selon le nombre de zones traversées)\n\n⚠️ **Incompatibilités** :\nLe CAR_2 = 1 nécessite obligatoirement CAR_3 (prix du produit) pour définir la grille tarifaire.\n\n📝 **Notes** :\n- La tarification variable est essentielle pour les produits zonaux\n- TCL utilise principalement des tarifs fixes pour la simplicité d'usage\n- Les tarifs variables sont plus courants sur les lignes périurbaines",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 2,
+      "explanation_type": "definition"
+    }
+  },
+  {
+    "instruction": "Donne-moi un exemple d'utilisation du CAR_2 sur un produit TCL réel",
+    "response": "📚 **Contexte** :\nLe CAR_2 (Tarif variable) s'applique différemment selon le type de produit TCL.\n\n🎯 **Exemple 1 : Ticket Unitaire 1h** :\n- **CAR_2 = 0** (tarif fixe)\n- Prix : 2,00€ pour tous les trajets\n- Aucune variation selon distance ou zones\n- Simplicité maximale pour l'usager\n\n🎯 **Exemple 2 : Ticket Périurbain** :\n- **CAR_2 = 1** (tarif variable)\n- Prix dépend du nombre de zones traversées :\n  - 2 zones : 3,50€\n  - 3 zones : 5,00€\n  - 4 zones : 6,50€\n- Calcul automatique à la validation\n\n⚙️ **Configuration technique** :\n```\nTicket 1h :\nCAR_2 = 0\nCAR_3 = 200 (2,00€ en centimes)\n\nTicket Périurbain :\nCAR_2 = 1\nCAR_3 = table de prix zonale\n```\n\n💡 **Impact utilisateur** :\n- Tarif fixe : prévisibilité, simplicité\n- Tarif variable : équité tarifaire selon distance réelle",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 2,
+      "explanation_type": "usage_example"
+    }
+  },
+  {
+    "instruction": "Explique-moi le CAR_3 (Prix du produit) et son rôle dans la billettique",
+    "response": "📚 **Définition** :\nLe CAR_3 stocke le **prix du produit de transport** en centimes d'euro. C'est la CAR fondamentale pour toute transaction billettique.\n\n🎯 **Fonction** :\nDéfinit le montant exact à payer lors de l'achat du titre de transport, permettant la gestion financière et comptable.\n\n⚙️ **Paramètres** :\n- **Format** : Entier représentant le prix en centimes\n- **Exemples** :\n  - 200 = 2,00€\n  - 6700 = 67,00€\n  - 3250 = 32,50€\n\n💡 **Exemple concret** :\n- **Ticket 1h** : CAR_3 = 200 (2,00€)\n- **Ticket 10 voyages** : CAR_3 = 1790 (17,90€)\n- **Abonnement mensuel TCL** : CAR_3 = 6700 (67,00€)\n- **Técély 24h** : CAR_3 = 630 (6,30€)\n\n⚠️ **Incompatibilités** :\n- Incompatible avec CAR_8 = 1 (post-paiement) où le prix est calculé après usage\n- Pour tarif variable (CAR_2 = 1), contient la table de prix plutôt qu'une valeur unique\n\n📝 **Notes** :\n- Toujours stocké en centimes pour éviter les erreurs d'arrondi\n- Peut être modifié lors des évolutions tarifaires annuelles\n- Essentiel pour le contrôle et la comptabilité",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 3,
+      "explanation_type": "definition"
+    }
+  },
+  {
+    "instruction": "Comment le CAR_3 est-il utilisé pour différents produits TCL ?",
+    "response": "📚 **Utilisation pratique du CAR_3** :\nLe CAR_3 (Prix du produit) varie selon la gamme de produits TCL.\n\n🎯 **Produits unitaires** :\n- **Ticket 1h** : CAR_3 = 200 (2,00€)\n- **Ticket 2h** : CAR_3 = 350 (3,50€)\n- **Técély 24h** : CAR_3 = 630 (6,30€)\n- **Liberté soirée** : CAR_3 = 320 (3,20€)\n\n🎯 **Produits multi-voyages** :\n- **Ticket 10 voyages** : CAR_3 = 1790 (17,90€)\n  - Soit 1,79€ par voyage\n  - Économie de 10,5% vs ticket unitaire\n\n🎯 **Abonnements** :\n- **Abonnement mensuel** : CAR_3 = 6700 (67,00€)\n- **Abonnement annuel** : CAR_3 = 60000 (600,00€)\n  - Soit 50€/mois en moyenne\n  - Économie de 25% vs mensuel\n\n⚙️ **Cas spéciaux** :\n- **Tarif réduit (-26 ans)** : CAR_3 = 3350 (33,50€/mois)\n- **Gratuité seniors** : CAR_3 = 0\n\n💡 **Évolutions tarifaires** :\nLe CAR_3 est mis à jour chaque année (généralement en septembre) selon les décisions du SYTRAL.\n\n📝 **Notes** :\n- Le prix affiché = CAR_3 / 100\n- Permet de gérer facilement les centimes d'euro",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 3,
+      "explanation_type": "usage_example"
+    }
+  },
+  {
+    "instruction": "Qu'est-ce que le CAR_4 (Durée de validité) dans le système TCL ?",
+    "response": "📚 **Définition** :\nLe CAR_4 définit la **durée de validité** d'un titre de transport, c'est-à-dire le temps pendant lequel le titre reste actif après sa première validation.\n\n🎯 **Fonction** :\nDétermine combien de temps l'usager peut utiliser son titre pour effectuer des correspondances ou des trajets multiples.\n\n⚙️ **Paramètres** :\n- **Format** : Durée en minutes\n- **Exemples** :\n  - 60 = 1 heure\n  - 120 = 2 heures\n  - 1440 = 24 heures\n  - 43200 = 30 jours (30 × 24 × 60)\n\n💡 **Exemple concret** :\n- **Ticket 1h** : CAR_4 = 60 minutes\n  - Validité : 1h après première validation\n  - Correspondances illimitées pendant 1h\n\n- **Ticket 2h** : CAR_4 = 120 minutes\n  - Validité : 2h après première validation\n\n- **Técély 24h** : CAR_4 = 1440 minutes\n  - Validité : jusqu'à 24h après activation\n\n- **Abonnement mensuel** : CAR_4 = 43200 minutes (30 jours)\n  - Validité : du 1er au dernier jour du mois\n\n⚠️ **Incompatibilités** :\n- Incompatible avec CAR_6 = 1 (validation par déplacement) où la durée est liée au trajet\n- Les abonnements utilisent souvent CAR_11 (périodes de validité) plutôt que CAR_4\n\n📝 **Notes** :\n- Le compteur démarre à la première validation\n- Essentiel pour le contrôle de fraude\n- Affiché sur les valideurs et l'application TCL",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 4,
+      "explanation_type": "definition"
+    }
+  },
+  {
+    "instruction": "Montre-moi des exemples d'utilisation du CAR_4 sur des produits TCL variés",
+    "response": "📚 **Scénarios réels d'utilisation du CAR_4** :\n\n🎯 **Scénario 1 : Ticket 1h (CAR_4 = 60)** :\n- Validation à 14h30\n- Validité jusqu'à 15h30\n- Correspondances illimitées : bus → métro → tram\n- Après 15h30 : titre expiré\n\n🎯 **Scénario 2 : Técély 24h (CAR_4 = 1440)** :\n- Activation à 09h00 le lundi\n- Validité jusqu'à 09h00 le mardi\n- Trajets illimités pendant 24h\n- Idéal pour touristes ou journée shopping\n\n🎯 **Scénario 3 : Liberté Soirée (CAR_4 = 300)** :\n- Validation à 19h00\n- Validité jusqu'à 00h00 (fin de service)\n- CAR_4 = 300 minutes (5h)\n- Mais validité limitée par fin de service\n\n⚙️ **Configuration produits TCL** :\n```\nTicket 1h :\nCAR_4 = 60\nCAR_7 = illimité (correspondances)\n\nTicket 2h :\nCAR_4 = 120\nCAR_7 = illimité\n\nTécély 24h :\nCAR_4 = 1440\nCAR_7 = illimité\n```\n\n💡 **Contrôle technique** :\n- Valideurs affichent temps restant\n- Calcul : heure_validation + CAR_4\n- Contrôleurs vérifient via terminaux\n\n📝 **Notes utilisateur** :\n- \"1h\" ne signifie pas 1h d'horloge mais 60 minutes exactes\n- Le compteur ne se met pas en pause\n- Conservez votre ticket jusqu'à la fin de validité",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 4,
+      "explanation_type": "usage_example"
+    }
+  },
+  {
+    "instruction": "C'est quoi le CAR_6 (Validation par déplacement) dans la billettique TCL ?",
+    "response": "📚 **Définition** :\nLe CAR_6 indique si un produit nécessite une **validation à chaque déplacement** (trajet) ou si une seule validation initiale suffit pour toute la période.\n\n🎯 **Fonction** :\nDétermine le comportement de validation attendu de l'usager pour chaque trajet effectué.\n\n⚙️ **Paramètres** :\n- **0** : Validation unique (suffit pour toute la durée)\n- **1** : Validation à chaque déplacement (obligatoire pour chaque trajet)\n\n💡 **Exemple concret** :\n- **Ticket 1h** : CAR_6 = 0\n  - Validation unique à la montée\n  - Correspondances sans re-validation pendant 1h\n  - Une seule trace dans le système\n\n- **Ticket 10 voyages** : CAR_6 = 1\n  - Validation obligatoire à chaque trajet\n  - Décompte d'un voyage à chaque validation\n  - 10 traces de validation distinctes\n\n- **Abonnement mensuel** : CAR_6 = 0\n  - Pas de validation obligatoire (mais recommandée)\n  - Contrôle par lecture de carte\n\n⚠️ **Incompatibilités** :\n- CAR_6 = 1 est incompatible avec CAR_7 illimité si validations comptées\n- Nécessite généralement CAR_7 ou CAR_22 pour compter les passages\n\n📝 **Notes** :\n- Impact sur le comportement utilisateur\n- Essentiel pour le décompte des voyages\n- Validation = trace dans le système billettique\n- Sur TCL, même les abonnements doivent être présentés au contrôle",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 6,
+      "explanation_type": "definition"
+    }
+  },
+  {
+    "instruction": "Donne des exemples pratiques de CAR_6 sur différents produits TCL",
+    "response": "📚 **Utilisation du CAR_6 selon les produits** :\n\n🎯 **Produits avec CAR_6 = 0 (validation unique)** :\n\n**Ticket 1h** :\n- Validation à la montée dans le bus\n- Pas de re-validation pour le métro ensuite\n- Correspondances libres pendant 60 minutes\n- Système vérifie l'heure de première validation\n\n**Técély 24h** :\n- Activation au premier usage\n- Ensuite valide 24h sans re-validation\n- Peut être contrôlé à tout moment\n\n🎯 **Produits avec CAR_6 = 1 (validation par trajet)** :\n\n**Ticket 10 voyages** :\n- **DOIT valider à chaque nouveau trajet**\n- Compteur : 10 → 9 → 8... → 0\n- Chaque validation = -1 voyage\n- Correspondances dans l'heure sans re-validation\n- Exemple parcours :\n  - 08h00 : Bus (validation → 9 restants)\n  - 08h15 : Métro (correspondance, pas de décompte)\n  - 14h00 : Tram (validation → 8 restants)\n\n⚙️ **Configuration technique** :\n```\nTicket 1h :\nCAR_6 = 0 (validation unique)\nCAR_4 = 60 (1 heure de validité)\nCAR_7 = illimité\n\nTicket 10 voyages :\nCAR_6 = 1 (validation par déplacement)\nCAR_7 = 10 (nombre de passages)\nCAR_4 = 60 (1h par voyage)\n```\n\n💡 **Conseil usagers** :\n- CAR_6 = 0 : validez une fois, correspondez librement\n- CAR_6 = 1 : pensez à valider chaque nouveau trajet\n\n📝 **Erreur fréquente** :\nOublier de valider avec ticket 10 voyages = fraude involontaire",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 6,
+      "explanation_type": "usage_example"
+    }
+  },
+  {
+    "instruction": "Explique le CAR_7 (Nombre de passages) dans le système billettique",
+    "response": "📚 **Définition** :\nLe CAR_7 définit le **nombre maximum de passages (validations)** autorisés pour un titre de transport avant épuisement.\n\n🎯 **Fonction** :\nComptabilise et limite le nombre de trajets ou validations possibles avec un titre donné.\n\n⚙️ **Paramètres** :\n- **0 ou illimité** : Passages illimités (pas de compteur)\n- **N > 0** : Nombre exact de passages autorisés\n- **Exemples** :\n  - 1 = ticket unitaire\n  - 10 = carnet de 10 voyages\n  - illimité = abonnement\n\n💡 **Exemple concret** :\n\n**Ticket 1h** :\n- CAR_7 = illimité\n- Correspondances illimitées pendant 1h\n- Limitation par temps (CAR_4), pas par nombre\n\n**Ticket 10 voyages** :\n- CAR_7 = 10\n- Décompte à chaque validation\n- 10 → 9 → 8 → ... → 1 → 0 (épuisé)\n- Chaque trajet + correspondances = 1 passage\n\n**Abonnement mensuel** :\n- CAR_7 = illimité\n- Aucune limite de trajets\n- Validité limitée par période (CAR_11)\n\n⚠️ **Incompatibilités** :\n- CAR_7 limité incompatible avec CAR_8 = 1 (post-paiement)\n- Nécessite CAR_6 = 1 si comptage par déplacement\n- Peut être combiné avec CAR_10 (limitation journalière)\n\n📝 **Notes** :\n- Décompte en temps réel sur la puce NFC\n- Affichage sur valideurs TCL\n- \"Passages\" ≠ \"Trajets\" (correspondances comptent comme 1 passage)",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 7,
+      "explanation_type": "definition"
+    }
+  },
+  {
+    "instruction": "Comment fonctionne le CAR_7 sur un carnet de 10 voyages TCL ?",
+    "response": "📚 **Fonctionnement détaillé du CAR_7 sur Ticket 10 voyages** :\n\n🎯 **Configuration initiale** :\n```\nTicket 10 voyages :\nCAR_7 = 10 (passages)\nCAR_6 = 1 (validation par déplacement)\nCAR_4 = 60 (1h par voyage)\nCAR_3 = 1790 (17,90€)\n```\n\n⚙️ **Scénario d'utilisation complète** :\n\n**Lundi 08h00 - Trajet travail** :\n- Validation bus → CAR_7 passe à 9\n- Correspondance métro 08h15 → CAR_7 reste à 9 (dans l'heure)\n- Validité jusqu'à 09h00\n\n**Lundi 18h00 - Retour maison** :\n- Validation tram → CAR_7 passe à 8\n- Nouveau trajet (hors délai 1h)\n\n**Mardi 08h00** :\n- Validation bus → CAR_7 passe à 7\n\n**[...poursuite des trajets...]**\n\n**Vendredi 18h00 - Dernier voyage** :\n- CAR_7 = 1 (dernier passage)\n- Validation → CAR_7 passe à 0\n- **Ticket épuisé** : message \"Titre invalide\"\n\n💡 **Règles de décompte** :\n- **1 validation = -1 passage** sauf correspondances\n- **Correspondance** = validation dans l'heure (CAR_4 = 60)\n- **Nouveau trajet** = validation après l'heure écoulée\n\n📊 **Avantage économique** :\n- 10 voyages = 17,90€ → 1,79€/voyage\n- Ticket 1h = 2,00€\n- **Économie : 10,5%**\n\n⚠️ **Attention** :\n- Vérifiez le compteur avant trajet\n- Pas de remboursement si oubli de validation\n- Partageable (non nominatif) sauf si CAR_23 = 1\n\n📝 **Affichage valideur** :\n\"Validé - 7 voyages restants - Valide jusqu'à 09h00\"",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 7,
+      "explanation_type": "usage_example"
+    }
+  },
+  {
+    "instruction": "Qu'est-ce que le CAR_8 (Post-paiement) dans la billettique ?",
+    "response": "📚 **Définition** :\nLe CAR_8 indique si le produit fonctionne en **post-paiement**, c'est-à-dire que l'usager paye après utilisation selon sa consommation réelle, plutôt qu'en pré-paiement.\n\n🎯 **Fonction** :\nPermet un modèle tarifaire où le prix final est calculé en fonction de l'usage effectif (nombre de trajets, zones traversées, durée...).\n\n⚙️ **Paramètres** :\n- **0** : Pré-paiement (paiement avant usage) - mode classique\n- **1** : Post-paiement (paiement après usage) - mode décompte\n\n💡 **Exemple concret** :\n\n**TCL classique (CAR_8 = 0)** :\n- Achat ticket 2,00€ AVANT de monter\n- Validation à la montée\n- Montant déjà payé\n\n**Système post-paiement (CAR_8 = 1)** :\n- Validation à la montée (enregistrement)\n- Validation à la descente (calcul)\n- Facturation mensuelle selon usage\n- Exemple : systèmes \"pay-as-you-go\" type Oyster (Londres)\n\n⚠️ **Incompatibilités** :\n- **Incompatible avec CAR_3 fixe** : le prix est variable selon usage\n- **Incompatible avec CAR_7 limité** : pas de quota pré-défini\n- Nécessite CAR_2 = 1 (tarif variable)\n- Incompatible avec tickets pré-payés classiques\n\n📝 **Notes** :\n- **TCL n'utilise pas actuellement CAR_8 = 1**\n- Système couramment utilisé :\n  - Londres (Oyster Card)\n  - Pays-Bas (OV-chipkaart)\n  - Certains systèmes régionaux français\n- Nécessite infrastructure de paiement différé\n- Validation entrée/sortie obligatoire",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 8,
+      "explanation_type": "definition"
+    }
+  },
+  {
+    "instruction": "Peux-tu expliquer comment fonctionnerait le CAR_8 si TCL l'utilisait ?",
+    "response": "📚 **Scénario hypothétique : Post-paiement sur TCL** :\n\n🎯 **Fonctionnement théorique avec CAR_8 = 1** :\n\n**Configuration produit \"TCL Post-Payé\"** :\n```\nCAR_8 = 1 (post-paiement)\nCAR_2 = 1 (tarif variable)\nCAR_6 = 1 (validation par déplacement)\nCAR_21 = 2 (validation entrée + sortie)\nCAR_3 = table tarifaire dynamique\n```\n\n⚙️ **Parcours utilisateur** :\n\n**Jour 1 - Lundi** :\n- 08h00 : Validation entrée bus Vaise\n- 08h30 : Validation sortie métro Bellecour\n- Système calcule : 1 trajet zone 1 → 0€ (compteur)\n\n- 18h00 : Validation entrée métro Bellecour\n- 18h25 : Validation sortie tram Montrochet\n- Compteur : 2 trajets zone 1\n\n**Jour 2-5 - Mardi à Vendredi** :\n- 8 trajets supplémentaires\n- Total semaine : 10 trajets\n\n**Fin de mois** :\n- Calcul automatique : 40 trajets effectués\n- Tarif optimisé :\n  - Si < 40 trajets : 1,50€/trajet = 60€\n  - Si ≥ 40 trajets : forfait mensuel = 67€\n- **Prélèvement automatique : 60€**\n\n💡 **Avantages hypothétiques** :\n- Paiement exact selon usage réel\n- Pas besoin d'acheter titre à l'avance\n- Optimisation automatique (meilleur tarif)\n- Flexibilité totale\n\n⚠️ **Inconvénients** :\n- Nécessite validation sortie (contraignant)\n- Infrastructure coûteuse (valideurs sortie)\n- Gestion paiement différé complexe\n- Risque d'impayés\n\n📝 **Pourquoi TCL ne l'utilise pas** :\n- Réseau ouvert (pas de portillons)\n- Habitudes pré-paiement ancrées\n- Coût infrastructure élevé\n- Système actuel simple et efficace",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 8,
+      "explanation_type": "usage_example"
+    }
+  },
+  {
+    "instruction": "C'est quoi le CAR_9 (Profil du voyageur) dans le système TCL ?",
+    "response": "📚 **Définition** :\nLe CAR_9 définit le **profil tarifaire du voyageur** pour lequel le titre de transport est valide. Il permet de gérer les tarifications différenciées selon l'âge, le statut ou la situation sociale.\n\n🎯 **Fonction** :\nIdentifie la catégorie d'usager autorisée à utiliser le titre, permettant ainsi l'application de tarifs sociaux, réduits ou spécifiques.\n\n⚙️ **Paramètres** :\n- **0** : Tout public (plein tarif)\n- **1** : Tarif réduit -26 ans\n- **2** : Tarif réduit -18 ans\n- **3** : Seniors (65+ ans)\n- **4** : Demandeurs d'emploi\n- **5** : Bénéficiaires RSA/CMU\n- **6** : Personnes handicapées\n- **7** : Étudiants\n- *[autres codes selon grille SYTRAL]*\n\n💡 **Exemple concret** :\n\n**Abonnement mensuel TCL** :\n- **Plein tarif** : CAR_9 = 0 → 67,00€/mois\n- **-26 ans** : CAR_9 = 1 → 33,50€/mois (50% réduction)\n- **Seniors 65+** : CAR_9 = 3 → Gratuit (0€)\n- **Demandeurs d'emploi** : CAR_9 = 4 → 33,50€/mois\n\n**Ticket unitaire 1h** :\n- CAR_9 = 0 (tout public) → 2,00€\n- Pas de variation de prix (même tarif tous profils)\n\n⚠️ **Incompatibilités** :\n- CAR_9 ≠ 0 nécessite généralement CAR_23 = 1 (titre personnalisé)\n- Nécessite vérification d'identité et justificatifs\n- Contrôle lors de l'achat et en voyage\n\n📝 **Notes** :\n- Justificatifs obligatoires (carte d'identité, attestation...)\n- Contrôle strict en cas de fraude (amende)\n- Profil enregistré sur carte TCL personnalisée",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 9,
+      "explanation_type": "definition"
+    }
+  },
+  {
+    "instruction": "Montre-moi des exemples d'utilisation du CAR_9 sur les abonnements TCL",
+    "response": "📚 **Utilisation du CAR_9 pour les abonnements TCL** :\n\n🎯 **Scénario 1 : Étudiant de 22 ans** :\n\n**Demande d'abonnement** :\n- Profil : CAR_9 = 1 (tarif -26 ans)\n- Justificatif : carte d'identité (né en 2003)\n- Abonnement mensuel : 33,50€ au lieu de 67,00€\n- Carte personnalisée obligatoire (CAR_23 = 1)\n- Configuration :\n```\nCAR_9 = 1 (-26 ans)\nCAR_3 = 3350 (33,50€)\nCAR_23 = 1 (personnalisé)\nCAR_11 = mensuel\n```\n\n🎯 **Scénario 2 : Senior de 68 ans** :\n\n**Demande Técély Senior** :\n- Profil : CAR_9 = 3 (senior 65+)\n- Justificatif : carte d'identité\n- Abonnement : **GRATUIT** (CAR_3 = 0)\n- Conditions : résidence Lyon Métropole\n- Configuration :\n```\nCAR_9 = 3 (senior)\nCAR_3 = 0 (gratuit)\nCAR_23 = 1 (nominatif + photo)\nCAR_11 = mensuel ou annuel\n```\n\n🎯 **Scénario 3 : Demandeur d'emploi** :\n\n**Abonnement solidaire** :\n- Profil : CAR_9 = 4\n- Justificatifs : attestation Pôle Emploi (<3 mois)\n- Prix : 33,50€/mois\n- Renouvellement : vérification trimestrielle\n\n⚙️ **Contrôle en voyage** :\n- Contrôleur lit la carte\n- Vérifie CAR_9 correspond à l'âge/statut\n- Demande justificatif si doute\n- **Fraude profil** : amende 60€ + régularisation\n\n📊 **Grille tarifaire complète** :\n| CAR_9 | Profil | Mensuel | Annuel |\n|-------|--------|---------|--------|\n| 0 | Plein tarif | 67,00€ | 600€ |\n| 1 | -26 ans | 33,50€ | 300€ |\n| 3 | Senior 65+ | Gratuit | Gratuit |\n| 4 | Demandeur emploi | 33,50€ | 300€ |\n\n📝 **Important** :\n- Vérification annuelle du profil\n- Photo obligatoire si tarif réduit\n- Carte non cessible sous peine d'amende",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 9,
+      "explanation_type": "usage_example"
+    }
+  },
+  {
+    "instruction": "Explique le CAR_10 (Limitation trajets par jour) dans la billettique",
+    "response": "📚 **Définition** :\nLe CAR_10 définit le **nombre maximum de trajets autorisés par jour** avec un titre de transport. C'est un plafond journalier qui se réinitialise chaque jour.\n\n🎯 **Fonction** :\nLimite l'usage quotidien d'un titre pour éviter les abus ou partages frauduleux, tout en permettant un usage normal.\n\n⚙️ **Paramètres** :\n- **0 ou illimité** : Pas de limitation journalière\n- **N > 0** : Nombre maximum de trajets par jour civil (00h00-23h59)\n- **Exemples** :\n  - 2 = maximum 2 trajets/jour\n  - 4 = maximum 4 trajets/jour (aller-retour × 2)\n  - illimité = usage libre\n\n💡 **Exemple concret** :\n\n**Ticket 10 voyages avec CAR_10 = 4** :\n- Lundi : 4 trajets autorisés maximum\n  - 08h00 : Trajet 1 ✓\n  - 12h00 : Trajet 2 ✓\n  - 14h00 : Trajet 3 ✓\n  - 18h00 : Trajet 4 ✓\n  - 22h00 : Trajet 5 ✗ **REFUSÉ** (quota jour atteint)\n- Mardi 00h01 : Compteur réinitialisé → 4 nouveaux trajets possibles\n\n**Abonnement mensuel (CAR_10 = illimité)** :\n- Aucune limite de trajets par jour\n- Usage totalement libre\n\n⚠️ **Incompatibilités** :\n- Différent de CAR_7 (limitation totale) et CAR_22 (limitation globale)\n- Nécessite CAR_6 = 1 pour compter les déplacements\n- Réinitialisation quotidienne à minuit\n\n📝 **Notes** :\n- Anti-fraude : empêche le partage excessif\n- Permet usage normal (4 trajets = 2 aller-retours)\n- Compteur indépendant de CAR_7 (quota global)",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 10,
+      "explanation_type": "definition"
+    }
+  },
+  {
+    "instruction": "Donne un exemple d'utilisation du CAR_10 sur un produit TCL spécifique",
+    "response": "📚 **Scénario pratique : Ticket 10 voyages avec limitation journalière** :\n\n🎯 **Configuration produit** :\n```\nTicket 10 voyages TCL :\nCAR_7 = 10 (total passages)\nCAR_10 = 4 (max 4 trajets/jour)\nCAR_6 = 1 (validation par déplacement)\nCAR_4 = 60 (1h par voyage)\n```\n\n⚙️ **Semaine type d'un usager** :\n\n**Lundi - Usage normal** :\n- 08h00 : Validation bus → Trajet 1/4 (CAR_7 = 9)\n- 08h20 : Métro → Correspondance (reste 1/4)\n- 12h30 : Validation tram → Trajet 2/4 (CAR_7 = 8)\n- 18h00 : Validation bus → Trajet 3/4 (CAR_7 = 7)\n- **Quota jour : 3/4 utilisés**\n- **Quota total : 7 voyages restants**\n\n**Mardi - Utilisation maximale** :\n- 08h00 : Trajet domicile-travail → 1/4\n- 12h00 : Trajet déjeuner ville → 2/4\n- 14h00 : Retour bureau → 3/4\n- 18h00 : Retour domicile → 4/4\n- 19h30 : **Tentative sortie soirée** → ✗ **REFUSÉ**\n  - Message valideur : \"Quota journalier atteint\"\n  - Solution : achat ticket unitaire 2€\n- **Quota total : 3 voyages restants pour semaine**\n\n**Mercredi 00h01 - Réinitialisation** :\n- CAR_10 réinitialisé → 4 trajets disponibles\n- CAR_7 = 3 (reste 3 voyages sur les 10)\n- Peut faire 3 trajets max (limité par CAR_7)\n\n💡 **Logique de limitation** :\n```\nPour chaque validation :\n  SI (trajets_aujourdhui < CAR_10) ET (CAR_7 > 0) :\n    → Validation OK\n    → CAR_7 -= 1\n    → trajets_aujourdhui += 1\n  SINON :\n    → Validation REFUSÉE\n```\n\n📊 **Tableau de décompte** :\n| Jour | Trajets jour | CAR_7 restant |\n|------|--------------|---------------|\n| Lundi | 3/4 | 7 |\n| Mardi | 4/4 | 3 |\n| Mercredi | 3/4 | 0 (épuisé) |\n\n⚠️ **Raison de CAR_10** :\n- Évite partage frauduleux du ticket\n- 4 trajets/jour = usage personnel légitime\n- >4 trajets/jour = suspicion de partage\n\n📝 **Conseil utilisateur** :\nSi besoin >4 trajets/jour régulièrement → abonnement mensuel plus adapté (CAR_10 illimité)",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 10,
+      "explanation_type": "usage_example"
+    }
+  },
+  {
+    "instruction": "C'est quoi le CAR_11 (Périodes de validité) dans le système TCL ?",
+    "response": "📚 **Définition** :\nLe CAR_11 définit les **périodes calendaires de validité** d'un titre de transport (jour, semaine, mois, année) plutôt qu'une durée en minutes.\n\n🎯 **Fonction** :\nPermet de définir des abonnements ou titres valides sur des périodes fixes du calendrier (ex: du 1er au 30 du mois) plutôt que sur une durée glissante.\n\n⚙️ **Paramètres** :\n- **1** : Validité journalière (jour civil)\n- **2** : Validité hebdomadaire (lundi-dimanche)\n- **3** : Validité mensuelle (1er-dernier jour du mois)\n- **4** : Validité annuelle (année civile ou glissante)\n- **0** : Pas de période fixe (utilise CAR_4 en minutes)\n\n💡 **Exemple concret** :\n\n**Abonnement mensuel TCL** :\n- CAR_11 = 3 (mensuel)\n- Achat le 15 janvier → Valide jusqu'au 31 janvier\n- Renouvellement → Valide du 1er au 28/29 février\n- Période fixe, non glissante\n\n**Abonnement annuel** :\n- CAR_11 = 4 (annuel)\n- Achat septembre 2024 → Valide jusqu'à septembre 2025 (12 mois)\n\n**Técély 24h** :\n- CAR_11 = 0 (pas de période fixe)\n- Utilise CAR_4 = 1440 minutes\n- Activation 15h → Valide jusqu'à 15h lendemain (glissant)\n\n⚠️ **Incompatibilités** :\n- CAR_11 ≠ 0 remplace CAR_4 (pas les deux simultanément)\n- Nécessite système de gestion calendaire\n- Renouvellement obligatoire en fin de période\n\n📝 **Notes** :\n- Permet synchronisation calendaire\n- Facilite la gestion administrative\n- Abonnements TCL utilisent CAR_11 = 3 (mensuel)\n- Tickets courts utilisent CAR_4 (durée en minutes)",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 11,
+      "explanation_type": "definition"
+    }
+  },
+  {
+    "instruction": "Montre-moi comment le CAR_11 fonctionne pour les abonnements TCL",
+    "response": "📚 **Fonctionnement du CAR_11 sur abonnements TCL** :\n\n🎯 **Scénario 1 : Abonnement mensuel (CAR_11 = 3)** :\n\n**Achat le 5 janvier 2025** :\n```\nConfiguration :\nCAR_11 = 3 (mensuel)\nCAR_9 = 0 (plein tarif)\nCAR_3 = 6700 (67€)\nCAR_23 = 1 (personnalisé)\n```\n\n**Période de validité** :\n- Début : 5 janvier 2025 00h00\n- Fin : 31 janvier 2025 23h59\n- **Durée réelle : 27 jours** (période calendaire)\n\n**Achat le 28 janvier 2025** :\n- Début : 28 janvier 00h00\n- Fin : 31 janvier 23h59\n- **Durée : seulement 4 jours** (mais prix plein 67€)\n- ⚠️ Mieux vaut attendre le 1er février !\n\n**Février 2025 (renouvellement)** :\n- Période : 1er février au 28 février\n- 28 jours (année non bissextile)\n\n🎯 **Scénario 2 : Abonnement annuel (CAR_11 = 4)** :\n\n**Souscription septembre 2024** :\n```\nCAR_11 = 4 (annuel)\nCAR_3 = 60000 (600€)\n```\n\n**Période de validité** :\n- Début : 1er septembre 2024\n- Fin : 31 août 2025\n- **Durée : 12 mois complets**\n\n**Avantage économique** :\n- Annuel : 600€ → 50€/mois\n- Mensuel : 67€ × 12 = 804€\n- **Économie : 204€/an (25%)**\n\n⚙️ **Différence CAR_11 vs CAR_4** :\n\n**Ticket 24h (CAR_4 = 1440)** :\n- Activation : Lundi 15h00\n- Expiration : Mardi 15h00\n- **Durée glissante exacte : 24h**\n\n**Técély Jour (CAR_11 = 1)** :\n- Activation : Lundi 15h00\n- Expiration : Lundi 23h59\n- **Période calendaire : jusqu'à fin du jour**\n- Durée réelle : seulement 9h si activé à 15h\n\n💡 **Stratégie utilisateur** :\n- Abonnement mensuel : acheter en début de mois (max 31 jours)\n- Éviter achat fin de mois (perte de jours)\n- Annuel : toujours rentable si >9 mois/an\n\n📊 **Calendrier de renouvellement** :\n```\nJanvier 2025 : 1-31 (31 jours)\nFévrier 2025 : 1-28 (28 jours)\nMars 2025 : 1-31 (31 jours)\n...\nRenouvellement automatique chaque 1er du mois\n```\n\n📝 **Note technique** :\nCAR_11 nécessite synchronisation avec horloge système pour détecter changement de période",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 11,
+      "explanation_type": "usage_example"
+    }
+  },
+  {
+    "instruction": "Explique le CAR_14 (Modes de transport liste) dans la billettique TCL",
+    "response": "📚 **Définition** :\nLe CAR_14 définit la **liste des modes de transport autorisés** avec un titre donné (bus, métro, tram, funiculaire, etc.). C'est un filtre sur les véhicules utilisables.\n\n🎯 **Fonction** :\nRestreint ou autorise l'accès à certains modes de transport selon le type de titre acheté.\n\n⚙️ **Paramètres** :\n- **Liste de codes** ou **bitmap** :\n  - **B** : Bus (Lignes C/S/ZI)\n  - **M** : Métro (A, B, C, D)\n  - **T** : Tramway (T1, T2, T3, T4, T5, T6, T7, Rhônexpress)\n  - **F** : Funiculaire (F1, F2)\n- **Tous** : Tous modes autorisés (valeur par défaut)\n- **Exemples** :\n  - [B,M,T,F] = tous modes TCL\n  - [B,T] = bus et tram uniquement\n  - [M] = métro seulement\n\n💡 **Exemple concret** :\n\n**Ticket 1h standard** :\n- CAR_14 = [B, M, T, F] (tous modes)\n- Permet : bus + métro + tram + funiculaire\n- Correspondances libres entre tous modes\n\n**Ticket Bus uniquement** (si existait) :\n- CAR_14 = [B]\n- Autorisé : uniquement lignes de bus\n- Refusé : métro, tram, funiculaire\n\n**Ticket Métro** (accès rapide) :\n- CAR_14 = [M]\n- Autorisé : métro A, B, C, D uniquement\n- Économique mais limité\n\n⚠️ **Incompatibilités** :\n- La restriction est vérifiée à chaque validation\n- Validation sur mode non autorisé = refus valideur\n- Message : \"Titre non valide pour ce mode de transport\"\n\n📝 **Notes** :\n- TCL propose généralement tous modes (CAR_14 = tous)\n- Permet tarification différenciée si besoin\n- Contrôle technique au niveau du valideur\n- Rhônexpress a sa propre tarification (CAR_14 spécifique)",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 14,
+      "explanation_type": "definition"
+    }
+  },
+  {
+    "instruction": "Donne des exemples d'utilisation du CAR_14 sur différents produits TCL",
+    "response": "📚 **Utilisation du CAR_14 sur les produits TCL** :\n\n🎯 **Produits classiques TCL (tous modes)** :\n\n**Ticket 1h** :\n```\nCAR_14 = [B, M, T, F]\n```\n**Parcours autorisé** :\n- 14h00 : Bus C3 Part-Dieu → Bellecour ✓\n- 14h15 : Métro A Bellecour → Vieux-Lyon ✓\n- 14h25 : Funiculaire F2 Vieux-Lyon → Fourvière ✓\n- 14h35 : Bus C20 Fourvière → Croix-Rousse ✓\n- Tous modes OK dans la même heure\n\n**Abonnement mensuel** :\n```\nCAR_14 = [B, M, T, F]\n```\nAccès illimité à tous modes du réseau TCL\n\n🎯 **Produits spécifiques (restrictions)** :\n\n**Rhônexpress (aéroport)** :\n```\nCAR_14 = [Rhônexpress uniquement]\nCAR_3 = 1690 (16,90€)\n```\n- **Autorisé** : Tramway Rhônexpress uniquement\n- **Refusé** : Autres trams (T1-T7), bus, métro\n- Réseau séparé, tarification distincte\n- Pas de correspondance vers réseau TCL classique\n\n**Ticket Liberté Soirée** :\n```\nCAR_14 = [B, M, T, F]\nCAR_11 = soirée (19h-fin service)\n```\n- Tous modes autorisés après 19h\n- Validation avant 19h = refus (restriction horaire, pas CAR_14)\n\n🎯 **Scénario restriction mode (hypothétique)** :\n\n**\"Ticket Métro Express\" (n'existe pas)** :\n```\nCAR_14 = [M]\nCAR_3 = 150 (1,50€)\n```\n**Parcours utilisateur** :\n- Validation métro A Perrache → Part-Dieu ✓\n- Tentative bus C3 Part-Dieu → ✗ **REFUSÉ**\n- Message : \"Titre valide métro uniquement\"\n\n⚙️ **Vérification technique** :\n```\nÀ chaque validation :\n  mode_vehicule = lire_mode_valideur()\n  IF mode_vehicule NOT IN CAR_14 :\n    RETURN \"Titre non valide pour ce mode\"\n  ELSE :\n    continuer validation...\n```\n\n💡 **Cas d'usage réel** :\n- **TCL standard** : CAR_14 = tous (simplicité)\n- **Rhônexpress** : CAR_14 = Rhx seul (tarif premium)\n- **Lignes périurbaines SNCF** : CAR_14 = train (réseau différent)\n\n📊 **Tableau récapitulatif TCL** :\n| Produit | CAR_14 | Bus | Métro | Tram | Funi |\n|---------|--------|-----|-------|------|------|\n| Ticket 1h | Tous | ✓ | ✓ | ✓ | ✓ |\n| Abonnement | Tous | ✓ | ✓ | ✓ | ✓ |\n| Rhônexpress | Rhx | ✗ | ✗ | Rhx | ✗ |\n\n📝 **Note pratique** :\nLa majorité des produits TCL ont CAR_14 = tous modes pour faciliter l'intermodalité. Les restrictions sont rares et clairement signalées.",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 14,
+      "explanation_type": "usage_example"
+    }
+  },
+  {
+    "instruction": "Qu'est-ce que le CAR_21 (Profil de validation) dans le système billettique ?",
+    "response": "📚 **Définition** :\nLe CAR_21 définit le **profil de validation** requis pour un titre, c'est-à-dire le comportement attendu lors de l'utilisation (validation entrée seule, entrée+sortie, etc.).\n\n🎯 **Fonction** :\nDétermine si l'usager doit valider uniquement à l'entrée, ou aussi à la sortie, permettant différents modes de contrôle et tarification.\n\n⚙️ **Paramètres** :\n- **1** : Validation à l'entrée uniquement (mode standard)\n- **2** : Validation entrée + sortie (mode fermé)\n- **0** : Pas de validation obligatoire (lecture seule)\n\n💡 **Exemple concret** :\n\n**Ticket 1h TCL (CAR_21 = 1)** :\n- Validation obligatoire à la montée dans le véhicule\n- Pas de validation à la descente\n- Réseau ouvert (pas de portillons)\n- Contrôle par agents en circulation\n\n**Métro avec portillons (CAR_21 = 2)** :\n- Validation entrée → portillon s'ouvre\n- Validation sortie → enregistrement trajet\n- Calcul distance/zones parcourues\n- Utilisé dans métros fermés (Paris, Londres...)\n\n**Abonnement annuel (CAR_21 = 0)** :\n- Simple lecture pour vérification validité\n- Pas de validation obligatoire\n- Contrôle visuel ou lecture NFC\n\n⚠️ **Incompatibilités** :\n- CAR_21 = 2 nécessite infrastructure de portillons\n- Nécessaire pour CAR_8 = 1 (post-paiement)\n- CAR_21 = 2 incompatible avec réseau ouvert type TCL\n\n📝 **Notes** :\n- **TCL utilise CAR_21 = 1** (réseau ouvert)\n- Validation = preuve de paiement + démarrage compteur\n- Pas de portillons sur réseau TCL (sauf funiculaires parfois)\n- Facilite fluidité mais nécessite contrôleurs",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 21,
+      "explanation_type": "definition"
+    }
+  },
+  {
+    "instruction": "Compare les différents profils de validation (CAR_21) avec des exemples",
+    "response": "📚 **Comparaison des profils de validation CAR_21** :\n\n🎯 **CAR_21 = 1 : Validation entrée seule (TCL Lyon)** :\n\n**Configuration** :\n```\nTicket 1h :\nCAR_21 = 1\nCAR_6 = 1 (validation par déplacement)\nCAR_4 = 60 (1h validité)\n```\n\n**Parcours utilisateur** :\n- 10h00 : Montée bus → **Validation obligatoire** → Bip ✓\n- 10h15 : Descente bus → Pas de validation\n- 10h20 : Montée métro → Pas de validation (correspondance)\n- 10h35 : Sortie métro → Pas de validation\n\n**Avantages** :\n- Fluidité : pas de file d'attente sortie\n- Infrastructure simple : valideurs entrée uniquement\n- Coût réduit\n\n**Inconvénients** :\n- Nécessite contrôleurs en circulation\n- Pas de données précises sur trajets réels\n- Fraude possible (non-validation)\n\n🎯 **CAR_21 = 2 : Validation entrée + sortie (Métro parisien, Londres)** :\n\n**Configuration** :\n```\nTitre Oyster Londres :\nCAR_21 = 2\nCAR_8 = 1 (post-paiement)\nCAR_2 = 1 (tarif variable)\n```\n\n**Parcours utilisateur** :\n- 10h00 : Entrée station → **Validation carte** → Portillon ouvre ✓\n- 10h00-10h30 : Trajet dans métro\n- 10h30 : Sortie station → **Validation obligatoire** → Portillon ouvre ✓\n- Système calcule : zone 1-2, 1 trajet, tarif 2,80£\n\n**Avantages** :\n- Tarification au trajet réel (équitable)\n- Données précises (origine-destination)\n- Contrôle automatique (peu de fraude)\n- Post-paiement possible\n\n**Inconvénients** :\n- Infrastructure coûteuse (portillons partout)\n- Files d'attente aux sorties\n- Pénalité si oubli validation sortie\n- Moins fluide\n\n🎯 **CAR_21 = 0 : Lecture seule (Abonnements)** :\n\n**Configuration** :\n```\nAbonnement annuel TCL :\nCAR_21 = 0\nCAR_11 = 4 (annuel)\nCAR_23 = 1 (personnalisé)\n```\n\n**Parcours utilisateur** :\n- Montée : pas de validation obligatoire\n- Contrôle : agent lit la carte NFC\n- Vérification : validité + identité\n\n**Avantages** :\n- Maximum de fluidité\n- Pas d'interaction valideur nécessaire\n- Confiance utilisateur\n\n**Inconvénients** :\n- Aucune donnée de mobilité\n- Contrôle uniquement aléatoire\n- Fraude possible (prêt de carte)\n\n⚙️ **Comparaison technique** :\n\n| CAR_21 | Validation | Infrastructure | Données | Fraude | Fluidité |\n|--------|------------|----------------|---------|--------|----------|\n| 1 | Entrée | Valideurs | Limitées | Moyenne | Haute |\n| 2 | Entrée+Sortie | Portillons | Complètes | Faible | Moyenne |\n| 0 | Lecture seule | Minimale | Nulles | Élevée | Maximale |\n\n💡 **Pourquoi TCL utilise CAR_21 = 1** :\n- Réseau historiquement ouvert (bus, tram)\n- Coût infrastructure portillons prohibitif\n- Culture de confiance + contrôle aléatoire\n- Fluidité prioritaire (métropole dense)\n- Métro récent sans portillons d'origine\n\n📝 **Tendances futures** :\nCertains réseaux évoluent vers hybride :\n- CAR_21 = 1 pour bus/tram (ouvert)\n- CAR_21 = 2 pour métro (portillons)\n- Permet tarification zonale métro + fluidité surface",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 21,
+      "explanation_type": "usage_example"
+    }
+  },
+  {
+    "instruction": "Explique le CAR_22 (Limitation trajets total) dans la billettique",
+    "response": "📚 **Définition** :\nLe CAR_22 définit le **nombre maximum total de trajets** autorisés sur toute la durée de vie du titre, indépendamment de la répartition dans le temps.\n\n🎯 **Fonction** :\nImpose un quota global de déplacements pour le titre, distinct des limitations journalières (CAR_10) ou par période.\n\n⚙️ **Paramètres** :\n- **0 ou illimité** : Pas de limitation totale\n- **N > 0** : Nombre maximum de trajets sur durée de vie\n- **Exemples** :\n  - 10 = exactement 10 trajets au total\n  - 30 = maximum 30 trajets\n  - illimité = pas de quota\n\n💡 **Exemple concret** :\n\n**Ticket 10 voyages** :\n- CAR_22 = 10 (limite totale)\n- CAR_7 = 10 (passages)\n- Équivalent dans ce cas (même valeur)\n- 10 trajets puis titre épuisé\n\n**Forfait 30 jours / 100 trajets** :\n- CAR_11 = 3 (mensuel)\n- CAR_22 = 100 (max 100 trajets sur le mois)\n- Si 100 trajets atteints avant fin mois → titre bloqué\n- Sinon valide jusqu'à fin de période\n\n**Abonnement illimité** :\n- CAR_22 = 0 (illimité)\n- Aucune limite de trajets\n- Validité limitée par CAR_11 (période)\n\n⚠️ **Incompatibilités** :\n- Différent de CAR_7 (passages avec correspondances)\n- Différent de CAR_10 (limitation journalière)\n- Nécessite CAR_6 = 1 pour comptage\n- Incompatible avec CAR_8 = 1 (post-paiement)\n\n📝 **Notes** :\n- **CAR_22 = quota global absolu**\n- CAR_10 = quota par jour (renouvelable)\n- CAR_7 = passages/validations (peut inclure correspondances)\n- TCL utilise rarement CAR_22 (préfère CAR_7 + CAR_10)",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 22,
+      "explanation_type": "definition"
+    }
+  },
+  {
+    "instruction": "Montre la différence entre CAR_7, CAR_10 et CAR_22 avec un exemple",
+    "response": "📚 **Distinction CAR_7 vs CAR_10 vs CAR_22 - Exemple comparatif** :\n\n🎯 **Scénario : Forfait hybride hypothétique** :\n\n**Configuration produit** :\n```\nForfait 1 semaine :\nCAR_11 = 2 (hebdomadaire, lundi-dimanche)\nCAR_7 = 20 (20 passages/validations)\nCAR_10 = 4 (max 4 trajets par jour)\nCAR_22 = 15 (max 15 trajets total)\nCAR_6 = 1 (validation par déplacement)\nCAR_4 = 60 (1h par voyage)\n```\n\n⚙️ **Utilisation jour par jour** :\n\n**Lundi** :\n- 08h00 : Validation bus → Trajet 1\n  - CAR_7 : 20 → 19 (passages restants)\n  - CAR_10 : 1/4 (trajets jour)\n  - CAR_22 : 15 → 14 (trajets total)\n- 08h20 : Métro (correspondance <1h) → PAS de décompte\n  - CAR_7 : reste 19 (correspondance non comptée)\n  - CAR_10 : reste 1/4\n  - CAR_22 : reste 14\n- 18h00 : Validation tram → Trajet 2\n  - CAR_7 : 19 → 18\n  - CAR_10 : 2/4\n  - CAR_22 : 14 → 13\n- **Bilan lundi : 2 trajets, 2 validations**\n\n**Mardi** :\n- 4 trajets (max quotidien)\n  - CAR_7 : 18 → 14\n  - CAR_10 : 4/4 (max atteint)\n  - CAR_22 : 13 → 9\n\n**Mercredi** (CAR_10 réinitialisé) :\n- 4 trajets\n  - CAR_7 : 14 → 10\n  - CAR_10 : 4/4 (nouveau quota journalier)\n  - CAR_22 : 9 → 5\n\n**Jeudi** :\n- Tentative 4 trajets\n  - **Trajet 1** : OK → CAR_22 = 4\n  - **Trajet 2** : OK → CAR_22 = 3\n  - **Trajet 3** : OK → CAR_22 = 2\n  - **Trajet 4** : OK → CAR_22 = 1\n- CAR_7 : 10 → 6 (encore passages restants)\n\n**Vendredi** :\n- **Trajet 1** : OK → CAR_22 = 0\n- **Trajet 2** : ✗ **REFUSÉ - CAR_22 épuisé**\n  - Message : \"Quota total de trajets atteint\"\n  - CAR_7 reste à 5 (passages disponibles mais bloqués)\n  - CAR_10 permettrait 4 trajets mais CAR_22 = 0\n\n**Résultat** :\n- Titre valide jusqu'à dimanche (CAR_11)\n- Mais inutilisable (CAR_22 = 0)\n- CAR_7 = 5 passages inutilisables\n\n💡 **Logique de contrôle** :\n```\nÀ chaque validation :\n  SI CAR_22 > 0 ET CAR_10_jour > 0 ET CAR_7 > 0 :\n    Validation OK\n    CAR_7 -= 1\n    CAR_10_jour -= 1\n    CAR_22 -= 1\n  SINON :\n    Validation REFUSÉE (quota atteint)\n```\n\n📊 **Tableau récapitulatif** :\n\n| CAR | Signification | Réinitialisation | Usage TCL |\n|-----|---------------|------------------|------------|\n| **CAR_7** | Passages/validations (avec correspondances) | Jamais | Ticket 10 voyages |\n| **CAR_10** | Trajets max par jour | Quotidienne (00h00) | Anti-fraude |\n| **CAR_22** | Trajets max total | Jamais | Forfaits hybrides |\n\n🎯 **Cas d'usage spécifiques** :\n\n**Ticket 10 voyages standard** :\n```\nCAR_7 = 10 (passages)\nCAR_10 = 4 (max/jour)\nCAR_22 = 0 (pas de limite totale)\n→ 10 validations max, 4/jour max\n```\n\n**Abonnement illimité** :\n```\nCAR_7 = illimité\nCAR_10 = illimité\nCAR_22 = 0\n→ Aucune limite de trajets\n```\n\n**Forfait vacances (15 jours/50 trajets)** :\n```\nCAR_11 = 15 jours\nCAR_7 = illimité (validations)\nCAR_10 = illimité (par jour)\nCAR_22 = 50 (total)\n→ Limité par 50 trajets OU 15 jours\n```\n\n📝 **Différence clé** :\n- **CAR_7** = compteur validations (technique)\n- **CAR_10** = quota quotidien (anti-abus)\n- **CAR_22** = quota absolu total (forfaits hybrides)",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 22,
+      "explanation_type": "usage_example"
+    }
+  },
+  {
+    "instruction": "C'est quoi le CAR_23 (Caractère personnalisé) dans le système TCL ?",
+    "response": "📚 **Définition** :\nLe CAR_23 indique si un titre de transport est **personnalisé** (nominatif) ou **anonyme** (cessible). Un titre personnalisé est lié à une identité et non transférable.\n\n🎯 **Fonction** :\nDétermine si le titre peut être utilisé uniquement par son titulaire ou peut être partagé/cédé à d'autres personnes.\n\n⚙️ **Paramètres** :\n- **0** : Titre anonyme (non personnalisé, cessible)\n- **1** : Titre personnalisé (nominatif, non cessible)\n\n💡 **Exemple concret** :\n\n**Titre anonyme (CAR_23 = 0)** :\n- **Ticket 1h** : utilisable par n'importe qui\n- **Ticket 10 voyages** : peut être prêté\n- Pas de nom, pas de photo\n- Contrôle : vérification validité uniquement\n\n**Titre personnalisé (CAR_23 = 1)** :\n- **Abonnement mensuel** : nom + photo obligatoires\n- **Carte TCL étudiante** : vérification identité\n- **Tarif réduit -26 ans** : contrôle âge\n- Contrôle : validité + identité du porteur\n\n⚠️ **Incompatibilités** :\n- CAR_23 = 1 nécessite CAR_9 ≠ 0 généralement (tarif réduit)\n- Oblige enregistrement données personnelles (RGPD)\n- Carte physique avec photo pour abonnements\n- Amende majorée en cas d'usage frauduleux par tiers\n\n📝 **Notes** :\n- Personnalisation = sécurité + tarifs sociaux\n- Titre nominatif non prêtable sous peine d'amende\n- Vérification systématique lors contrôles\n- Pièce d'identité obligatoire en voyage si CAR_23 = 1\n- Photo + nom imprimés sur carte TCL pour abonnements",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 23,
+      "explanation_type": "definition"
+    }
+  },
+  {
+    "instruction": "Donne des exemples de produits TCL avec et sans CAR_23",
+    "response": "📚 **Comparaison titres anonymes vs personnalisés sur TCL** :\n\n🎯 **Titres ANONYMES (CAR_23 = 0)** :\n\n**Ticket 1h** :\n```\nCAR_23 = 0\nCAR_9 = 0 (tout public)\nCAR_3 = 200 (2€)\n```\n- Achat sans identification\n- Utilisable par n'importe qui\n- Peut être donné/revendu\n- Pas de contrôle identité\n- **Cas d'usage** : trajets occasionnels\n\n**Ticket 10 voyages** :\n```\nCAR_23 = 0\nCAR_7 = 10\n```\n- Partageable en famille\n- Exemple : parents + enfants utilisent même carte\n- Limite : CAR_10 = 4 trajets/jour (anti-abus)\n\n🎯 **Titres PERSONNALISÉS (CAR_23 = 1)** :\n\n**Abonnement mensuel jeune -26 ans** :\n```\nCAR_23 = 1 (personnalisé)\nCAR_9 = 1 (tarif -26 ans)\nCAR_3 = 3350 (33,50€)\nCAR_11 = 3 (mensuel)\n```\n\n**Informations requises** :\n- Nom et prénom\n- Date de naissance\n- Photo d'identité récente\n- Justificatif d'âge (CNI, passeport)\n- Adresse\n\n**Carte physique** :\n```\n┌─────────────────────────────┐\n│  [PHOTO]   TCL              │\n│            DUPONT Marie     │\n│            Né(e) le 15/03/2001 │\n│            Tarif -26 ans    │\n│            N° 1234567       │\n└─────────────────────────────┘\n```\n\n**Contrôle en voyage** :\n- Contrôleur : \"Votre titre SVP\"\n- Lecture carte NFC → validité OK\n- Vérification photo correspond\n- Peut demander pièce d'identité\n- **Si prêtée** : amende 60€ + possiblement annulation abonnement\n\n**Abonnement senior (gratuit)** :\n```\nCAR_23 = 1 (obligatoirement personnalisé)\nCAR_9 = 3 (senior 65+)\nCAR_3 = 0 (gratuit)\n```\n- Photo + nom obligatoires\n- Vérification âge stricte\n- Justificatif domicile Lyon Métropole\n- Contrôle identité systématique\n\n⚙️ **Scénario frauduleux détecté** :\n\n**Tentative prêt abonnement** :\n- Titulaire : Marie, 22 ans (photo blonde)\n- Utilisateur : Sophie, 22 ans (brune)\n- Contrôle : photo ne correspond pas\n- **Sanction** :\n  - Amende 60€ immédiate\n  - Possible suspension abonnement\n  - Inscription fichier fraude\n\n💡 **Pourquoi personnaliser ?** :\n\n**Avantages TCL/SYTRAL** :\n- Évite partage abonnements à tarif réduit\n- Justifie tarifs sociaux (contrôle bénéficiaires)\n- Lutte anti-fraude\n- Données statistiques mobilité\n\n**Avantages usager** :\n- Accès tarifs réduits (-50% pour -26 ans)\n- Gratuité si senior\n- Remplacement en cas de perte\n- Recharge automatique possible\n\n📊 **Tableau comparatif** :\n\n| Produit | CAR_23 | Photo | Identité | Cessible | Tarif |\n|---------|--------|-------|----------|----------|-------|\n| Ticket 1h | 0 | Non | Non | Oui | 2,00€ |\n| Ticket 10v | 0 | Non | Non | Oui | 17,90€ |\n| Abo mensuel PT | 1 | Oui | Oui | Non | 67,00€ |\n| Abo -26 ans | 1 | Oui | Oui | Non | 33,50€ |\n| Abo senior | 1 | Oui | Oui | Non | Gratuit |\n\n📝 **Règle générale TCL** :\n- **Tickets occasionnels** → CAR_23 = 0 (anonyme)\n- **Abonnements** → CAR_23 = 1 (personnalisé)\n- **Tarifs réduits** → CAR_23 = 1 (obligatoire)\n- **Gratuité** → CAR_23 = 1 (contrôle strict)",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 23,
+      "explanation_type": "usage_example"
+    }
+  },
+  {
+    "instruction": "Explique le CAR_38 (Tarif proportionnel) dans la billettique TCL",
+    "response": "📚 **Définition** :\nLe CAR_38 définit si le prix du titre est **proportionnel** à une métrique variable (distance parcourue, nombre de zones, durée d'utilisation...) plutôt qu'un tarif fixe ou par paliers.\n\n🎯 **Fonction** :\nPermet une tarification au prorata exact de la consommation, offrant une équité tarifaire maximale.\n\n⚙️ **Paramètres** :\n- **0** : Tarif non proportionnel (fixe ou par paliers)\n- **1** : Tarif strictement proportionnel à la métrique\n\n💡 **Exemple concret** :\n\n**Ticket 1h TCL (CAR_38 = 0)** :\n- Prix fixe : 2,00€\n- Quel que soit la distance (1 km ou 20 km)\n- Non proportionnel à la distance réelle\n\n**Tarif zonal par paliers (CAR_38 = 0)** :\n- 2 zones : 3,50€\n- 3 zones : 5,00€\n- 4 zones : 6,50€\n- Tarif par palier, pas proportionnel exact\n- Exemple : 2 zones = 3,50€, 2,5 zones n'existe pas\n\n**Tarif proportionnel distance (CAR_38 = 1)** :\n- Formule : Prix = 0,10€ × km parcourus\n- 5 km → 0,50€\n- 12,3 km → 1,23€\n- 25 km → 2,50€\n- Proportionnalité stricte\n\n⚠️ **Incompatibilités** :\n- CAR_38 = 1 nécessite CAR_2 = 1 (tarif variable)\n- Nécessite système de mesure (GPS, balises, zones...)\n- Incompatible avec CAR_3 fixe\n- Souvent lié à CAR_8 = 1 (post-paiement)\n\n📝 **Notes** :\n- **TCL n'utilise pas CAR_38 = 1** (tarifs fixes/paliers)\n- Utilisé dans :\n  - Systèmes vélos libre-service (prix/minute)\n  - VTC (prix/km)\n  - Certains trains régionaux (prix/distance)\n- Complexité calcul en temps réel\n- Équité maximale mais prévisibilité réduite",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 38,
+      "explanation_type": "definition"
+    }
+  },
+  {
+    "instruction": "Compare les systèmes tarifaires avec et sans CAR_38 avec des exemples",
+    "response": "📚 **Comparaison tarification fixe vs proportionnelle** :\n\n🎯 **Système TCL actuel (CAR_38 = 0)** :\n\n**Ticket 1h - Tarif fixe** :\n```\nCAR_38 = 0 (non proportionnel)\nCAR_2 = 0 (tarif fixe)\nCAR_3 = 200 (2,00€ unique)\n```\n\n**Parcours utilisateurs** :\n- Usager A : 2 km (Bellecour → Hôtel de Ville) → 2,00€\n- Usager B : 15 km (Vaise → Vénissieux) → 2,00€\n- **Même prix quelle que soit distance**\n\n**Avantages** :\n- Simplicité : prix connu à l'avance\n- Rapidité : pas de calcul\n- Équité temporelle (1h = 1h pour tous)\n\n**Inconvénients** :\n- Injustice distance (courtes distances payent trop)\n- Pas d'incitation trajets courts\n\n🎯 **Système proportionnel hypothétique (CAR_38 = 1)** :\n\n**\"Ticket Distance TCL\"** :\n```\nCAR_38 = 1 (proportionnel)\nCAR_2 = 1 (tarif variable)\nCAR_8 = 1 (post-paiement)\nCAR_21 = 2 (validation entrée+sortie)\nFormule : 0,15€/km + 0,50€ fixe\n```\n\n**Mêmes parcours** :\n- Usager A : 2 km → 0,50€ + (2 × 0,15€) = **0,80€**\n- Usager B : 15 km → 0,50€ + (15 × 0,15€) = **2,75€**\n- **Prix proportionnel à distance réelle**\n\n**Avantages** :\n- Équité distance (paye ce qu'on consomme)\n- Encourage trajets courts\n- Optimisation financière personnelle\n\n**Inconvénients** :\n- Prix imprévisible avant trajet\n- Nécessite infrastructure complexe\n- Validation sortie obligatoire\n- Calcul GPS/zones en temps réel\n\n⚙️ **Exemple réel : Vélo'v Lyon (CAR_38 = 1)** :\n\n**Tarification temps réel** :\n```\nCAR_38 = 1 (proportionnel au temps)\nFormule :\n- 0-30 min : gratuit (abonnés)\n- 30-60 min : 1€\n- 60-90 min : 2€\n- Chaque 30 min sup : +2€\n```\n\n**Parcours** :\n- Trajet 25 min → 0€\n- Trajet 45 min → 1€\n- Trajet 75 min → 3€ (1€ + 2€)\n- **Strictement proportionnel au temps**\n\n🎯 **Exemple réel : SNCF TER (CAR_38 = 1 partiel)** :\n\n**Tarification kilométrique** :\n```\nCAR_38 = 1\nBarème : ~0,12€/km\n```\n\n**Trajets** :\n- Lyon-Givors (25 km) → ~3,00€\n- Lyon-Roanne (85 km) → ~10,20€\n- Lyon-Paris (465 km) → Prix TGV spécial (non proportionnel)\n\n📊 **Tableau comparatif complet** :\n\n| Critère | TCL Fixe (CAR_38=0) | Proportionnel (CAR_38=1) |\n|---------|---------------------|---------------------------|\n| Prix 2 km | 2,00€ | 0,80€ |\n| Prix 10 km | 2,00€ | 2,00€ |\n| Prix 20 km | 2,00€ | 3,50€ |\n| Prévisibilité | ✓ Totale | ✗ Variable |\n| Équité distance | ✗ Non | ✓ Oui |\n| Infrastructure | Simple | Complexe |\n| Validation | Entrée | Entrée+Sortie |\n\n💡 **Pourquoi TCL reste CAR_38 = 0** :\n\n1. **Simplicité d'usage** :\n   - Prix connu, fixe, simple\n   - Pas de surprise à l'arrivée\n\n2. **Infrastructure existante** :\n   - Réseau ouvert (pas de portillons)\n   - Validation entrée seule\n   - Coût retrofit prohibitif\n\n3. **Acceptabilité sociale** :\n   - Habitudes ancrées depuis décennies\n   - Forfait illimité 1h apprécié\n   - Solidarité distances\n\n4. **Complexité technique** :\n   - GPS dans chaque valideur\n   - Calcul trajets complexes (correspondances)\n   - Gestion litiges\n\n📝 **Tendance européenne** :\n- Grandes métropoles → tarif fixe/zonal (Paris, Lyon, Berlin)\n- Systèmes régionaux → proportionnel distance (TER, IC)\n- Nouveaux modes → proportionnel temps (vélos, trottinettes)\n- Hybrides → forfaits + proportionnel au-delà",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 38,
+      "explanation_type": "usage_example"
+    }
+  },
+  {
+    "instruction": "Qu'est-ce que le CAR_48 (Points de fidélité) dans le système billettique ?",
+    "response": "📚 **Définition** :\nLe CAR_48 active un **système de points de fidélité** qui récompense les usagers réguliers par des points cumulables et échangeables contre avantages ou réductions.\n\n🎯 **Fonction** :\nPermet de fidéliser les usagers en attribuant des points lors de chaque achat ou validation, créant un programme de récompenses.\n\n⚙️ **Paramètres** :\n- **0** : Pas de programme fidélité\n- **1** : Programme fidélité actif\n- **Règles** : nombre de points par achat/trajet, seuils de récompense\n\n💡 **Exemple concret** :\n\n**Ticket 1h standard (CAR_48 = 0)** :\n- Pas de points attribués\n- Achat simple sans fidélisation\n\n**Programme fidélité TCL (CAR_48 = 1)** :\n- Chaque achat = points\n- Formule : 1 point par euro dépensé\n- **Exemple** :\n  - Ticket 1h (2€) → 2 points\n  - Abonnement mensuel (67€) → 67 points\n  - Ticket 10 voyages (17,90€) → 18 points\n\n**Récompenses** :\n- 50 points → 1 ticket 1h gratuit (2€)\n- 150 points → Ticket 10 voyages gratuit (17,90€)\n- 500 points → Réduction 20% abonnement mensuel\n- 1000 points → 1 mois abonnement offert (67€)\n\n⚠️ **Incompatibilités** :\n- Nécessite CAR_23 = 1 généralement (suivi nominatif)\n- Nécessite compte utilisateur\n- Gestion base de données points\n- Points non transférables\n\n📝 **Notes** :\n- **TCL n'a pas actuellement de CAR_48 = 1 actif**\n- Systèmes similaires :\n  - SNCF Voyageur (points trains)\n  - Airlines (miles aériens)\n  - Réseaux transport étrangers\n- Fidélisation client\n- Incitation usage régulier\n- Données comportementales riches",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 48,
+      "explanation_type": "definition"
+    }
+  },
+  {
+    "instruction": "Comment fonctionnerait un programme de fidélité CAR_48 sur TCL ?",
+    "response": "📚 **Scénario hypothétique : Programme fidélité TCL** :\n\n🎯 **Configuration système** :\n\n**\"TCL Fidélité\" (CAR_48 = 1)** :\n```\nProgramme :\nCAR_48 = 1 (fidélité active)\nCAR_23 = 1 (compte personnalisé obligatoire)\nCompte utilisateur : nom, email, carte TCL\nRatio : 1 point = 1€ dépensé\n```\n\n⚙️ **Parcours utilisateur - Marie, étudiante** :\n\n**Inscription** :\n- Création compte TCL Fidélité\n- Carte personnalisée avec n° compte\n- Solde initial : 0 points\n\n**Mois 1 - Janvier 2025** :\n- 05/01 : Achat abonnement mensuel -26 ans → 33,50€ → **+34 points**\n- Solde : 34 points\n\n**Mois 2 - Février** :\n- 01/02 : Renouvellement abonnement → 33,50€ → **+34 points**\n- Solde : 68 points\n\n**Mois 3 - Mars** :\n- 01/03 : Renouvellement → 33,50€ → **+34 points**\n- Solde : 102 points\n- ✓ **Seuil 100 points atteint** → Notification :\n  - \"Félicitations ! Échangez vos points :\n    - 50 points → Ticket 1h gratuit\n    - 100 points → Ticket 10 voyages à -50%\"\n\n**Échange de points** :\n- Marie choisit : Ticket 10 voyages à -50%\n- Prix normal : 17,90€ → Avec réduction : 8,95€\n- Paiement : 8,95€ → **+9 points**\n- Débit : **-100 points**\n- Nouveau solde : 11 points\n\n📊 **Grille de récompenses complète** :\n\n| Points | Récompense | Valeur |\n|--------|------------|--------|\n| 50 | Ticket 1h gratuit | 2,00€ |\n| 100 | Ticket 10 voyages -50% | ~9€ |\n| 200 | Técély 24h gratuit | 6,30€ |\n| 350 | 1 mois abo -26 ans -50% | 16,75€ |\n| 500 | Ticket 10 voyages gratuit | 17,90€ |\n| 800 | Mois abonnement -25% | ~17€ |\n| 1000 | Mois abonnement gratuit | 67€ |\n\n🎯 **Scénario famille - Dupont (4 personnes)** :\n\n**Configuration** :\n- Papa : Abonnement mensuel (67€/mois)\n- Maman : Abonnement mensuel (67€/mois)\n- Enfant 1 : Ticket 10 voyages régulier (~18€/mois)\n- Enfant 2 : Occasionnel (tickets 1h, ~8€/mois)\n- **Total mensuel : ~160€**\n\n**Cumul annuel** :\n- 160€/mois × 12 = 1920€/an\n- **Points cumulés : 1920 points**\n\n**Récompenses possibles** :\n- Option 1 : 1 mois gratuit (1000 pts) + reste 920 pts\n- Option 2 : 3 × Ticket 10 voyages gratuits (1500 pts)\n- Option 3 : 38 tickets 1h gratuits (1900 pts)\n- **Valeur récompenses : ~70-100€**\n\n💡 **Mécaniques de fidélisation** :\n\n**Bonus événementiels** :\n- Anniversaire : +50 points\n- Parrainage ami : +100 points\n- 1 an d'abonnement : +200 points bonus\n- Validation éco-responsable : +5 points/semaine\n\n**Défis mensuels** :\n- \"20 trajets ce mois\" → +30 points\n- \"Utiliser 3 modes différents\" → +20 points\n- \"Trajet en heures creuses\" → +10 points\n\n⚙️ **Infrastructure technique** :\n\n```\nBase de données :\n- user_id\n- points_balance\n- transactions_history\n- rewards_redeemed\n\nÀ chaque achat :\n  montant = CAR_3 / 100\n  points = floor(montant)\n  UPDATE users SET points_balance += points\n  INSERT INTO transactions (user, points, date)\n\nÉchange récompense :\n  IF points_balance >= reward_cost :\n    points_balance -= reward_cost\n    GRANT reward\n  ELSE :\n    \"Points insuffisants\"\n```\n\n📱 **Intégration application TCL** :\n\n**Écran compte** :\n```\n┌─────────────────────────────────┐\n│  TCL Fidélité                   │\n│                                 │\n│  Solde : 234 points            │\n│  ⭐⭐⭐⭐⭐ Niveau Gold          │\n│                                 │\n│  Prochaine récompense :         │\n│  [████████░░] 234/350 pts       │\n│  Mois abonnement -50%           │\n│                                 │\n│  📜 Historique                  │\n│  15/03 : Abo mensuel → +67 pts  │\n│  10/03 : Bonus défi → +20 pts   │\n│  01/03 : Abo mensuel → +67 pts  │\n└─────────────────────────────────┘\n```\n\n⚠️ **Défis et limites** :\n\n**Coût pour TCL** :\n- Récompenses = manque à gagner\n- Infrastructure informatique\n- Service client fidélité\n\n**Complexité** :\n- Gestion comptable points\n- Fraude (comptes multiples)\n- Expiration points (durée validité)\n\n**RGPD** :\n- Données comportementales sensibles\n- Tracking déplacements\n- Consentement utilisateur\n\n📝 **Pourquoi TCL ne l'a pas (encore) ?** :\n\n1. **Monopole local** : pas de concurrence directe\n2. **Fidélité déjà élevée** : usagers captifs\n3. **Coût/bénéfice** : complexité vs gain fidélisation\n4. **Service public** : mission universelle vs récompenses\n\n💡 **Tendance future possible** :\n- Systèmes MaaS (Mobility as a Service)\n- Intégration multi-réseaux (TCL + Vélo'v + parking)\n- Gamification mobilité durable\n- Récompenses écologiques (bonus modes doux)",
+    "metadata": {
+      "type": "explanation",
+      "category": "car_explanation",
+      "car": 48,
+      "explanation_type": "usage_example"
+    }
+  }
+]

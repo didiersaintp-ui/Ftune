@@ -1,0 +1,338 @@
+[
+  {
+    "conversation": [
+      {
+        "role": "user",
+        "content": "Je veux un pass"
+      },
+      {
+        "role": "assistant",
+        "content": "Je peux vous aider à créer un pass TCL.\n\nPour vous proposer la meilleure solution, j'ai besoin de quelques précisions :\n\n❓ **Questions** :\n1. **Durée** : Pour combien de temps ?\n   - Courte durée : 24h, 48h, 72h ?\n   - Moyenne durée : 1 semaine ?\n2. **Zones** : Zone 1 uniquement ou plusieurs zones ?\n3. **Modes** : Tous modes (bus, métro, tramway, funiculaire) ou seulement certains ?\n\nQue recherchez-vous précisément ?"
+      },
+      {
+        "role": "user",
+        "content": "72h pour zone 1 tous modes"
+      },
+      {
+        "role": "assistant",
+        "content": "Parfait ! Je crée votre pass 72h zone 1 tous modes.\n\n```json\n{\n  \"product_name\": \"Pass 72h Zone 1\",\n  \"price_cents\": 1500,\n  \"support\": [\"BSC\", \"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 72,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\"Zone 1\"],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ Pass 72h créé. Validité 72 heures à partir de la première validation."
+      }
+    ],
+    "metadata": {
+      "type": "multi_turn",
+      "category": "pass_creation",
+      "turns": 4,
+      "final_product": "Pass 72h Zone 1",
+      "cars": [7, 4, 14],
+      "dialogue_type": "clarification_then_creation"
+    }
+  },
+  {
+    "conversation": [
+      {
+        "role": "user",
+        "content": "Abonnement mensuel"
+      },
+      {
+        "role": "assistant",
+        "content": "Je vais vous aider à configurer un abonnement mensuel.\n\n❓ **Précisions nécessaires** :\n1. **Profil tarifaire** :\n   - Plein tarif (67€/mois) ?\n   - Jeune -26 ans (34€/mois) ?\n   - Senior +65 ans (34€/mois) ?\n   - Étudiant (34€/mois) ?\n   - Solidaire (12€/mois) ?\n2. **Zones** : Zone 1 seulement ou zones 1-2 ?\n3. **Modes** : Tous modes TCL ?\n\nQuelles sont vos réponses ?"
+      },
+      {
+        "role": "user",
+        "content": "Étudiant, zones 1 et 2, tous modes"
+      },
+      {
+        "role": "assistant",
+        "content": "Parfait ! Je configure votre abonnement étudiant zones 1-2.\n\n**Note** : Justificatif requis (carte étudiant en cours de validité).\n\n```json\n{\n  \"product_name\": \"Abonnement Étudiant Mensuel Zones 1-2\",\n  \"price_cents\": 3400,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\"Zone 1\", \"Zone 2\"],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Étudiant\"\n}\n```\n\n✅ Abonnement mensuel étudiant créé : 34€/mois, rechargeable."
+      }
+    ],
+    "metadata": {
+      "type": "multi_turn",
+      "category": "subscription_creation",
+      "turns": 4,
+      "final_product": "Abonnement Étudiant Mensuel",
+      "cars": [7, 4, 14],
+      "dialogue_type": "clarification_then_creation"
+    }
+  },
+  {
+    "conversation": [
+      {
+        "role": "user",
+        "content": "Ticket étudiant"
+      },
+      {
+        "role": "assistant",
+        "content": "Je note que vous cherchez un titre étudiant.\n\n💡 **Information importante** : Les tarifs étudiants s'appliquent principalement aux **abonnements**, pas aux tickets unité.\n\n❓ **Questions** :\n1. **Type de produit** :\n   - Abonnement mensuel étudiant (34€/mois, tarif réduit) ?\n   - Carnet de tickets (pas de réduction étudiant, ~16€) ?\n   - Ticket unité (pas de réduction, 2€) ?\n2. Si abonnement : **Zones** et **modes** ?\n\nQue souhaitez-vous exactement ?"
+      },
+      {
+        "role": "user",
+        "content": "Ah d'accord. Alors un carnet 10 voyages bus et métro zone 1"
+      },
+      {
+        "role": "assistant",
+        "content": "Parfait ! Je crée un carnet 10 voyages bus-métro zone 1.\n\n**Note** : Pas de tarif réduit pour les carnets (prix unique).\n\n```json\n{\n  \"product_name\": \"Carnet 10 Voyages Bus-Métro Zone 1\",\n  \"price_cents\": 1600,\n  \"support\": [\"BSC\", \"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 3,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\"Zone 1\"],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\"Bus urbain\", \"Métro\"],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 10,\n        \"22_02\": 10,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ Carnet 10 voyages créé : 16€, valable 3 mois."
+      }
+    ],
+    "metadata": {
+      "type": "multi_turn",
+      "category": "carnet_creation_clarification",
+      "turns": 4,
+      "final_product": "Carnet 10 Voyages",
+      "cars": [7, 4, 14, 22],
+      "dialogue_type": "education_then_creation"
+    }
+  },
+  {
+    "conversation": [
+      {
+        "role": "user",
+        "content": "Carnet bus+métro"
+      },
+      {
+        "role": "assistant",
+        "content": "Je peux créer un carnet bus-métro pour vous.\n\n❓ **Précisions nécessaires** :\n1. **Nombre de voyages** : 5, 10, ou 20 tickets ?\n2. **Zones** : Zone 1 uniquement ou plusieurs zones ?\n\nQuelles sont vos préférences ?"
+      },
+      {
+        "role": "user",
+        "content": "10 voyages zone 1"
+      },
+      {
+        "role": "assistant",
+        "content": "Parfait ! Je crée votre carnet 10 voyages bus-métro zone 1.\n\n```json\n{\n  \"product_name\": \"Carnet 10 Bus-Métro Zone 1\",\n  \"price_cents\": 1600,\n  \"support\": [\"BSC\", \"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 3,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\"Zone 1\"],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\"Bus urbain\", \"Métro\"],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 10,\n        \"22_02\": 10,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ Carnet créé : 16€, validité 3 mois."
+      }
+    ],
+    "metadata": {
+      "type": "multi_turn",
+      "category": "carnet_creation",
+      "turns": 4,
+      "final_product": "Carnet 10 Bus-Métro",
+      "cars": [7, 4, 14, 22],
+      "dialogue_type": "clarification_then_creation"
+    }
+  },
+  {
+    "conversation": [
+      {
+        "role": "user",
+        "content": "Option la moins chère pour aller au travail"
+      },
+      {
+        "role": "assistant",
+        "content": "Je vais vous aider à trouver la solution la plus économique pour vos trajets domicile-travail.\n\n❓ **Questions essentielles** :\n1. **Zones** : Entre quelles zones voyagez-vous (zone 1 seulement ou zones 1-2) ?\n2. **Fréquence** : Combien de jours par semaine travaillez-vous ?\n3. **Profil** : Bénéficiez-vous d'un tarif réduit (jeune, senior, étudiant) ?\n\nCes informations permettront de calculer la meilleure option."
+      },
+      {
+        "role": "user",
+        "content": "Zone 1, 5 jours par semaine, plein tarif"
+      },
+      {
+        "role": "assistant",
+        "content": "Merci pour ces précisions. Voici mon analyse :\n\n💡 **Calcul économique** :\n- 5 jours/semaine × 4 semaines = 20 jours\n- 20 jours × 2 trajets (aller-retour) = **40 trajets/mois**\n\n**Comparaison des options** :\n1. Tickets unité : 40 × 2€ = 80€\n2. Carnets : 4 carnets × 16€ = 64€\n3. **Abonnement mensuel : 67€** (voyages illimités !)\n\n**Recommandation** : L'abonnement mensuel est optimal. Pour 67€, vous avez des voyages illimités (vs 64€ pour carnets limités à 40 voyages).\n\nJe crée l'abonnement ?"
+      },
+      {
+        "role": "user",
+        "content": "Oui, créez l'abonnement"
+      },
+      {
+        "role": "assistant",
+        "content": "Parfait ! Je crée votre abonnement mensuel zone 1.\n\n```json\n{\n  \"product_name\": \"Abonnement Mensuel Zone 1\",\n  \"price_cents\": 6700,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\"Zone 1\"],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ Abonnement créé : 67€/mois, tous modes zone 1, voyages illimités."
+      }
+    ],
+    "metadata": {
+      "type": "multi_turn",
+      "category": "recommendation_and_creation",
+      "turns": 6,
+      "final_product": "Abonnement Mensuel Zone 1",
+      "cars": [7, 4, 14],
+      "dialogue_type": "consultation_recommendation_creation"
+    }
+  },
+  {
+    "conversation": [
+      {
+        "role": "user",
+        "content": "Je veux un produit avec CAR_14 et CAR_74"
+      },
+      {
+        "role": "assistant",
+        "content": "⚠️ **INCOMPATIBILITÉ DÉTECTÉE**\n\nCAR_14 et CAR_74 ne peuvent pas coexister dans le même produit.\n\n**Raison** : Ces deux caractéristiques définissent les modes de transport de manière incompatible :\n- **CAR_14** : Liste paramétrable de modes (standard actuel)\n- **CAR_74** : Mode codé sur support (OBSOLÈTE)\n\n✅ **Solution** : Utilisez UNIQUEMENT CAR_14.\n\n❓ **Question** : Quels modes souhaitez-vous autoriser ?"
+      },
+      {
+        "role": "user",
+        "content": "D'accord. Alors CAR_14 seulement, pour bus et métro"
+      },
+      {
+        "role": "assistant",
+        "content": "Parfait ! Je crée un produit avec CAR_14 pour bus et métro.\n\nPour compléter, de quel type de produit avez-vous besoin : ticket, carnet, pass, ou abonnement ?"
+      },
+      {
+        "role": "user",
+        "content": "Un carnet 10 voyages zone 1"
+      },
+      {
+        "role": "assistant",
+        "content": "Très bien ! Je crée votre carnet 10 voyages bus-métro zone 1.\n\n```json\n{\n  \"product_name\": \"Carnet 10 Bus-Métro Zone 1\",\n  \"price_cents\": 1600,\n  \"support\": [\"BSC\", \"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 3,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\"Zone 1\"],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\"Bus urbain\", \"Métro\"],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 10,\n        \"22_02\": 10,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ Carnet créé avec CAR_14 uniquement."
+      }
+    ],
+    "metadata": {
+      "type": "multi_turn",
+      "category": "incompatibility_correction",
+      "turns": 6,
+      "final_product": "Carnet 10 Bus-Métro",
+      "cars": [7, 4, 14, 22],
+      "dialogue_type": "error_correction_then_creation"
+    }
+  },
+  {
+    "conversation": [
+      {
+        "role": "user",
+        "content": "Carnet sur BSC avec limitation de trajets par jour"
+      },
+      {
+        "role": "assistant",
+        "content": "⚠️ **INCOMPATIBILITÉ SUPPORT DÉTECTÉE**\n\nLe support **BSC (Billet Sans Contact)** n'est pas compatible avec les limitations complexes comme les trajets par jour.\n\n**Raison** : BSC est un support non réinscriptible. Les limitations dynamiques (trajets/jour, compteurs) nécessitent un support réinscriptible.\n\n✅ **Solution** : Utilisez **CSC (Carte Sans Contact)** ou **AB (Application Billettique)**.\n\n❓ **Question** : Acceptez-vous d'utiliser CSC ou AB pour ce produit ?"
+      },
+      {
+        "role": "user",
+        "content": "Oui, CSC convient"
+      },
+      {
+        "role": "assistant",
+        "content": "Parfait ! Je configure un carnet sur CSC avec limitation de trajets par jour.\n\nQuelques précisions :\n1. **Nombre de trajets par jour** : Combien ?\n2. **Nombre total de voyages** : 10, 20 ?\n3. **Zones et modes** ?"
+      },
+      {
+        "role": "user",
+        "content": "3 trajets par jour maximum, 20 voyages total, zone 1 tous modes"
+      },
+      {
+        "role": "assistant",
+        "content": "Très bien ! Je crée votre carnet 20 voyages avec limite 3 trajets/jour.\n\n```json\n{\n  \"product_name\": \"Carnet 20 Voyages (3/jour max)\",\n  \"price_cents\": 3000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 3,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\"Zone 1\"],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 20,\n        \"22_02\": 20,\n        \"22_03\": false\n      }\n    },\n    {\n      \"number\": 25,\n      \"parameters\": {\n        \"25_01\": \"Jour\",\n        \"25_02\": 3\n      }\n    }\n  ]\n}\n```\n\n✅ Carnet créé sur CSC : 20 voyages, maximum 3 trajets/jour."
+      }
+    ],
+    "metadata": {
+      "type": "multi_turn",
+      "category": "support_incompatibility_correction",
+      "turns": 6,
+      "final_product": "Carnet 20 Voyages avec limitation",
+      "cars": [7, 4, 14, 22, 25],
+      "dialogue_type": "support_correction_then_creation"
+    }
+  },
+  {
+    "conversation": [
+      {
+        "role": "user",
+        "content": "Une semaine"
+      },
+      {
+        "role": "assistant",
+        "content": "Je note que vous souhaitez un titre d'une semaine.\n\n❓ **Clarification importante** : \"Une semaine\" peut désigner :\n1. **7 jours glissants (168 heures)** : Validité 7 jours à partir de la première validation\n2. **Semaine calendaire** : Du lundi au dimanche inclus\n\nLaquelle correspond à votre besoin ?"
+      },
+      {
+        "role": "user",
+        "content": "7 jours glissants à partir de la validation"
+      },
+      {
+        "role": "assistant",
+        "content": "Parfait ! Je crée un pass 7 jours (168h glissantes).\n\nDernières précisions :\n1. **Zones** : Zone 1 ou plusieurs zones ?\n2. **Modes** : Tous modes TCL ?"
+      },
+      {
+        "role": "user",
+        "content": "Zone 1, tous modes"
+      },
+      {
+        "role": "assistant",
+        "content": "Très bien ! Je crée votre pass 7 jours zone 1.\n\n```json\n{\n  \"product_name\": \"Pass 7 Jours Zone 1\",\n  \"price_cents\": 1800,\n  \"support\": [\"BSC\", \"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 168,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\"Zone 1\"],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ Pass 7 jours créé : 18€, validité 168h à partir de la première validation."
+      }
+    ],
+    "metadata": {
+      "type": "multi_turn",
+      "category": "duration_clarification",
+      "turns": 6,
+      "final_product": "Pass 7 Jours",
+      "cars": [7, 4, 14],
+      "dialogue_type": "ambiguity_resolution_then_creation"
+    }
+  },
+  {
+    "conversation": [
+      {
+        "role": "user",
+        "content": "Zones banlieue"
+      },
+      {
+        "role": "assistant",
+        "content": "Je note que vous avez besoin d'un titre pour la banlieue.\n\n❓ **Précisions nécessaires** :\n1. **Quelles zones spécifiques** ?\n   - Zone 2 (proche banlieue) ?\n   - Zones 3, 4, 5 (banlieue éloignée) ?\n2. **Zone 1 incluse** : Avez-vous besoin du centre-ville Lyon (zone 1) en plus ?\n3. **Type de produit** : Abonnement, carnet, ou pass ?\n\nLa plupart des usagers ont besoin de Zone 1 + zones banlieue. Est-ce votre cas ?"
+      },
+      {
+        "role": "user",
+        "content": "Zones 3 à 5, avec zone 1 incluse"
+      },
+      {
+        "role": "assistant",
+        "content": "Parfait ! Je note zones 1, 3, 4, 5.\n\n❓ **Question complémentaire** : Quel type de produit ?\n1. **Abonnement mensuel** (usage régulier/quotidien) ?\n2. **Carnet de tickets** (usage occasionnel) ?\n3. **Pass temporel** (courte période) ?"
+      },
+      {
+        "role": "user",
+        "content": "Abonnement mensuel tous modes"
+      },
+      {
+        "role": "assistant",
+        "content": "Très bien ! Je crée votre abonnement mensuel zones 1-3-4-5.\n\n```json\n{\n  \"product_name\": \"Abonnement Mensuel Zones 1-3-4-5\",\n  \"price_cents\": 8500,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\"Zone 1\", \"Zone 3\", \"Zone 4\", \"Zone 5\"],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ Abonnement créé : 85€/mois, zones 1-3-4-5, tous modes."
+      }
+    ],
+    "metadata": {
+      "type": "multi_turn",
+      "category": "zone_clarification",
+      "turns": 6,
+      "final_product": "Abonnement Zones Multiples",
+      "cars": [7, 4, 14],
+      "dialogue_type": "zone_specification_then_creation"
+    }
+  },
+  {
+    "conversation": [
+      {
+        "role": "user",
+        "content": "Pass famille"
+      },
+      {
+        "role": "assistant",
+        "content": "Je note que vous cherchez un \"pass famille\".\n\n❓ **Clarification nécessaire** : Que recherchez-vous exactement ?\n1. **Pass groupe** : Produit unique utilisable par plusieurs personnes simultanément ?\n2. **Plusieurs abonnements** : Un abonnement individuel pour chaque membre de la famille ?\n3. **Carnet multi-usager** : Carnet partageable entre membres de la famille ?\n\nPouvez-vous préciser votre besoin ?"
+      },
+      {
+        "role": "user",
+        "content": "Un produit qu'on peut utiliser à plusieurs en même temps, pour 2 adultes et 2 enfants"
+      },
+      {
+        "role": "assistant",
+        "content": "Merci pour la précision ! Vous recherchez un produit multi-usager pour 4 personnes.\n\n💡 **Options disponibles** :\n\n1. **Pass Groupe à effectif fixe** (CAR_2) :\n   - 4 personnes exactement\n   - Tous validés ensemble\n   \n2. **Pass Groupe à effectif variable** (CAR_38) :\n   - 2 à 4 personnes (flexible)\n   - Nombre choisi à chaque validation\n\n3. **Carnet multi-usager** (CAR_21) :\n   - Carnet partageable\n   - Jusqu'à 4 validations simultanées\n\n❓ **Question** : Préférez-vous :\n- Un pass journée/temporel (option 1 ou 2) ?\n- Un carnet de voyages (option 3) ?"
+      },
+      {
+        "role": "user",
+        "content": "Le carnet multi-usager semble bien"
+      },
+      {
+        "role": "assistant",
+        "content": "Très bien ! Je crée un carnet multi-usager pour votre famille.\n\nDernières questions :\n1. **Nombre de voyages** : 10, 20 ?\n2. **Zones et modes** : Zone 1 tous modes ?"
+      },
+      {
+        "role": "user",
+        "content": "20 voyages, zone 1 tous modes"
+      },
+      {
+        "role": "assistant",
+        "content": "Parfait ! Je crée votre carnet famille 20 voyages.\n\n```json\n{\n  \"product_name\": \"Carnet Famille 20 Voyages Zone 1\",\n  \"price_cents\": 3400,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 3,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\"Zone 1\"],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 21,\n      \"parameters\": {\n        \"21_01\": 20,\n        \"21_02\": 20,\n        \"21_03\": 4\n      }\n    }\n  ]\n}\n```\n\n✅ Carnet famille créé : 34€, 20 voyages, jusqu'à 4 validations simultanées."
+      }
+    ],
+    "metadata": {
+      "type": "multi_turn",
+      "category": "product_type_clarification",
+      "turns": 8,
+      "final_product": "Carnet Famille Multi-usager",
+      "cars": [7, 4, 14, 21],
+      "dialogue_type": "concept_clarification_then_creation"
+    }
+  }
+]

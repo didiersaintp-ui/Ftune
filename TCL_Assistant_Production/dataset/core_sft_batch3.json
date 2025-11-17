@@ -14,5 +14,831 @@
       ],
       "complexity": "medium"
     }
+  },
+  {
+    "instruction": "Pass groupe variable 3-6 personnes zones 1-2 week-end uniquement",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass Groupe Week-end\" avec nombre variable de personnes et restrictions temporelles.\n\n**Analyse** :\n- Type : Pass journée groupe avec restrictions\n- CAR_38 : Groupe variable (min 3, max 6 personnes)\n- CAR_4 : Zones 1-2\n- CAR_9 : Week-end uniquement (samedi-dimanche)\n- Durée : 1 jour\n- Prix : 22.00€ (tarif groupe week-end)\n- Modes : Tous modes TCL\n\n**⚠️ CAR_38 - Groupe variable** :\n- 38_01 : Minimum 3 personnes\n- 38_02 : Maximum 6 personnes\n- Nombre saisi à l'achat\n\n**Caractéristiques utilisées** :\n- CAR_38 : Groupe 3-6 personnes\n- CAR_4 : Zones 1-2\n- CAR_9 : Samedi-dimanche\n- CAR_7 : 1 jour\n- CAR_14 : Tous modes\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Groupe Week-end\",\n  \"price_cents\": 2200,\n  \"support\": [\"CSC\", \"AB\", \"BSC\"],\n  \"characteristics\": [\n    {\n      \"number\": 38,\n      \"parameters\": {\"38_01\": 3, \"38_02\": 6}\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\"4_01\": [\"Zone 1\", \"Zone 2\"]}\n    },\n    {\n      \"number\": 9,\n      \"parameters\": {\"9_01\": [{\"start\": \"00:00\", \"end\": \"23:59\", \"days\": [\"Samedi\", \"Dimanche\"]}]}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 1, \"7_02\": \"J\", \"7_03\": 1, \"7_04\": false, \"7_05\": false}\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}\n    }\n  ],\n  \"profile\": \"Groupe\"\n}\n```\n\n✅ **Confirmation** : Pass groupe variable 3-6 personnes, zones 1-2, week-end uniquement.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "car38_groupe_weekend",
+      "product": "Pass Groupe Week-end",
+      "cars": [
+        38,
+        4,
+        9,
+        7,
+        14
+      ],
+      "complexity": "high"
+    }
+  },
+  {
+    "instruction": "Abonnement senior 65+ remboursable 30 jours 50%",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement Senior Flexible\" avec profil tarifaire personnalisé et remboursement partiel.\n\n**Analyse** :\n- Type : Abonnement mensuel senior avec flexibilité\n- CAR_11 : Profil \"Senior 65+\" avec justificatif âge\n- CAR_97 : Remboursable 30 jours, 50%, 3€ frais\n- Durée : 1 mois\n- Prix réduit : 40.00€ (vs 65.00€ plein tarif)\n- Modes : Tous modes TCL\n\n**⚠️ CAR_11 + CAR_97** :\n- Profil senior avec tarif réduit\n- Possibilité remboursement partiel sous conditions\n- Justificatif pièce d'identité obligatoire\n\n**Caractéristiques utilisées** :\n- CAR_11 : Profil Senior 65+\n- CAR_97 : Remboursable 30j, 50%, 3€\n- CAR_7 : 1 mois rechargeable\n- CAR_14 : Tous modes\n- CAR_48 : Personnalisation nom\n- CAR_102 : TRDI\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Senior 65+\",\n  \"price_cents\": 4000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 11,\n      \"parameters\": {\n        \"11_01\": \"Senior 65 ans et plus\",\n        \"11_02\": \"Pièce d'identité avec date de naissance\"\n      }\n    },\n    {\n      \"number\": 97,\n      \"parameters\": {\n        \"97_01\": 30,\n        \"97_02\": 50,\n        \"97_03\": 300\n      }\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 1, \"7_02\": \"M\", \"7_03\": 1, \"7_04\": true, \"7_05\": true}\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}\n    },\n    {\n      \"number\": 48,\n      \"parameters\": {\"48_01\": \"<Nom>\", \"48_02\": \"<Prénom>\", \"48_03\": false}\n    },\n    {\n      \"number\": 102,\n      \"parameters\": {\"102_01\": \"TRDI\", \"102_02\": \"M\"}\n    }\n  ],\n  \"profile\": \"Senior 65+\"\n}\n```\n\n✅ **Confirmation** : Abonnement mensuel senior 65+, remboursable 30 jours à 50% (3€ frais), TRDI.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "car11_car97_senior",
+      "product": "Abonnement Senior 65+",
+      "cars": [
+        11,
+        97,
+        7,
+        14,
+        48,
+        102
+      ],
+      "complexity": "high"
+    }
+  },
+  {
+    "instruction": "Abonnement entreprise nominatif avec photo et gestionnaire RH",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement Entreprise Nominatif\" géré centralement par RH.\n\n**Analyse** :\n- Type : Abonnement mensuel entreprise\n- CAR_73 : Gestionnaire portefeuille (service RH)\n- CAR_48 : Personnalisation nom/prénom/photo\n- CAR_8 : Contrôle visuel autorisé\n- CAR_86 : Code client entreprise\n- Durée : 1 mois\n- Prix : 65.00€ (facturé à l'entreprise)\n- Support : CSC ou AB\n\n**Caractéristiques utilisées** :\n- CAR_73 : Gestionnaire entreprise\n- CAR_48 : Personnalisation complète\n- CAR_8 : Contrôle visuel\n- CAR_86 : Code client\n- CAR_7 : 1 mois TRDI\n- CAR_14 : Tous modes\n- CAR_102 : Tacite reconduction\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Entreprise Nominatif\",\n  \"price_cents\": 6500,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 73,\n      \"parameters\": {\n        \"73_01\": \"<ID_Entreprise>\",\n        \"73_02\": \"<Nom Entreprise>\",\n        \"73_03\": \"<Contact RH>\"\n      }\n    },\n    {\n      \"number\": 48,\n      \"parameters\": {\"48_01\": \"<Nom employé>\", \"48_02\": \"<Prénom>\", \"48_03\": true}\n    },\n    {\n      \"number\": 8,\n      \"parameters\": {\"8_01\": true}\n    },\n    {\n      \"number\": 86,\n      \"parameters\": {\"86_01\": \"<Code client>\"}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 1, \"7_02\": \"M\", \"7_03\": 1, \"7_04\": true, \"7_05\": true}\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}\n    },\n    {\n      \"number\": 102,\n      \"parameters\": {\"102_01\": \"TRDI\", \"102_02\": \"M\"}\n    }\n  ],\n  \"profile\": \"Entreprise\"\n}\n```\n\n✅ **Confirmation** : Abonnement entreprise avec gestion RH centralisée, nominatif avec photo, contrôle visuel.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "car73_car48_car8_entreprise",
+      "product": "Abonnement Entreprise Nominatif",
+      "cars": [
+        73,
+        48,
+        8,
+        86,
+        7,
+        14,
+        102
+      ],
+      "complexity": "very_high"
+    }
+  },
+  {
+    "instruction": "Pass Black Friday app mobile seulement référence PROMO-BF2025 fin 30/11/2025",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass Black Friday Digital\" avec restrictions commerciales multiples.\n\n**Analyse** :\n- Type : Pass hebdomadaire promotionnel digital\n- CAR_58 : Vente application mobile uniquement\n- CAR_90 : Référence commerciale PROMO-BF2025\n- CAR_103 : Fin commercialisation 30/11/2025\n- CAR_107 : Promotion durée\n- Durée : 1 semaine\n- Prix promo : 12.00€ (vs 18.00€)\n- Support : AB uniquement\n\n**Caractéristiques utilisées** :\n- CAR_58 : Canal app mobile only\n- CAR_90 : Référence PROMO-BF2025\n- CAR_103 : Fin vente 30/11/2025\n- CAR_107 : Promotion\n- CAR_7 : 1 semaine\n- CAR_14 : Tous modes\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Black Friday Digital\",\n  \"price_cents\": 1200,\n  \"support\": [\"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 58,\n      \"parameters\": {\n        \"58_01\": [\"Application mobile\"],\n        \"58_02\": [\"Distributeur\", \"Guichet\", \"SMS\", \"Web\"]\n      }\n    },\n    {\n      \"number\": 90,\n      \"parameters\": {\"90_01\": \"PROMO-BF2025\"}\n    },\n    {\n      \"number\": 103,\n      \"parameters\": {\"103_01\": \"30/11/2025\"}\n    },\n    {\n      \"number\": 107,\n      \"parameters\": {\"107_01\": 1, \"107_02\": 1, \"107_03\": \"S\"}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 1, \"7_02\": \"S\", \"7_03\": 1, \"7_04\": false, \"7_05\": false}\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Pass hebdo Black Friday, app mobile uniquement, réf PROMO-BF2025, vente jusqu'au 30/11/2025.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "car58_car90_car103_promo",
+      "product": "Pass Black Friday Digital",
+      "cars": [
+        58,
+        90,
+        103,
+        107,
+        7,
+        14
+      ],
+      "complexity": "high"
+    }
+  },
+  {
+    "instruction": "Ticket lignes et zones au choix heures creuses 10h-16h",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Ticket Flexible Heures Creuses\" où l'usager choisit lignes et zones.\n\n**Analyse** :\n- Type : Ticket journée flexible\n- CAR_87 : Lignes choisies à la vente\n- CAR_121 : Zones choisies à la vente  \n- CAR_9 : Heures creuses 10h-16h\n- Prix : 3.50€ (tarif réduit heures creuses)\n- Durée : 1 jour\n- Support : Tous supports\n\n**⚠️ Double flexibilité** :\n- Lignes choisies au distributeur (CAR_87)\n- Zones choisies au distributeur (CAR_121)\n- Restriction horaire (10h-16h)\n\n**Caractéristiques utilisées** :\n- CAR_87 : Lignes à la vente\n- CAR_121 : Zones à la vente\n- CAR_9 : 10h-16h\n- CAR_7 : 1 jour\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Ticket Flexible Heures Creuses\",\n  \"price_cents\": 350,\n  \"support\": [\"CSC\", \"AB\", \"BSC\"],\n  \"characteristics\": [\n    {\n      \"number\": 87,\n      \"parameters\": {\n        \"87_01\": [\"C1\", \"C2\", \"C3\", \"C4\", \"C5\", \"T1\", \"T2\", \"T3\", \"T4\", \"T5\"]\n      }\n    },\n    {\n      \"number\": 121,\n      \"parameters\": {\n        \"121_01\": [\"Zone 1\", \"Zone 2\", \"Zone 3\", \"Zone 4\", \"Zone 5\"]\n      }\n    },\n    {\n      \"number\": 9,\n      \"parameters\": {\"9_01\": [{\"start\": \"10:00\", \"end\": \"16:00\"}]}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 1, \"7_02\": \"J\", \"7_03\": 1, \"7_04\": false, \"7_05\": false}\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Ticket 1 jour avec choix lignes et zones à l'achat, heures creuses 10h-16h.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "car87_car121_car9_flexible",
+      "product": "Ticket Flexible Heures Creuses",
+      "cars": [
+        87,
+        121,
+        9,
+        7
+      ],
+      "complexity": "high"
+    }
+  },
+  {
+    "instruction": "Pass famille tarifaire JEUNES zones 1-2-3 référence JEUNE2025",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass Jeune Zones 1-2-3\" avec classification tarifaire.\n\n**Analyse** :\n- Type : Pass mensuel jeune avec famille tarifaire\n- CAR_91 : Famille tarifaire \"JEUNES\"\n- CAR_90 : Référence commerciale JEUNE2025\n- CAR_4 : Zones 1-2-3\n- CAR_11 : Profil Jeune 18-25 ans\n- Prix : 32.00€\n- Durée : 1 mois\n\n**Caractéristiques utilisées** :\n- CAR_91 : Famille JEUNES\n- CAR_90 : Référence JEUNE2025\n- CAR_4 : Zones 1-2-3\n- CAR_11 : Profil Jeune 18-25\n- CAR_7 : 1 mois rechargeable\n- CAR_14 : Tous modes\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Jeune Zones 1-2-3\",\n  \"price_cents\": 3200,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 91,\n      \"parameters\": {\n        \"91_01\": \"JEUNES\",\n        \"91_02\": \"Famille tarifaire Jeunes 18-25 ans\"\n      }\n    },\n    {\n      \"number\": 90,\n      \"parameters\": {\"90_01\": \"JEUNE2025\"}\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\"4_01\": [\"Zone 1\", \"Zone 2\", \"Zone 3\"]}\n    },\n    {\n      \"number\": 11,\n      \"parameters\": {\n        \"11_01\": \"Jeune 18-25 ans\",\n        \"11_02\": \"Carte étudiant ou pièce d'identité\"\n      }\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 1, \"7_02\": \"M\", \"7_03\": 1, \"7_04\": true, \"7_05\": true}\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}\n    }\n  ],\n  \"profile\": \"Jeune 18-25\"\n}\n```\n\n✅ **Confirmation** : Pass mensuel jeune zones 1-2-3, famille tarifaire JEUNES, référence JEUNE2025.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "car91_car90_car4_jeune",
+      "product": "Pass Jeune Zones 1-2-3",
+      "cars": [
+        91,
+        90,
+        4,
+        11,
+        7,
+        14
+      ],
+      "complexity": "high"
+    }
+  },
+  {
+    "instruction": "Forfait entreprise post-payé facturation trimestrielle gestionnaire",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Forfait Entreprise Post-Payé\" avec facturation différée trimestrielle.\n\n**Analyse** :\n- Type : Forfait illimité post-payé entreprise\n- CAR_98 : Post-paiement trimestriel\n- CAR_86 : Code client entreprise\n- CAR_73 : Gestionnaire portefeuille\n- CAR_48 : Personnalisation employé\n- Prix : 180.00€/trimestre\n- Durée : Illimité TRDI\n\n**⚠️ Post-paiement entreprise** :\n- Facturation a posteriori chaque trimestre\n- Gestion centralisée par gestionnaire RH\n- Code client pour identification\n\n**Caractéristiques utilisées** :\n- CAR_98 : Post-paiement trimestriel\n- CAR_86 : Code client\n- CAR_73 : Gestionnaire\n- CAR_48 : Personnalisation\n- CAR_7 : Illimité TRDI\n- CAR_14 : Tous modes\n- CAR_102 : TRDI\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Forfait Entreprise Post-Payé Trimestriel\",\n  \"price_cents\": 18000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 98,\n      \"parameters\": {\"98_01\": \"Trimestriel\"}\n    },\n    {\n      \"number\": 86,\n      \"parameters\": {\"86_01\": \"<Code client entreprise>\"}\n    },\n    {\n      \"number\": 73,\n      \"parameters\": {\n        \"73_01\": \"<ID_Entreprise>\",\n        \"73_02\": \"<Nom Entreprise>\",\n        \"73_03\": \"<Contact RH>\"\n      }\n    },\n    {\n      \"number\": 48,\n      \"parameters\": {\"48_01\": \"<Nom>\", \"48_02\": \"<Prénom>\", \"48_03\": false}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 999, \"7_02\": \"M\", \"7_03\": 1, \"7_04\": true, \"7_05\": true}\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}\n    },\n    {\n      \"number\": 102,\n      \"parameters\": {\"102_01\": \"TRDI\", \"102_02\": \"T\"}\n    }\n  ],\n  \"profile\": \"Entreprise\"\n}\n```\n\n✅ **Confirmation** : Forfait illimité entreprise post-payé, facturation trimestrielle, gestion centralisée RH.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "car98_car86_car73_postpaid",
+      "product": "Forfait Entreprise Post-Payé Trimestriel",
+      "cars": [
+        98,
+        86,
+        73,
+        48,
+        7,
+        14,
+        102
+      ],
+      "complexity": "very_high"
+    }
+  },
+  {
+    "instruction": "Carnet 50 unités stock avec 1 point fidélité par validation",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Carnet Fidélité 50\" avec gestion stock et points de fidélité.\n\n**Analyse** :\n- Type : Carnet avec stock dynamique et fidélité\n- CAR_105 : Stock de 50 unités géré dynamiquement\n- CAR_23 : 1 point de fidélité par validation\n- CAR_22 : Mono-usager (50 validations)\n- Durée : 18 mois\n- Prix : 65.00€ (1.30€/unité)\n- Support : CSC ou AB (compteurs dynamiques)\n\n**⚠️ CAR_105 + CAR_23** :\n- Stock décrémenté à chaque validation\n- Points fidélité cumulés simultanément\n- Support réinscriptible obligatoire\n\n**Caractéristiques utilisées** :\n- CAR_105 : Stock 50\n- CAR_23 : 1 point/validation\n- CAR_22 : Mono 50\n- CAR_7 : 18 mois\n- CAR_14 : Tous modes\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet Fidélité 50\",\n  \"price_cents\": 6500,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 105,\n      \"parameters\": {\"105_01\": 50}\n    },\n    {\n      \"number\": 23,\n      \"parameters\": {\"23_01\": 1, \"23_02\": \"Par validation\"}\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\"22_01\": 50}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 18, \"7_02\": \"M\", \"7_03\": 1, \"7_04\": false, \"7_05\": false}\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Carnet 50 unités avec stock dynamique et 1 point fidélité/validation, 18 mois.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "car105_car23_car22_fidelite",
+      "product": "Carnet Fidélité 50",
+      "cars": [
+        105,
+        23,
+        22,
+        7,
+        14
+      ],
+      "complexity": "high"
+    }
+  },
+  {
+    "instruction": "Pass annuel zones 1-2 senior avec 2 points fidélité remboursable 60 jours",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass Annuel Senior Premium\" avec multiples avantages.\n\n**Analyse** :\n- Type : Pass annuel senior premium\n- CAR_11 : Profil Senior 65+\n- CAR_4 : Zones 1-2\n- CAR_23 : 2 points fidélité/validation\n- CAR_97 : Remboursable 60 jours, 75%, 5€\n- CAR_48 : Personnalisation\n- CAR_102 : Tacite reconduction annuelle\n- Prix : 380.00€\n- Durée : 1 an\n\n**⚠️ Produit premium** :\n- Tarif senior réduit\n- Fidélité intégrée\n- Remboursement généreux\n- TRDI annuel\n\n**Caractéristiques utilisées** :\n- CAR_11 : Senior 65+\n- CAR_4 : Zones 1-2\n- CAR_23 : 2 points/validation\n- CAR_97 : Remboursable 60j, 75%, 5€\n- CAR_48 : Personnalisation\n- CAR_7 : 1 an rechargeable\n- CAR_14 : Tous modes\n- CAR_102 : TRDI annuel\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Annuel Senior Premium\",\n  \"price_cents\": 38000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 11,\n      \"parameters\": {\n        \"11_01\": \"Senior 65+\",\n        \"11_02\": \"Pièce d'identité\"\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\"4_01\": [\"Zone 1\", \"Zone 2\"]}\n    },\n    {\n      \"number\": 23,\n      \"parameters\": {\"23_01\": 2, \"23_02\": \"Par validation\"}\n    },\n    {\n      \"number\": 97,\n      \"parameters\": {\"97_01\": 60, \"97_02\": 75, \"97_03\": 500}\n    },\n    {\n      \"number\": 48,\n      \"parameters\": {\"48_01\": \"<Nom>\", \"48_02\": \"<Prénom>\", \"48_03\": true}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 1, \"7_02\": \"A\", \"7_03\": 1, \"7_04\": true, \"7_05\": true}\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}\n    },\n    {\n      \"number\": 102,\n      \"parameters\": {\"102_01\": \"TRDI\", \"102_02\": \"A\"}\n    }\n  ],\n  \"profile\": \"Senior 65+\"\n}\n```\n\n✅ **Confirmation** : Pass annuel senior zones 1-2 avec 2 points fidélité/validation, remboursable 60j à 75%.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "complex_senior_premium",
+      "product": "Pass Annuel Senior Premium",
+      "cars": [
+        11,
+        4,
+        23,
+        97,
+        48,
+        7,
+        14,
+        102
+      ],
+      "complexity": "very_high"
+    }
+  },
+  {
+    "instruction": "Forfait 5 trajets par jour avec fidélité heures pointe uniquement",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Forfait Quotidien Pointe Fidélité\" avec limitations et avantages.\n\n**Analyse** :\n- Type : Forfait mensuel avec limitations\n- CAR_10 : Max 5 trajets/jour\n- CAR_23 : 1 point fidélité/validation\n- CAR_9 : Heures pointe (7h-9h, 17h-19h)\n- Prix : 50.00€\n- Durée : 1 mois\n- Support : CSC ou AB\n\n**⚠️ Triple contrainte** :\n- Limitation quotidienne (5 trajets max)\n- Horaire restreint (pointe)\n- Points fidélité cumulatifs\n\n**Caractéristiques utilisées** :\n- CAR_10 : 5 trajets/jour max\n- CAR_23 : 1 point/validation\n- CAR_9 : Horaires pointe\n- CAR_7 : 1 mois\n- CAR_14 : Tous modes\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Forfait Quotidien Pointe Fidélité\",\n  \"price_cents\": 5000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 10,\n      \"parameters\": {\"10_01\": [{\"unit\": \"Jour\", \"count\": 1, \"max_trips\": 5}]}\n    },\n    {\n      \"number\": 23,\n      \"parameters\": {\"23_01\": 1, \"23_02\": \"Par validation\"}\n    },\n    {\n      \"number\": 9,\n      \"parameters\": {\"9_01\": [{\"start\": \"07:00\", \"end\": \"09:00\"}, {\"start\": \"17:00\", \"end\": \"19:00\"}]}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 1, \"7_02\": \"M\", \"7_03\": 1, \"7_04\": true, \"7_05\": true}\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Forfait 1 mois, max 5 trajets/jour, heures pointe, 1 point fidélité/validation.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "car10_car23_car9_complex",
+      "product": "Forfait Quotidien Pointe Fidélité",
+      "cars": [
+        10,
+        23,
+        9,
+        7,
+        14
+      ],
+      "complexity": "high"
+    }
+  },
+  {
+    "instruction": "Pass groupe 4 personnes lignes C1-C2 zones 2-3 week-end et jours fériés",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass Groupe Loisirs\" avec multiples restrictions géographiques et temporelles.\n\n**Analyse** :\n- Type : Pass journée groupe restreint\n- CAR_2 : Groupe fixe 4 personnes\n- CAR_3 : Lignes C1, C2 uniquement\n- CAR_4 : Zones 2-3\n- CAR_9 : Week-end + jours fériés\n- Prix : 16.00€\n- Durée : 1 jour\n\n**⚠️ Restrictions cumulées** :\n- Groupe exact de 4\n- 2 lignes seulement\n- 2 zones\n- Jours limités\n\n**Caractéristiques utilisées** :\n- CAR_2 : 4 personnes\n- CAR_3 : C1-C2\n- CAR_4 : Zones 2-3\n- CAR_9 : Week-end + fériés\n- CAR_7 : 1 jour\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Groupe Loisirs\",\n  \"price_cents\": 1600,\n  \"support\": [\"CSC\", \"AB\", \"BSC\"],\n  \"characteristics\": [\n    {\n      \"number\": 2,\n      \"parameters\": {\"2_01\": 4}\n    },\n    {\n      \"number\": 3,\n      \"parameters\": {\"3_01\": [\"Ligne C1\", \"Ligne C2\"]}\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\"4_01\": [\"Zone 2\", \"Zone 3\"]}\n    },\n    {\n      \"number\": 9,\n      \"parameters\": {\"9_01\": [{\"start\": \"00:00\", \"end\": \"23:59\", \"days\": [\"Samedi\", \"Dimanche\", \"Jours fériés\"]}]}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 1, \"7_02\": \"J\", \"7_03\": 1, \"7_04\": false, \"7_05\": false}\n    }\n  ],\n  \"profile\": \"Groupe\"\n}\n```\n\n✅ **Confirmation** : Pass groupe 4 personnes, lignes C1-C2, zones 2-3, week-end et jours fériés.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "car2_car3_car4_car9_groupe_restrictions",
+      "product": "Pass Groupe Loisirs",
+      "cars": [
+        2,
+        3,
+        4,
+        9,
+        7
+      ],
+      "complexity": "high"
+    }
+  },
+  {
+    "instruction": "Carnet famille 30 validations 3 personnes max 10 trajets par semaine zones 1-2-3",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Carnet Famille Hebdo\" avec limitations par période.\n\n**Analyse** :\n- Type : Carnet multi-usager avec limitation hebdomadaire\n- CAR_21 : Multi-usager famille, 30 validations, 3 personnes\n- CAR_10 : Max 10 trajets/semaine\n- CAR_4 : Zones 1-2-3\n- Prix : 48.00€\n- Durée : 3 mois\n- Support : CSC ou AB\n\n**⚠️ Gestion complexe** :\n- 30 validations partagées\n- Max 3 personnes simultanées\n- Limitation 10 trajets/semaine (compteur hebdo)\n\n**Caractéristiques utilisées** :\n- CAR_21 : Multi 30 validations, 3 personnes\n- CAR_10 : 10 trajets/semaine\n- CAR_4 : Zones 1-2-3\n- CAR_7 : 3 mois\n- CAR_14 : Tous modes\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet Famille Hebdo\",\n  \"price_cents\": 4800,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 21,\n      \"parameters\": {\"21_01\": 30, \"21_03\": 3}\n    },\n    {\n      \"number\": 10,\n      \"parameters\": {\"10_01\": [{\"unit\": \"Semaine\", \"count\": 1, \"max_trips\": 10}]}\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\"4_01\": [\"Zone 1\", \"Zone 2\", \"Zone 3\"]}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 3, \"7_02\": \"M\", \"7_03\": 1, \"7_04\": false, \"7_05\": false}\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}\n    }\n  ],\n  \"profile\": \"Famille\"\n}\n```\n\n✅ **Confirmation** : Carnet famille 30 validations, 3 personnes max, 10 trajets/semaine max, zones 1-2-3, 3 mois.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "car21_car10_car4_famille_limites",
+      "product": "Carnet Famille Hebdo",
+      "cars": [
+        21,
+        10,
+        4,
+        7,
+        14
+      ],
+      "complexity": "very_high"
+    }
+  },
+  {
+    "instruction": "Abonnement promo payez 11 mois recevez 12 fin vente 31/03/2025 remboursable 45 jours",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement Promo Annuel\" avec offre commerciale et flexibilité.\n\n**Analyse** :\n- Type : Abonnement annuel promotionnel\n- CAR_107 : Promotion durée (payez 11, recevez 12)\n- CAR_103 : Fin commercialisation 31/03/2025\n- CAR_97 : Remboursable 45 jours, 80%, 4€\n- Prix : 660.00€ (11 mois × 60€)\n- Durée : 1 an (12 mois de validité)\n\n**⚠️ Offre promotionnelle** :\n- 1 mois offert\n- Vente limitée dans le temps\n- Remboursement possible 45 jours\n\n**Caractéristiques utilisées** :\n- CAR_107 : Promo 11 payés, 12 reçus\n- CAR_103 : Fin vente 31/03/2025\n- CAR_97 : Remboursable 45j, 80%, 4€\n- CAR_7 : 1 an\n- CAR_14 : Tous modes\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Promo Annuel\",\n  \"price_cents\": 66000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 107,\n      \"parameters\": {\"107_01\": 11, \"107_02\": 12, \"107_03\": \"M\"}\n    },\n    {\n      \"number\": 103,\n      \"parameters\": {\"103_01\": \"31/03/2025\"}\n    },\n    {\n      \"number\": 97,\n      \"parameters\": {\"97_01\": 45, \"97_02\": 80, \"97_03\": 400}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 1, \"7_02\": \"A\", \"7_03\": 1, \"7_04\": true, \"7_05\": true}\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Abonnement annuel promo (11 payés=12 reçus), vente jusqu'au 31/03/2025, remboursable 45j à 80%.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "car107_car103_car97_promo_flexible",
+      "product": "Abonnement Promo Annuel",
+      "cars": [
+        107,
+        103,
+        97,
+        7,
+        14
+      ],
+      "complexity": "high"
+    }
+  },
+  {
+    "instruction": "Carnet 40 déplacements stock dynamique validation par trajet 9 mois",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Carnet Déplacements Stock\" avec double gestion compteurs.\n\n**Analyse** :\n- Type : Carnet avec validation déplacement et stock\n- CAR_6 : Validation par déplacement (traçabilité)\n- CAR_105 : Stock de 40 unités géré dynamiquement\n- CAR_22 : Mono-usager 40 déplacements\n- Prix : 52.00€ (1.30€/déplacement)\n- Durée : 9 mois\n- Support : CSC ou AB\n\n**⚠️ Double compteur** :\n- CAR_6 : Compte les déplacements (1 validation = 1 trajet)\n- CAR_105 : Gère le stock restant\n- Traçabilité stricte mono-usager\n\n**Caractéristiques utilisées** :\n- CAR_6 : Validation trajet\n- CAR_105 : Stock 40\n- CAR_22 : Mono 40\n- CAR_7 : 9 mois\n- CAR_14 : Tous modes\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet Déplacements Stock 40\",\n  \"price_cents\": 5200,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 6,\n      \"parameters\": {\"6_01\": \"Trajet\"}\n    },\n    {\n      \"number\": 105,\n      \"parameters\": {\"105_01\": 40}\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\"22_01\": 40}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 9, \"7_02\": \"M\", \"7_03\": 1, \"7_04\": false, \"7_05\": false}\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Carnet 40 déplacements avec validation par trajet et gestion stock dynamique, 9 mois.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "car6_car105_car22_stock_deplacement",
+      "product": "Carnet Déplacements Stock 40",
+      "cars": [
+        6,
+        105,
+        22,
+        7,
+        14
+      ],
+      "complexity": "high"
+    }
+  },
+  {
+    "instruction": "Ticket événement date fixe 15/07/2025 zones toutes",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Ticket Événement 15 Juillet\" avec date d'activation fixe.\n\n**Analyse** :\n- Type : Ticket événement date précise\n- Date fixe : 15/07/2025 (Nature de validité 0)\n- CAR_4 : Toutes zones\n- Durée : 1 jour\n- Prix : 5.00€\n- Support : Tous supports\n\n**⚠️ Nature 0 - Date fixe** :\n- 7_02 : \"J\" (jour)\n- 7_03 : 0 (Nature 0 = date fixe)\n- Date début : 15/07/2025\n- Produit valable uniquement ce jour\n\n**Caractéristiques utilisées** :\n- CAR_7 : 1 jour Nature 0 (date fixe 15/07/2025)\n- CAR_4 : Toutes zones\n- CAR_14 : Tous modes\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Ticket Événement 15 Juillet\",\n  \"price_cents\": 500,\n  \"support\": [\"CSC\", \"AB\", \"BSC\"],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 1,\n        \"7_02\": \"J\",\n        \"7_03\": 0,\n        \"7_04\": false,\n        \"7_05\": false,\n        \"7_date_debut\": \"15/07/2025\"\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\"4_01\": [\"Zone 1\", \"Zone 2\", \"Zone 3\", \"Zone 4\", \"Zone 5\"]}\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}\n    }\n  ],\n  \"profile\": \"Événement\"\n}\n```\n\n✅ **Confirmation** : Ticket événement valable uniquement le 15/07/2025, toutes zones, tous modes.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "nature_0_date_fixe_event",
+      "product": "Ticket Événement 15 Juillet",
+      "cars": [
+        7,
+        4,
+        14
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Pass mensuel tous modes sauf train zones 1-2-3-4",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass Régional Sans Train\" avec exclusion mode.\n\n**Analyse** :\n- Type : Pass mensuel avec exclusion\n- CAR_14 : Train interdit, autres modes autorisés\n- CAR_4 : Zones 1-2-3-4\n- Prix : 85.00€\n- Durée : 1 mois\n\n**⚠️ CAR_14 - Mode interdit** :\n- 14_01 : [\"Train\"] (liste modes)\n- 14_02 : \"Interdite\" (action)\n- Tous autres modes implicitement autorisés\n\n**Caractéristiques utilisées** :\n- CAR_14 : Train interdit\n- CAR_4 : Zones 1-2-3-4\n- CAR_7 : 1 mois rechargeable\n- CAR_102 : TRDI\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Régional Sans Train\",\n  \"price_cents\": 8500,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Train\"], \"14_02\": \"Interdite\"}\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\"4_01\": [\"Zone 1\", \"Zone 2\", \"Zone 3\", \"Zone 4\"]}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 1, \"7_02\": \"M\", \"7_03\": 1, \"7_04\": true, \"7_05\": true}\n    },\n    {\n      \"number\": 102,\n      \"parameters\": {\"102_01\": \"TRDI\", \"102_02\": \"M\"}\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Pass mensuel zones 1-2-3-4, tous modes sauf train (mode interdit), TRDI.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "car14_mode_exclusion",
+      "product": "Pass Régional Sans Train",
+      "cars": [
+        14,
+        4,
+        7,
+        102
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Carnet 10 jours non consécutifs 2 mois validité",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Carnet 10 Jours Flexibles\" utilisable sur jours non consécutifs.\n\n**Analyse** :\n- Type : Carnet jours non consécutifs\n- CAR_22 : Mono-usager 10 validations\n- Nature 4 : Jours non consécutifs (10 jours dans période 2 mois)\n- Prix : 48.00€ (4.80€/jour)\n- Durée : 2 mois pour utiliser les 10 jours\n\n**⚠️ Nature 4 - Jours non consécutifs** :\n- 7_01 : 10 (nombre de jours)\n- 7_02 : \"J\" (unité jour)\n- 7_03 : 4 (Nature 4 = non consécutif)\n- Validité globale : 2 mois\n\n**Caractéristiques utilisées** :\n- CAR_22 : Mono 10 jours\n- CAR_7 : 10 jours Nature 4, validité 2 mois\n- CAR_14 : Tous modes\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet 10 Jours Flexibles\",\n  \"price_cents\": 4800,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 22,\n      \"parameters\": {\"22_01\": 10}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 10,\n        \"7_02\": \"J\",\n        \"7_03\": 4,\n        \"7_04\": false,\n        \"7_05\": false,\n        \"7_validite_totale\": 2,\n        \"7_unite_validite\": \"M\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\"], \"14_02\": \"Autorisée\"}\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Carnet 10 jours non consécutifs, à utiliser dans 2 mois, tous modes.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "nature_4_jours_non_consecutifs",
+      "product": "Carnet 10 Jours Flexibles",
+      "cars": [
+        22,
+        7,
+        14
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Abonnement étudiant zones 1-2 lignes C1-C2-C3 semaine horaires 6h-20h avec remboursement",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement Étudiant Semaine\" avec multiples restrictions.\n\n**Analyse** :\n- Type : Abonnement hebdomadaire étudiant restreint\n- CAR_11 : Profil Étudiant\n- CAR_4 : Zones 1-2\n- CAR_3 : Lignes C1-C2-C3\n- CAR_9 : Lundi-vendredi 6h-20h\n- CAR_97 : Remboursable 7 jours, 60%, 2€\n- CAR_48 : Personnalisation\n- Prix : 18.00€\n- Durée : 1 semaine\n\n**⚠️ Multiples restrictions** :\n- Profil étudiant obligatoire\n- 2 zones uniquement\n- 3 lignes spécifiques\n- Jours semaine + horaires\n- Remboursement court délai\n\n**Caractéristiques utilisées** :\n- CAR_11 : Étudiant\n- CAR_4 : Zones 1-2\n- CAR_3 : Lignes C1-C2-C3\n- CAR_9 : Lun-ven 6h-20h\n- CAR_97 : Remboursable 7j, 60%, 2€\n- CAR_48 : Personnalisation\n- CAR_7 : 1 semaine\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Étudiant Semaine\",\n  \"price_cents\": 1800,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 11,\n      \"parameters\": {\n        \"11_01\": \"Étudiant\",\n        \"11_02\": \"Carte étudiant\"\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\"4_01\": [\"Zone 1\", \"Zone 2\"]}\n    },\n    {\n      \"number\": 3,\n      \"parameters\": {\"3_01\": [\"Ligne C1\", \"Ligne C2\", \"Ligne C3\"]}\n    },\n    {\n      \"number\": 9,\n      \"parameters\": {\"9_01\": [{\"start\": \"06:00\", \"end\": \"20:00\", \"days\": [\"Lundi\", \"Mardi\", \"Mercredi\", \"Jeudi\", \"Vendredi\"]}]}\n    },\n    {\n      \"number\": 97,\n      \"parameters\": {\"97_01\": 7, \"97_02\": 60, \"97_03\": 200}\n    },\n    {\n      \"number\": 48,\n      \"parameters\": {\"48_01\": \"<Nom>\", \"48_02\": \"<Prénom>\", \"48_03\": false}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 1, \"7_02\": \"S\", \"7_03\": 1, \"7_04\": false, \"7_05\": false}\n    }\n  ],\n  \"profile\": \"Étudiant\"\n}\n```\n\n✅ **Confirmation** : Abonnement hebdo étudiant, zones 1-2, lignes C1-C2-C3, lun-ven 6h-20h, remboursable 7j à 60%.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "complex_etudiant_restrictions_multiples",
+      "product": "Abonnement Étudiant Semaine",
+      "cars": [
+        11,
+        4,
+        3,
+        9,
+        97,
+        48,
+        7
+      ],
+      "complexity": "very_high"
+    }
+  },
+  {
+    "instruction": "Forfait premium annuel toutes zones validation déplacement 3 points fidélité personnalisé gestionnaire entreprise post-payé",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Forfait Premium Entreprise\" avec maximum de fonctionnalités.\n\n**Analyse** :\n- Type : Forfait annuel entreprise ultra-premium\n- CAR_4 : Toutes zones\n- CAR_6 : Validation par déplacement\n- CAR_23 : 3 points fidélité/validation\n- CAR_48 : Personnalisation complète\n- CAR_73 : Gestionnaire portefeuille\n- CAR_86 : Code client\n- CAR_98 : Post-paiement annuel\n- CAR_8 : Contrôle visuel\n- Prix : 1200.00€/an\n- Durée : 1 an TRDI\n\n**⚠️ Produit ultra-premium** :\n- Toutes fonctionnalités avancées\n- Post-paiement entreprise\n- Gestion centralisée\n- Fidélité premium\n- Traçabilité complète\n\n**Caractéristiques utilisées** :\n- CAR_4 : Toutes zones\n- CAR_6 : Validation déplacement\n- CAR_23 : 3 points/validation\n- CAR_48 : Personnalisation photo\n- CAR_73 : Gestionnaire\n- CAR_86 : Code client\n- CAR_98 : Post-payé annuel\n- CAR_8 : Contrôle visuel\n- CAR_7 : 1 an TRDI\n- CAR_14 : Tous modes\n- CAR_102 : TRDI annuel\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Forfait Premium Entreprise Annuel\",\n  \"price_cents\": 120000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\n      \"number\": 4,\n      \"parameters\": {\"4_01\": [\"Zone 1\", \"Zone 2\", \"Zone 3\", \"Zone 4\", \"Zone 5\"]}\n    },\n    {\n      \"number\": 6,\n      \"parameters\": {\"6_01\": \"Trajet\"}\n    },\n    {\n      \"number\": 23,\n      \"parameters\": {\"23_01\": 3, \"23_02\": \"Par validation\"}\n    },\n    {\n      \"number\": 48,\n      \"parameters\": {\"48_01\": \"<Nom>\", \"48_02\": \"<Prénom>\", \"48_03\": true}\n    },\n    {\n      \"number\": 73,\n      \"parameters\": {\n        \"73_01\": \"<ID_Entreprise>\",\n        \"73_02\": \"<Nom Entreprise>\",\n        \"73_03\": \"<Contact RH>\"\n      }\n    },\n    {\n      \"number\": 86,\n      \"parameters\": {\"86_01\": \"<Code client>\"}\n    },\n    {\n      \"number\": 98,\n      \"parameters\": {\"98_01\": \"Annuel\"}\n    },\n    {\n      \"number\": 8,\n      \"parameters\": {\"8_01\": true}\n    },\n    {\n      \"number\": 7,\n      \"parameters\": {\"7_01\": 1, \"7_02\": \"A\", \"7_03\": 1, \"7_04\": true, \"7_05\": true}\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\"14_01\": [\"Bus urbain\", \"Métro\", \"Tramway\", \"Funiculaire\", \"Train\"], \"14_02\": \"Autorisée\"}\n    },\n    {\n      \"number\": 102,\n      \"parameters\": {\"102_01\": \"TRDI\", \"102_02\": \"A\"}\n    }\n  ],\n  \"profile\": \"Entreprise Premium\"\n}\n```\n\n✅ **Confirmation** : Forfait annuel ultra-premium entreprise, toutes zones, validation déplacement, 3 points fidélité, personnalisé, gestionnaire, post-payé annuel.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "ultra_premium_entreprise_maximal",
+      "product": "Forfait Premium Entreprise Annuel",
+      "cars": [
+        4,
+        6,
+        23,
+        48,
+        73,
+        86,
+        98,
+        8,
+        7,
+        14,
+        102
+      ],
+      "complexity": "very_high"
+    }
+  },
+  {
+    "instruction": "Carnet 15 voyages zones 1-2 nuit 20h-6h",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Carnet Nuit 15\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Carnet 15 voyages, zones 1-2, nuit 20h-6h\n- Prix : 18.00€\n- Support : CSC, AB (ou BSC si compatible)\n- CAR utilisées : [22, 7, 14, 4, 9]\n\n**Caractéristiques du produit** :\nCarnet 15 voyages, zones 1-2, nuit 20h-6h\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet Nuit 15\",\n  \"price_cents\": 1800,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 22},\n    {\"number\": 7},\n    {\"number\": 14}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Carnet 15 voyages, zones 1-2, nuit 20h-6h.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "realistic_tcl_product_21",
+      "product": "Carnet Nuit 15",
+      "cars": [
+        22,
+        7,
+        14,
+        4,
+        9
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Pass trimestre zones toutes promo étudiant remboursable",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass Trimestre Étudiant\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Pass 3 mois étudiant toutes zones, remboursable 15j\n- Prix : 150.00€\n- Support : CSC, AB (ou BSC si compatible)\n- CAR utilisées : [11, 4, 7, 14, 97, 102]\n\n**Caractéristiques du produit** :\nPass 3 mois étudiant toutes zones, remboursable 15j\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Trimestre Étudiant\",\n  \"price_cents\": 15000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 11},\n    {\"number\": 4},\n    {\"number\": 7}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Pass 3 mois étudiant toutes zones, remboursable 15j.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "realistic_tcl_product_22",
+      "product": "Pass Trimestre Étudiant",
+      "cars": [
+        11,
+        4,
+        7,
+        14,
+        97,
+        102
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Forfait semaine groupe 7 personnes zones 1-2-3",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Forfait Semaine Groupe 7\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Forfait hebdo groupe 7 personnes, zones 1-2-3\n- Prix : 95.00€\n- Support : CSC, AB (ou BSC si compatible)\n- CAR utilisées : [2, 4, 7, 14]\n\n**Caractéristiques du produit** :\nForfait hebdo groupe 7 personnes, zones 1-2-3\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Forfait Semaine Groupe 7\",\n  \"price_cents\": 9500,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 2},\n    {\"number\": 4},\n    {\"number\": 7}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Forfait hebdo groupe 7 personnes, zones 1-2-3.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "realistic_tcl_product_23",
+      "product": "Forfait Semaine Groupe 7",
+      "cars": [
+        2,
+        4,
+        7,
+        14
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Ticket  journée métro uniquement zone 1",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Ticket Métro Zone 1\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Ticket 1 jour métro uniquement, zone 1\n- Prix : 2.80€\n- Support : CSC, AB (ou BSC si compatible)\n- CAR utilisées : [7, 14, 4]\n\n**Caractéristiques du produit** :\nTicket 1 jour métro uniquement, zone 1\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Ticket Métro Zone 1\",\n  \"price_cents\": 280,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 7},\n    {\"number\": 14},\n    {\"number\": 4}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Ticket 1 jour métro uniquement, zone 1.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "realistic_tcl_product_24",
+      "product": "Ticket Métro Zone 1",
+      "cars": [
+        7,
+        14,
+        4
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Abonnement mensuel bus-tram zones 2-3-4 senior",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement Bus-Tram Senior\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Abonnement mensuel bus-tram, zones 2-3-4, senior\n- Prix : 38.00€\n- Support : CSC, AB (ou BSC si compatible)\n- CAR utilisées : [11, 14, 4, 7, 102]\n\n**Caractéristiques du produit** :\nAbonnement mensuel bus-tram, zones 2-3-4, senior\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Bus-Tram Senior\",\n  \"price_cents\": 3800,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 11},\n    {\"number\": 14},\n    {\"number\": 4}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Abonnement mensuel bus-tram, zones 2-3-4, senior.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "realistic_tcl_product_25",
+      "product": "Abonnement Bus-Tram Senior",
+      "cars": [
+        11,
+        14,
+        4,
+        7,
+        102
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Carnet 25 validations multi-usager 5 personnes 6 mois",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Carnet Multi 25\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Carnet 25 validations multi-usager 5 personnes, 6 mois\n- Prix : 35.00€\n- Support : CSC, AB (ou BSC si compatible)\n- CAR utilisées : [21, 7, 14]\n\n**Caractéristiques du produit** :\nCarnet 25 validations multi-usager 5 personnes, 6 mois\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet Multi 25\",\n  \"price_cents\": 3500,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 21},\n    {\"number\": 7},\n    {\"number\": 14}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Carnet 25 validations multi-usager 5 personnes, 6 mois.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "realistic_tcl_product_26",
+      "product": "Carnet Multi 25",
+      "cars": [
+        21,
+        7,
+        14
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Pass 48h toutes zones tous modes",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass 48h Intégral\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Pass 48h toutes zones tous modes\n- Prix : 12.00€\n- Support : CSC, AB (ou BSC si compatible)\n- CAR utilisées : [7, 14, 4]\n\n**Caractéristiques du produit** :\nPass 48h toutes zones tous modes\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass 48h Intégral\",\n  \"price_cents\": 1200,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 7},\n    {\"number\": 14},\n    {\"number\": 4}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Pass 48h toutes zones tous modes.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "realistic_tcl_product_27",
+      "product": "Pass 48h Intégral",
+      "cars": [
+        7,
+        14,
+        4
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Abonnement annuel zones 1-2-3 avec 5 points fidélité par validation",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement Annuel Fidélité 5\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Abonnement annuel zones 1-2-3, 5 points fidélité/validation\n- Prix : 720.00€\n- Support : CSC, AB (ou BSC si compatible)\n- CAR utilisées : [4, 7, 14, 23, 102]\n\n**Caractéristiques du produit** :\nAbonnement annuel zones 1-2-3, 5 points fidélité/validation\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Annuel Fidélité 5\",\n  \"price_cents\": 72000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 4},\n    {\"number\": 7},\n    {\"number\": 14}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Abonnement annuel zones 1-2-3, 5 points fidélité/validation.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "realistic_tcl_product_28",
+      "product": "Abonnement Annuel Fidélité 5",
+      "cars": [
+        4,
+        7,
+        14,
+        23,
+        102
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Forfait 15 trajets par mois zones 1-2",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Forfait 15 Trajets/Mois\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Forfait mensuel 15 trajets max, zones 1-2\n- Prix : 28.00€\n- Support : CSC, AB (ou BSC si compatible)\n- CAR utilisées : [10, 4, 7, 14]\n\n**Caractéristiques du produit** :\nForfait mensuel 15 trajets max, zones 1-2\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Forfait 15 Trajets/Mois\",\n  \"price_cents\": 2800,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 10},\n    {\"number\": 4},\n    {\"number\": 7}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Forfait mensuel 15 trajets max, zones 1-2.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "realistic_tcl_product_29",
+      "product": "Forfait 15 Trajets/Mois",
+      "cars": [
+        10,
+        4,
+        7,
+        14
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Pass week-end famille 4 personnes toutes zones",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass WE Famille 4\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Pass week-end groupe 4, toutes zones\n- Prix : 24.00€\n- Support : CSC, AB (ou BSC si compatible)\n- CAR utilisées : [2, 4, 7, 14, 9]\n\n**Caractéristiques du produit** :\nPass week-end groupe 4, toutes zones\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass WE Famille 4\",\n  \"price_cents\": 2400,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 2},\n    {\"number\": 4},\n    {\"number\": 7}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Pass week-end groupe 4, toutes zones.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "realistic_tcl_product_30",
+      "product": "Pass WE Famille 4",
+      "cars": [
+        2,
+        4,
+        7,
+        14,
+        9
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Ticket 5 jours non consécutifs zone 1",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Ticket 5J Flexibles Z1\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Ticket 5 jours non consécutifs, zone 1\n- Prix : 24.00€\n- Support : CSC, AB (ou BSC si compatible)\n- CAR utilisées : [22, 7, 14, 4]\n\n**Caractéristiques du produit** :\nTicket 5 jours non consécutifs, zone 1\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Ticket 5J Flexibles Z1\",\n  \"price_cents\": 2400,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 22},\n    {\"number\": 7},\n    {\"number\": 14}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Ticket 5 jours non consécutifs, zone 1.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "realistic_tcl_product_31",
+      "product": "Ticket 5J Flexibles Z1",
+      "cars": [
+        22,
+        7,
+        14,
+        4
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Abonnement semestriel lignes C1-C2-C3-C4 zones 1-2",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement 6M Lignes C\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Abonnement 6 mois lignes C1-C2-C3-C4, zones 1-2\n- Prix : 350.00€\n- Support : CSC, AB (ou BSC si compatible)\n- CAR utilisées : [3, 4, 7, 102]\n\n**Caractéristiques du produit** :\nAbonnement 6 mois lignes C1-C2-C3-C4, zones 1-2\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement 6M Lignes C\",\n  \"price_cents\": 35000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 3},\n    {\"number\": 4},\n    {\"number\": 7}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Abonnement 6 mois lignes C1-C2-C3-C4, zones 1-2.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "realistic_tcl_product_32",
+      "product": "Abonnement 6M Lignes C",
+      "cars": [
+        3,
+        4,
+        7,
+        102
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Carnet 100 validations entreprise avec gestionnaire",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Carnet Entreprise 100\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Carnet 100 validations entreprise avec gestionnaire\n- Prix : 120.00€\n- Support : CSC, AB (ou BSC si compatible)\n- CAR utilisées : [22, 73, 86, 7, 14]\n\n**Caractéristiques du produit** :\nCarnet 100 validations entreprise avec gestionnaire\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet Entreprise 100\",\n  \"price_cents\": 12000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 22},\n    {\"number\": 73},\n    {\"number\": 86}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Carnet 100 validations entreprise avec gestionnaire.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "realistic_tcl_product_33",
+      "product": "Carnet Entreprise 100",
+      "cars": [
+        22,
+        73,
+        86,
+        7,
+        14
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Pass annuel zones 1-2-3-4 jeune remboursable 90 jours",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass Annuel Jeune Remboursable\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Pass annuel jeune zones 1-2-3-4, remboursable 90j\n- Prix : 420.00€\n- Support : CSC, AB (ou BSC si compatible)\n- CAR utilisées : [11, 4, 7, 14, 97, 102]\n\n**Caractéristiques du produit** :\nPass annuel jeune zones 1-2-3-4, remboursable 90j\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Annuel Jeune Remboursable\",\n  \"price_cents\": 42000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 11},\n    {\"number\": 4},\n    {\"number\": 7}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Pass annuel jeune zones 1-2-3-4, remboursable 90j.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "realistic_tcl_product_34",
+      "product": "Pass Annuel Jeune Remboursable",
+      "cars": [
+        11,
+        4,
+        7,
+        14,
+        97,
+        102
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Forfait illimité post-payé mensuel avec code client",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Forfait Illimité Post-Payé\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Forfait illimité post-payé mensuel avec code client\n- Prix : 75.00€\n- Support : CSC, AB (ou BSC si compatible)\n- CAR utilisées : [98, 86, 7, 14, 102]\n\n**Caractéristiques du produit** :\nForfait illimité post-payé mensuel avec code client\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Forfait Illimité Post-Payé\",\n  \"price_cents\": 7500,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 98},\n    {\"number\": 86},\n    {\"number\": 7}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Forfait illimité post-payé mensuel avec code client.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "realistic_tcl_product_35",
+      "product": "Forfait Illimité Post-Payé",
+      "cars": [
+        98,
+        86,
+        7,
+        14,
+        102
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Ticket date fixe événement Fête Lumières 08/12/2025",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Ticket Fête Lumières\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Ticket Fête Lumières\n- Prix : 6.00€\n- CAR utilisées : [7, 4, 14]\n- Support : Adapté selon fonctionnalités\n\n**Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Ticket Fête Lumières\",\n  \"price_cents\": 600,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 7},\n    {\"number\": 4},\n    {\"number\": 14}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Ticket Fête Lumières créé avec succès.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "tcl_product_final_36",
+      "product": "Ticket Fête Lumières",
+      "cars": [
+        7,
+        4,
+        14
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Carnet 20 jours non consécutifs 3 mois toutes zones",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Carnet 20J Flexibles\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Carnet 20J Flexibles\n- Prix : 90.00€\n- CAR utilisées : [22, 7, 14, 4]\n- Support : Adapté selon fonctionnalités\n\n**Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet 20J Flexibles\",\n  \"price_cents\": 9000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 22},\n    {\"number\": 7},\n    {\"number\": 14}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Carnet 20J Flexibles créé avec succès.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "tcl_product_final_37",
+      "product": "Carnet 20J Flexibles",
+      "cars": [
+        22,
+        7,
+        14,
+        4
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Pass mensuel nuit 22h-5h zones 1-2-3",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass Nuit\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Pass Nuit\n- Prix : 32.00€\n- CAR utilisées : [7, 14, 4, 9]\n- Support : Adapté selon fonctionnalités\n\n**Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Nuit\",\n  \"price_cents\": 3200,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 7},\n    {\"number\": 14},\n    {\"number\": 4}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Pass Nuit créé avec succès.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "tcl_product_final_38",
+      "product": "Pass Nuit",
+      "cars": [
+        7,
+        14,
+        4,
+        9
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Abonnement bimensuel zones 2-3-4-5 avec fidélité",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement 2M Périphérique\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Abonnement 2M Périphérique\n- Prix : 110.00€\n- CAR utilisées : [7, 14, 4, 23, 102]\n- Support : Adapté selon fonctionnalités\n\n**Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement 2M Périphérique\",\n  \"price_cents\": 11000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 7},\n    {\"number\": 14},\n    {\"number\": 4}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Abonnement 2M Périphérique créé avec succès.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "tcl_product_final_39",
+      "product": "Abonnement 2M Périphérique",
+      "cars": [
+        7,
+        14,
+        4,
+        23,
+        102
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Forfait 40 trajets par mois zones 1-2",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Forfait 40/Mois\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Forfait 40/Mois\n- Prix : 55.00€\n- CAR utilisées : [10, 4, 7, 14]\n- Support : Adapté selon fonctionnalités\n\n**Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Forfait 40/Mois\",\n  \"price_cents\": 5500,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 10},\n    {\"number\": 4},\n    {\"number\": 7}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Forfait 40/Mois créé avec succès.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "tcl_product_final_40",
+      "product": "Forfait 40/Mois",
+      "cars": [
+        10,
+        4,
+        7,
+        14
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Pass groupe variable 2-10 personnes jour férié",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass Groupe Férié\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Pass Groupe Férié\n- Prix : 45.00€\n- CAR utilisées : [38, 7, 14, 9]\n- Support : Adapté selon fonctionnalités\n\n**Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Groupe Férié\",\n  \"price_cents\": 4500,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 38},\n    {\"number\": 7},\n    {\"number\": 14}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Pass Groupe Férié créé avec succès.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "tcl_product_final_41",
+      "product": "Pass Groupe Férié",
+      "cars": [
+        38,
+        7,
+        14,
+        9
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Ticket métro-tram uniquement zones 1-2 3h",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Ticket Express M+T\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Ticket Express M+T\n- Prix : 2.20€\n- CAR utilisées : [7, 14, 4]\n- Support : Adapté selon fonctionnalités\n\n**Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Ticket Express M+T\",\n  \"price_cents\": 220,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 7},\n    {\"number\": 14},\n    {\"number\": 4}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Ticket Express M+T créé avec succès.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "tcl_product_final_42",
+      "product": "Ticket Express M+T",
+      "cars": [
+        7,
+        14,
+        4
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Abonnement annuel toutes zones senior 70+ remboursable",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement Annuel Senior 70+\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Abonnement Annuel Senior 70+\n- Prix : 320.00€\n- CAR utilisées : [11, 4, 7, 14, 97, 102]\n- Support : Adapté selon fonctionnalités\n\n**Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Annuel Senior 70+\",\n  \"price_cents\": 32000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 11},\n    {\"number\": 4},\n    {\"number\": 7}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Abonnement Annuel Senior 70+ créé avec succès.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "tcl_product_final_43",
+      "product": "Abonnement Annuel Senior 70+",
+      "cars": [
+        11,
+        4,
+        7,
+        14,
+        97,
+        102
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Carnet famille 40 validations 6 personnes 4 mois",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Carnet Famille 40\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Carnet Famille 40\n- Prix : 52.00€\n- CAR utilisées : [21, 7, 14]\n- Support : Adapté selon fonctionnalités\n\n**Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet Famille 40\",\n  \"price_cents\": 5200,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 21},\n    {\"number\": 7},\n    {\"number\": 14}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Carnet Famille 40 créé avec succès.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "tcl_product_final_44",
+      "product": "Carnet Famille 40",
+      "cars": [
+        21,
+        7,
+        14
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Pass trimestre lignes T1-T2-T3 tram zones 1-2-3",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass Trimestre Tram\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Pass Trimestre Tram\n- Prix : 180.00€\n- CAR utilisées : [3, 4, 7, 14, 102]\n- Support : Adapté selon fonctionnalités\n\n**Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Trimestre Tram\",\n  \"price_cents\": 18000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 3},\n    {\"number\": 4},\n    {\"number\": 7}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Pass Trimestre Tram créé avec succès.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "tcl_product_final_45",
+      "product": "Pass Trimestre Tram",
+      "cars": [
+        3,
+        4,
+        7,
+        14,
+        102
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Forfait semaine bus uniquement toutes zones",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Forfait Semaine Bus\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Forfait Semaine Bus\n- Prix : 18.00€\n- CAR utilisées : [7, 14, 4]\n- Support : Adapté selon fonctionnalités\n\n**Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Forfait Semaine Bus\",\n  \"price_cents\": 1800,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 7},\n    {\"number\": 14},\n    {\"number\": 4}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Forfait Semaine Bus créé avec succès.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "tcl_product_final_46",
+      "product": "Forfait Semaine Bus",
+      "cars": [
+        7,
+        14,
+        4
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Ticket 10h-14h heures creuses zone 1",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Ticket Midi Z1\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Ticket Midi Z1\n- Prix : 1.80€\n- CAR utilisées : [7, 14, 4, 9]\n- Support : Adapté selon fonctionnalités\n\n**Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Ticket Midi Z1\",\n  \"price_cents\": 180,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 7},\n    {\"number\": 14},\n    {\"number\": 4}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Ticket Midi Z1 créé avec succès.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "tcl_product_final_47",
+      "product": "Ticket Midi Z1",
+      "cars": [
+        7,
+        14,
+        4,
+        9
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Abonnement 9 mois étudiant lignes C zones 1-2-3-4",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement 9M Étudiant Lignes C\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Abonnement 9M Étudiant Lignes C\n- Prix : 280.00€\n- CAR utilisées : [11, 3, 4, 7]\n- Support : Adapté selon fonctionnalités\n\n**Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement 9M Étudiant Lignes C\",\n  \"price_cents\": 28000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 11},\n    {\"number\": 3},\n    {\"number\": 4}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Abonnement 9M Étudiant Lignes C créé avec succès.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "tcl_product_final_48",
+      "product": "Abonnement 9M Étudiant Lignes C",
+      "cars": [
+        11,
+        3,
+        4,
+        7
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Carnet 30 validations stock avec 2 points fidélité",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Carnet 30 Stock Fidélité\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Carnet 30 Stock Fidélité\n- Prix : 39.00€\n- CAR utilisées : [22, 105, 23, 7, 14]\n- Support : Adapté selon fonctionnalités\n\n**Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet 30 Stock Fidélité\",\n  \"price_cents\": 3900,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 22},\n    {\"number\": 105},\n    {\"number\": 23}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Carnet 30 Stock Fidélité créé avec succès.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "tcl_product_final_49",
+      "product": "Carnet 30 Stock Fidélité",
+      "cars": [
+        22,
+        105,
+        23,
+        7,
+        14
+      ],
+      "complexity": "medium"
+    }
+  },
+  {
+    "instruction": "Pass annuel entreprise zones toutes gestionnaire post-payé",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass Annuel Entreprise\" pour TCL Lyon.\n\n**Analyse** :\n- Produit : Pass Annuel Entreprise\n- Prix : 950.00€\n- CAR utilisées : [73, 86, 98, 4, 7, 14, 102]\n- Support : Adapté selon fonctionnalités\n\n**Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Annuel Entreprise\",\n  \"price_cents\": 95000,\n  \"support\": [\"CSC\", \"AB\"],\n  \"characteristics\": [\n    {\"number\": 73},\n    {\"number\": 86},\n    {\"number\": 98}\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** : Pass Annuel Entreprise créé avec succès.",
+    "metadata": {
+      "type": "product_generation",
+      "category": "tcl_product_final_50",
+      "product": "Pass Annuel Entreprise",
+      "cars": [
+        73,
+        86,
+        98,
+        4,
+        7,
+        14,
+        102
+      ],
+      "complexity": "medium"
+    }
   }
 ]
