@@ -1,0 +1,147 @@
+[
+  {
+    "instruction": "Abonnement mensuel valable uniquement sur les lignes de métro A et B",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement Mensuel Lignes A-B\" pour le métro TCL Lyon.\n\n**Analyse** :\n- Type : Abonnement avec restriction par lignes spécifiques\n- Lignes : Métro A et Métro B uniquement (pas C ni D)\n- Durée : 1 mois rechargeable\n- Mode : Métro\n- Prix : 52.00€ (réduit car lignes limitées)\n- Support : CSC ou AB\n\n**⚠️ Utilisation de CAR_3** : Lignes paramétrées dans le produit\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois, rechargeable\n- CAR_3 : Lignes Métro A et B autorisées\n- CAR_14 : Mode Métro\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Mensuel Métro A-B\",\n  \"price_cents\": 5200,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 3,\n      \"parameters\": {\n        \"3_01\": [\n          \"Métro A\",\n          \"Métro B\"\n        ],\n        \"3_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Métro\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nVotre abonnement Métro A-B est configuré. Valable UNIQUEMENT lignes A et B. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "medium_lines_restricted",
+      "product": "Abonnement Mensuel Métro A-B",
+      "cars": [
+        7,
+        3,
+        14
+      ],
+      "complexity": "medium",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Forfait limité à 2 déplacements par jour pendant 1 mois",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Forfait 2 Trajets/Jour\" pour TCL Lyon.\n\n**Analyse** :\n- Type : Forfait avec limitation quotidienne\n- Limitation : Maximum 2 déplacements par jour\n- Durée : 1 mois\n- Modes : Tous modes TCL\n- Prix : 45.00€ (moins cher car limité vs illimité)\n- Support : CSC ou AB (⚠️ PAS BSC car nécessite compteur dynamique)\n\n**⚠️ Utilisation de CAR_10** : Limitation par sous-période\n**⚠️ Support** : BSC incompatible avec CAR_10\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois, rechargeable\n- CAR_10 : Max 2 déplacements par jour\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Forfait 2 Trajets/Jour\",\n  \"price_cents\": 4500,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 10,\n      \"parameters\": {\n        \"10_01\": [\n          {\n            \"unit\": \"Jour\",\n            \"count\": 1,\n            \"max_trips\": 2\n          }\n        ]\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nVotre forfait 2 trajets/jour est prêt. Maximum 2 déplacements par jour pendant 1 mois. Support CSC ou AB uniquement. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "medium_trip_limitation",
+      "product": "Forfait 2 Trajets/Jour",
+      "cars": [
+        7,
+        10,
+        14
+      ],
+      "complexity": "medium",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Abonnement mensuel avec tacite reconduction et prélèvement automatique",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement Mensuel TRDI\" (Tacite Reconduction Durée Illimitée) pour TCL Lyon.\n\n**Analyse** :\n- Type : Abonnement avec renouvellement automatique\n- Durée : 1 mois, renouvelé automatiquement chaque mois\n- Paiement : Prélèvement automatique mensuel\n- Modes : Tous modes TCL\n- Prix : 67.00€/mois prélevé automatiquement\n- Support : CSC ou AB (⚠️ PAS BSC car tacite reconduction impossible)\n- Résiliation : Sur demande uniquement\n\n**⚠️ Utilisation de CAR_102** : Tacite reconduction\n**⚠️ Support** : BSC incompatible avec CAR_102\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois, rechargeable\n- CAR_102 : Prélèvement mensuel + tacite reconduction\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Mensuel TRDI\",\n  \"price_cents\": 6700,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 102,\n      \"parameters\": {\n        \"102_01\": \"Mensuel\",\n        \"102_04\": true\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nVotre abonnement avec tacite reconduction est configuré. Prélèvement automatique mensuel de 67€. Résiliation sur demande. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "medium_auto_renewal",
+      "product": "Abonnement Mensuel TRDI",
+      "cars": [
+        7,
+        102,
+        14
+      ],
+      "complexity": "medium",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Abonnement annuel : payez 10 mois, voyagez 12 mois",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement Annuel Promo 10=12\" pour TCL Lyon.\n\n**Analyse** :\n- Type : Abonnement avec promotion durée\n- Formule : Payer 10 mois, bénéficier de 12 mois\n- Mois payés : 10\n- Mois gratuits : 2\n- Mois total : 12\n- Modes : Tous modes TCL\n- Prix : 670.00€ (10×67€, économie de 134€)\n- Support : CSC ou AB\n\n**⚠️ Utilisation de CAR_107** : X mois gratuits pour Y mois payés\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 12 mois, rechargeable\n- CAR_107 : 10 mois payés = 12 mois total (2 gratuits)\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Annuel Promo 10=12\",\n  \"price_cents\": 67000,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 12,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 107,\n      \"parameters\": {\n        \"107_01\": 10,\n        \"107_02\": 2,\n        \"107_03\": 12\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nVotre abonnement annuel promo est configuré. Payez 10 mois (670€), voyagez 12 mois. Économie de 134€. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "medium_promotional_duration",
+      "product": "Abonnement Annuel Promo 10=12",
+      "cars": [
+        7,
+        107,
+        14
+      ],
+      "complexity": "medium",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Abonnement zones 1-2-3 tous modes",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement Mensuel Zones 1-2-3\" pour TCL Lyon.\n\n**Analyse** :\n- Type : Abonnement multi-zones\n- Zones : Zone 1, Zone 2, Zone 3 (contiguës)\n- Durée : 1 mois rechargeable\n- Modes : Tous modes TCL\n- Prix : 75.00€ (plus cher que zone unique)\n- Support : CSC ou AB\n\n**⚠️ Règle métier** : Les zones doivent être contiguës (pas de \"trou\")\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois, rechargeable\n- CAR_4 : Zones 1, 2, 3 autorisées\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Mensuel Zones 1-2-3\",\n  \"price_cents\": 7500,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 4,\n      \"parameters\": {\n        \"4_01\": [\n          \"Zone 1\",\n          \"Zone 2\",\n          \"Zone 3\"\n        ],\n        \"4_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nVotre abonnement zones 1-2-3 est configuré. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "medium_multi_zone",
+      "product": "Abonnement Mensuel Zones 1-2-3",
+      "cars": [
+        7,
+        4,
+        14
+      ],
+      "complexity": "medium",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Pass journée valable uniquement en semaine, du lundi au vendredi",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass Semaine\" pour TCL Lyon.\n\n**Analyse** :\n- Type : Pass journalier avec restriction calendaire\n- Jours : Lundi à Vendredi UNIQUEMENT (pas week-end)\n- Durée : 24 heures\n- Modes : Tous modes TCL\n- Prix : 5.50€ (moins cher car restrictif)\n- Support : BSC ou AB\n\n**⚠️ Utilisation de CAR_9** : Restriction par type de jour\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 24 heures\n- CAR_9 : Lundi-Vendredi uniquement\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Semaine 24h\",\n  \"price_cents\": 550,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 24,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 9,\n      \"parameters\": {\n        \"9_01\": [\n          {\n            \"days\": \"Lundi-Vendredi\",\n            \"start\": \"00:00\",\n            \"end\": \"23:59\"\n          }\n        ]\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nVotre pass semaine est prêt. Valable 24h UNIQUEMENT du lundi au vendredi. Confirmez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "medium_weekday_only",
+      "product": "Pass Semaine 24h",
+      "cars": [
+        7,
+        9,
+        14
+      ],
+      "complexity": "medium",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Carnet 10 voyages heures creuses 9h-17h uniquement",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Carnet 10 Voyages Heures Creuses\" pour TCL Lyon.\n\n**Analyse** :\n- Type : Carnet avec restriction horaire\n- Nombre : 10 voyages\n- Horaire : 9h-17h en semaine uniquement (heures creuses)\n- Modes : Tous modes TCL\n- Durée : 3 mois\n- Prix : 14.00€ (moins cher car restrictif)\n- Support : BSC, CSC ou AB\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 3 mois\n- CAR_9 : Restriction 9h-17h lundi-vendredi\n- CAR_14 : Tous modes TCL\n- CAR_22 : 10 voyages mono-usager\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Carnet 10 Voyages Heures Creuses\",\n  \"price_cents\": 1400,\n  \"support\": [\n    \"BSC\",\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 3,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 9,\n      \"parameters\": {\n        \"9_01\": [\n          {\n            \"days\": \"Lundi-Vendredi\",\n            \"start\": \"09:00\",\n            \"end\": \"17:00\"\n          }\n        ]\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    },\n    {\n      \"number\": 22,\n      \"parameters\": {\n        \"22_01\": 10,\n        \"22_02\": 10,\n        \"22_03\": false\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nVotre carnet heures creuses est prêt. 10 voyages utilisables UNIQUEMENT 9h-17h en semaine. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "medium_off_peak_carnet",
+      "product": "Carnet 10 Voyages Heures Creuses",
+      "cars": [
+        7,
+        9,
+        14,
+        22
+      ],
+      "complexity": "medium",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Abonnement mensuel remboursable sous 15 jours",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Abonnement Mensuel Remboursable\" pour TCL Lyon.\n\n**Analyse** :\n- Type : Abonnement avec option remboursement\n- Durée : 1 mois rechargeable\n- Remboursement : Possible sous 15 jours à 80% (frais 5€)\n- Modes : Tous modes TCL\n- Prix : 67.00€\n- Support : CSC ou AB\n\n**⚠️ Utilisation de CAR_97** : Gestion du remboursement\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 1 mois, rechargeable\n- CAR_97 : Remboursable 15 jours, 80%, frais 5€\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Abonnement Mensuel Remboursable\",\n  \"price_cents\": 6700,\n  \"support\": [\n    \"CSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 2,\n        \"7_02\": \"M\",\n        \"7_03\": 1,\n        \"7_04\": true,\n        \"7_05\": true\n      }\n    },\n    {\n      \"number\": 97,\n      \"parameters\": {\n        \"97_01\": true,\n        \"97_02\": 15,\n        \"97_03\": 80,\n        \"97_04\": 5.00\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ],\n  \"profile\": \"Plein tarif\"\n}\n```\n\n✅ **Confirmation** :\nVotre abonnement remboursable est configuré. Remboursement possible sous 15 jours à 80% (frais 5€). Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "medium_refundable",
+      "product": "Abonnement Mensuel Remboursable",
+      "cars": [
+        7,
+        97,
+        14
+      ],
+      "complexity": "medium",
+      "variation_type": "complete_request"
+    }
+  },
+  {
+    "instruction": "Pass groupe pour 5 personnes valable 24h",
+    "response": "🧠 **Raisonnement** :\nJe vais créer un \"Pass Groupe 5 Personnes\" pour TCL Lyon.\n\n**Analyse** :\n- Type : Pass groupe nombre fixe\n- Passagers : 5 personnes exactement\n- Durée : 24 heures\n- Modes : Tous modes TCL\n- Prix : 20.00€ (4€/personne)\n- Support : BSC ou AB\n\n**⚠️ Utilisation de CAR_2** : Groupe avec nombre fixe de passagers\n\n**Caractéristiques utilisées** :\n- CAR_7 : Validité 24 heures\n- CAR_2 : 5 passagers fixes\n- CAR_14 : Tous modes TCL\n\n➡️ **Réponse/JSON** :\n```json\n{\n  \"product_name\": \"Pass Groupe 5 Personnes 24h\",\n  \"price_cents\": 2000,\n  \"support\": [\n    \"BSC\",\n    \"AB\"\n  ],\n  \"characteristics\": [\n    {\n      \"number\": 7,\n      \"parameters\": {\n        \"7_01\": 4,\n        \"7_02\": \"H\",\n        \"7_03\": 24,\n        \"7_04\": false,\n        \"7_05\": false\n      }\n    },\n    {\n      \"number\": 2,\n      \"parameters\": {\n        \"2_01\": 5\n      }\n    },\n    {\n      \"number\": 14,\n      \"parameters\": {\n        \"14_01\": [\n          \"Bus urbain\",\n          \"Métro\",\n          \"Tramway\",\n          \"Funiculaire\"\n        ],\n        \"14_02\": \"Autorisée\"\n      }\n    }\n  ]\n}\n```\n\n✅ **Confirmation** :\nVotre pass groupe 5 personnes est prêt. Valable 24h pour exactement 5 passagers. Validez-vous ?",
+    "metadata": {
+      "type": "product_generation",
+      "category": "medium_group_fixed",
+      "product": "Pass Groupe 5 Personnes 24h",
+      "cars": [
+        7,
+        2,
+        14
+      ],
+      "complexity": "medium",
+      "variation_type": "complete_request"
+    }
+  }
+]
